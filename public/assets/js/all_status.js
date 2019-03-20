@@ -144,7 +144,7 @@ window.addEventListener('load',function() {
 			inputNewPhone(result);
 		});
 		
-		console.log( 'Отслеживание состояния load',method.get(),result,'\n\n\n' );
+		console.log( result,'\n\n\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);
 		// Проверка личности

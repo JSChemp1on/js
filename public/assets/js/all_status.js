@@ -90,7 +90,8 @@ window.addEventListener('load',function() {
 				this.visiblePage(0);
 				statusBar.imgActive(2);
 				d.querySelector('#authSMSCode').dataset.phoneId = obj.phoneId;
-				console.log(obj)
+				console.log({phoneNumber:obj.phoneNumber});
+				if(obj.phoneNumber.length > 0) d.querySelector('#'+obj.phoneNumber).innerText = obj.phoneNumber;
 			},
 			step2:function() {
 				// Страница Change number
@@ -163,7 +164,7 @@ window.addEventListener('load',function() {
 				page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
 			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
 				// Идет проверка && номер подтвержден
-				page.step1({request_id:result.request_id,phoneId:result.phoneId});
+				page.step1({request_id:result.request_id,phoneId:result.phoneId,phoneNumber:result.phoneNumber});
 			} else if(result.s == 'Declined') {
 				// Когда статус проверки неизвестен
 				page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
@@ -177,7 +178,6 @@ window.addEventListener('load',function() {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
 		// LOGO
-		console.log('hello,world');
 		$.ajax({
 			url: "/gw/payment_form.aspx/getUrlInfos",
 			type: "post",

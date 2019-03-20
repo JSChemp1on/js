@@ -180,9 +180,9 @@ window.addEventListener('load',function() {
 				// Когда статус проверки неизвестен
 				page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
 			
-			} else if(result.s == 'Completed' || result.s == 'MoneySend') {
+			} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
 				// Когда все успешно завершено
-				page.step5({status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
+				page.step5({status:result.s,date:result.d,cash:result.iA+' '+result.iC});
 			} else console.log('Ни одного из условий не выполнено');
 
 		} else {

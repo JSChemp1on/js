@@ -259,7 +259,7 @@ window.addEventListener('load',function() {
 		});
 	}
 	// Новый номер телефона
-	function changePhoneNumberForRequest() {
+	function inputNewPhone() {
 		let host = 'https://indacoin.com';
 		$.ajax({
 			url: host + "/notify/ChangePhoneNumberForRequest",
@@ -286,7 +286,7 @@ window.addEventListener('load',function() {
 			}
 		});
 	}
-	function inputNewPhone(result) {
+	(function(result) {
 		$.ajax({
 			url: "https://wchat.freshchat.com/js/widget.js",
 			dataType: "script",
@@ -304,7 +304,7 @@ window.addEventListener('load',function() {
 				externalId: userTokenMD5,     // user’s id unique to your system
 			});
 		});
-	}
+	})(result);
 	// Общий ajax
 	function ajaxData(resolve) {
 		let host = 'https://indacoin.com';

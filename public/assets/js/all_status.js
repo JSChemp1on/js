@@ -91,7 +91,7 @@ window.addEventListener('load',function() {
 				statusBar.imgActive(2);
 				d.querySelector('#authSMSCode').dataset.phoneId = obj.phoneId;
 				console.log({phoneNumber:obj.phoneNumber});
-				d.querySelector('#phoneNumber').innerText = obj.phoneNumber;
+				this.selector[visibleBlock()].querySelector('.phoneNumber').innerText = obj.phoneNumber;
 			},
 			step2:function() {
 				// Страница Change number

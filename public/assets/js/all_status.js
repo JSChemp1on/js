@@ -176,6 +176,7 @@ window.addEventListener('load',function() {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
 		// LOGO
+		/*
 		$.ajax({
 			url: "/gw/payment_form.aspx/getUrlInfos",
 			type: "post",
@@ -193,6 +194,7 @@ window.addEventListener('load',function() {
 			  $(".header__logo-img").attr("src",`${location.origin}/${logo_url}`);
 			} 
 		});
+		*/
 	});
 
 	// Проверить СМС код

@@ -91,7 +91,10 @@ window.addEventListener('load',function() {
 				statusBar.imgActive(2);
 				d.querySelector('#authSMSCode').dataset.phoneId = obj.phoneId;
 				console.log({phoneNumber:obj.phoneNumber});
-				this.selector[visibleBlock()].querySelector('.phoneNumber').innerText = obj.phoneNumber;
+				d.querySelectorAll('.phoneNumber').forEach(function(item) {
+					console.log(item,item.innerText);
+					item.innerText = obj.phoneNumber;
+				});
 			},
 			step2:function() {
 				// Страница Change number

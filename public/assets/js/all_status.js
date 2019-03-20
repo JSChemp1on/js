@@ -90,6 +90,7 @@ window.addEventListener('load',function() {
 				this.visiblePage(0);
 				statusBar.imgActive(2);
 				d.querySelector('#authSMSCode').dataset.phoneId = obj.phoneId;
+				console.log(obj)
 			},
 			step2:function() {
 				// Страница Change number

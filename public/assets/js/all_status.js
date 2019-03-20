@@ -92,7 +92,6 @@ window.addEventListener('load',function() {
 				d.querySelector('#authSMSCode').dataset.phoneId = obj.phoneId;
 				console.log({phoneNumber:obj.phoneNumber});
 				d.querySelectorAll('.phoneNumber').forEach(function(item) {
-					console.log(item,item.innerText);
 					item.innerText = obj.phoneNumber;
 				});
 			},
@@ -125,6 +124,15 @@ window.addEventListener('load',function() {
 				statusBar.imgSetname(6,'step3_error.svg');
 				this.setStat(obj);
 			}
+		},
+		countdown = function(time,result) {
+			d.querySelector('#countdown').innerText = time;
+			if(time <= 0)
+				window.location.href = result.partner_url + (result.partner_url.includes('?') ? "&transaction_id=" + result.ex_transaction_id : "?transaction_id=" + result.ex_transaction_id);
+			else 
+				setTimeout(function() {
+					countdown(time--);
+				}, 1000);
 		}
 	
 	/* 
@@ -180,6 +188,9 @@ window.addEventListener('load',function() {
 		} else {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
+
+		if(result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")
+			countdown(15,result);
 		// LOGO
 		$.ajax({
 			url: "/gw/payment_form.aspx/getUrlInfos",

@@ -176,16 +176,19 @@ window.addEventListener('load',function() {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
 		// LOGO
+		console.log('hello,world');
 		$.ajax({
 			url: "/gw/payment_form.aspx/getUrlInfos",
 			type: "post",
 			async: true,
 			contentType: "application/json; charset=utf-8",
+			crossDomain: false,
 			dataType: "json",
 			data: JSON.stringify({
-			  partner: result.partnerName
+			  partner: result.partner
 			}),
 			success: (data) => {
+				console.log('logo',data,'logo')
 			  const { error_url, logo_url } = data.d
 		
 			  $(".proccesing-form__text_cancel-payment").attr("href", error_url)

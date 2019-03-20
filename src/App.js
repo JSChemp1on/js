@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 import './css/app_status.css'
 
 class App extends Component {
-  componentDidMount() {
-    console.log(this.setState() );
-  }
   render() {
     return (
       <center>
@@ -27,7 +24,7 @@ class App extends Component {
         </div><br /><br />
         <div className="stat">We will call you now on +39335752323 Please listen for the 4-digit code</div>
         <div className="input">
-          <input id="authSMSCode" type="text" maxlength="4" placeholder="Enter code" /><button id="checkSMSCode">Next</button>
+          <input id="authSMSCode" type="text" maxLength="4" placeholder="Enter code" /><button id="checkSMSCode">Next</button>
           <font id="errorSMSCode" style={{color: 'red'}}></font>
         </div>
         <div className="links">

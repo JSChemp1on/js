@@ -175,6 +175,24 @@ window.addEventListener('load',function() {
 		} else {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
+		// LOGO
+		$.ajax({
+			url: "/gw/payment_form.aspx/getUrlInfos",
+			type: "post",
+			async: true,
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			data: JSON.stringify({
+			  partner: result.partnerName
+			}),
+			success: (data) => {
+			  const { error_url, logo_url } = data.d
+		
+			  $(".proccesing-form__text_cancel-payment").attr("href", error_url)
+			  $(".header__logo-img").attr("alt", tsData.partner);
+			  $(".header__logo-img").attr("src",`${location.origin}/${logo_url}`);
+			} 
+		});
 	});
 
 	// Проверить СМС код

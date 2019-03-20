@@ -164,7 +164,7 @@ window.addEventListener('load',function() {
 				page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
 			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
 				// Идет проверка && номер подтвержден
-				page.step1({request_id:result.request_id,phoneId:result.phoneId,phoneNumber:result.phoneNumber});
+				page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
 			} else if(result.s == 'Declined') {
 				// Когда статус проверки неизвестен
 				page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});

@@ -156,7 +156,7 @@ window.addEventListener('load',function() {
 				console.log( 456,result );
 			} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
 				// Когда отказ по причине отсутствия надобности в воде SMS подтверждения
-				page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'&nbsp;'});
+				page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
 				console.log( 123,result );
 			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 				page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
@@ -192,7 +192,7 @@ window.addEventListener('load',function() {
 			  const { error_url, logo_url } = data.d
 		
 			  $(".proccesing-form__text_cancel-payment").attr("href", error_url)
-			  $(".header__logo-img").attr("alt", tsData.partner);
+			  $(".header__logo-img").attr("alt", result.partner);
 			  $(".header__logo-img").attr("src",`${location.origin}/${logo_url}`);
 			} 
 		});

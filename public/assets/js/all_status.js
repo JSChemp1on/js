@@ -164,24 +164,23 @@ window.addEventListener('load',function() {
 		if(method.get().test || true) {
 
 			if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
-				// Когда отказ
+				console.log('// Когда отказ');
 				page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
-				console.log( 456,result );
 			} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
-				// Когда отказ по причине отсутствия надобности в воде SMS подтверждения
+				console.log('// Когда отказ по причине отсутствия надобности в воде SMS подтверждения');
 				page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
-				console.log( 123,result );
 			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
+				console.log('// Verifying и phoneStatusAuthCode пусто');
 				page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
 			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
-				// Идет проверка && номер подтвержден
+				console.log('// Идет проверка && номер подтвержден');
 				page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
 			} else if(result.s == 'Declined') {
-				// Когда статус проверки неизвестен
+				console.log('// Когда статус проверки неизвестен');
 				page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
 			
 			} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
-				// Когда все успешно завершено
+				console.log('// Когда все успешно завершено');
 				page.step5({status:result.s,date:result.d,cash:result.iA+' '+result.iC});
 			} else console.log('Ни одного из условий не выполнено');
 

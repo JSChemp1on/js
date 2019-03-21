@@ -127,7 +127,7 @@ window.addEventListener('load',function() {
 		},
 		countdown = function(time,result) {
 			d.querySelector('#countdown').innerText = time;
-			time--;
+			time -1;
 			if(time == 0)
 				window.location.href = result.partner_url + (result.partner_url.includes('?') ? "&transaction_id=" + result.ex_transaction_id : "?transaction_id=" + result.ex_transaction_id);
 			else 
@@ -182,7 +182,10 @@ window.addEventListener('load',function() {
 			
 			} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
 				console.log('// Когда все успешно завершено');
-				page.step5({status:result.s,date:result.d,cash:result.iA+' '+result.iC});
+				
+				page.step5({status:(
+					result.s == 'MoneySend' ? result.s == 'Funds have been sent' : result.s
+				),date:result.d,cash:result.iA+' '+result.iC});
 			} else console.log('Ни одного из условий не выполнено');
 
 		} else {

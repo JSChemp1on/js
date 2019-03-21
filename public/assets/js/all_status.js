@@ -78,12 +78,12 @@ window.addEventListener('load',function() {
 							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "';");
 						}
 					}
-					/*else
-						page.selector[visibleBlock()].querySelector('.stat').querySelector('#' + key).innerText = obj[key];*/
+					else
+						page.selector[visibleBlock()].querySelector('.stat').querySelector('#' + key).innerText = obj[key];
 				});
 			},
 			transactionStatus:function() {
-				/*this.selector[visibleBlock()].querySelector('#requestId').innerText = 'Request ID '+method.get().request_id;*/
+				this.selector[visibleBlock()].querySelector('#requestId').innerText = 'Request ID '+method.get().request_id;
 			},
 			step1:function(obj) {
 				// Страница Enter the code
@@ -98,30 +98,30 @@ window.addEventListener('load',function() {
 			step2:function() {
 				// Страница Change number
 				this.visiblePage(1);
-				/*statusBar.imgActive(2);*/
+				statusBar.imgActive(2);
 			},
 			step3:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				/*statusBar.imgActive(4);*/
+				statusBar.imgActive(4);
 				this.setStat(obj);
 			},
 			step4:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				/*statusBar.imgActive(4);*/
+				statusBar.imgActive(4);
 				this.setStat(obj);
 			},
 			step5:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				/*statusBar.imgActive(6);*/
+				statusBar.imgActive(6);
 				this.setStat(obj);
 			},
 			step6:function(obj) {
 				this.visiblePage(2);
 				/*statusBar.imgActive(6);*/
-				/*statusBar.imgSetname(6,'step3_error.svg');*/
+				statusBar.imgSetname(6,'step3_error.svg');
 				this.setStat(obj);
 			}
 		},
@@ -145,11 +145,25 @@ window.addEventListener('load',function() {
 	*/
 	
 	ajaxData(function(result) {
+		d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
+			page.step2();
+		});
+		d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
+			resendCallConfirmation();
+		});
+		d.querySelector('#checkSMSCode').addEventListener('click',function() {
+			checkSMSCode();
+		});
+		d.querySelector('#inputNewPhone').addEventListener('click',function() {
+			inputNewPhone(result);
+		});
+		
 		console.log( result,'\n\n\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);
 		// Проверка личности
 		if(method.get().test || true) {
+			console.log(result);
 			if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 				console.log('// Когда отказ');
 				page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
@@ -174,20 +188,7 @@ window.addEventListener('load',function() {
 		} else {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
-		
-		/* d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
-			page.step2();
-		});
-		d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
-			resendCallConfirmation();
-		});
-		d.querySelector('#checkSMSCode').addEventListener('click',function() {
-			checkSMSCode();
-		});
-		d.querySelector('#inputNewPhone').addEventListener('click',function() {
-			inputNewPhone(result);
-		}); */
-		
+
 		if(result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")
 			countdown(15,result);
 		// LOGO

@@ -144,25 +144,11 @@ window.addEventListener('load',function() {
 	*/
 	
 	ajaxData(function(result) {
-		d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
-			page.step2();
-		});
-		d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
-			resendCallConfirmation();
-		});
-		d.querySelector('#checkSMSCode').addEventListener('click',function() {
-			checkSMSCode();
-		});
-		d.querySelector('#inputNewPhone').addEventListener('click',function() {
-			inputNewPhone(result);
-		});
-		
 		console.log( result,'\n\n\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);
 		// Проверка личности
 		if(method.get().test || true) {
-
 			if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 				console.log('// Когда отказ');
 				page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
@@ -187,7 +173,20 @@ window.addEventListener('load',function() {
 		} else {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
-
+		
+		d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
+			page.step2();
+		});
+		d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
+			resendCallConfirmation();
+		});
+		d.querySelector('#checkSMSCode').addEventListener('click',function() {
+			checkSMSCode();
+		});
+		d.querySelector('#inputNewPhone').addEventListener('click',function() {
+			inputNewPhone(result);
+		});
+		
 		if(result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")
 			countdown(15,result);
 		// LOGO

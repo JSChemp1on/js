@@ -174,7 +174,7 @@ window.addEventListener('load',function() {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
 		
-		d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
+		/* d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
 			page.step2();
 		});
 		d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
@@ -185,7 +185,7 @@ window.addEventListener('load',function() {
 		});
 		d.querySelector('#inputNewPhone').addEventListener('click',function() {
 			inputNewPhone(result);
-		});
+		}); */
 		
 		if(result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")
 			countdown(15,result);

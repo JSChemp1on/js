@@ -29,7 +29,8 @@ class App extends Component {
           <font id="errorSMSCode" style={{color: 'red'}}></font>
         </div>
         <div className="links">
-
+          <a href="#" id="WrongPhoneNumber" style={{float:'left'}}>Wrong phone number?</a>
+          <a href="#" id="resendCallConfirmation" style={{float:'right'}}>Havent received a call?</a>
         </div>
       </div>
       {/* STEP2 Phone */}

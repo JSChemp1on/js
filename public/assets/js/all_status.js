@@ -79,7 +79,7 @@ window.addEventListener('load',function() {
 						}
 					}
 					else
-						page.selector[visibleBlock()].querySelector('.stat').querySelector('#' + key).innerText = obj[key];
+						/*page.selector[visibleBlock()].querySelector('.stat').querySelector('#' + key).innerText = obj[key];*/
 				});
 			},
 			transactionStatus:function() {

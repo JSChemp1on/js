@@ -78,8 +78,8 @@ window.addEventListener('load',function() {
 							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "';");
 						}
 					}
-					else
-						/*page.selector[visibleBlock()].querySelector('.stat').querySelector('#' + key).innerText = obj[key];*/
+					/*else
+						page.selector[visibleBlock()].querySelector('.stat').querySelector('#' + key).innerText = obj[key];*/
 				});
 			},
 			transactionStatus:function() {

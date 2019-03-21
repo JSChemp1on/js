@@ -184,7 +184,7 @@ window.addEventListener('load',function() {
 				console.log('// Когда все успешно завершено');
 				
 				page.step5({status:(
-					result.s == 'MoneySend' ? result.s == 'Funds have been sent' : result.s
+					result.s == 'MoneySend' ? 'Funds have been sent' : result.s
 				),date:result.d,cash:result.iA+' '+result.iC});
 			} else console.log('Ни одного из условий не выполнено');
 

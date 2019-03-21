@@ -83,7 +83,7 @@ window.addEventListener('load',function() {
 				});
 			},
 			transactionStatus:function() {
-				this.selector[visibleBlock()].querySelector('#requestId').innerText = 'Request ID '+method.get().request_id;
+				/*this.selector[visibleBlock()].querySelector('#requestId').innerText = 'Request ID '+method.get().request_id;*/
 			},
 			step1:function(obj) {
 				// Страница Enter the code

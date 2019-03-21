@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 /*import logo from './logo.svg';*/
 /*import './App.css';*/
-import './css/app_status.css';
+//import './css/app_status.css';
 //import './js/all_status.js';
 
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
         </div>
         <div className="links">
           <a href="#" id="WrongPhoneNumber" style={{float:'left'}}>Wrong phone number?</a>
-          <a href="#" id="resendCallConfirmation" style={{float:'right'}}>Haven`t received a call?</a>
+          <a href="#" id="resendCallConfirmation" style={{float:'right'}}>Havent received a call?</a>
         </div>
       </div>
       {/* STEP2 Phone */}

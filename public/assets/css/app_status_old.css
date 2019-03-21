@@ -2,7 +2,7 @@
 html, body {height: 100%; margin: 0;}
 body {	
 	background-image:
-		url("/assets/images/Backgr20.png"),
+		url("../../assets/images/Backgr20.png"),
 		radial-gradient(542.82px at 36.7% 44%, #0B1621 0%, #042648 100%);
 	background-position: center center, left top;
 	background-repeat: no-repeat,no-repeat;
@@ -48,13 +48,18 @@ section.section-main .content {
 }
 /*section.section-main .content div {border:1px dashed green;}*/
 section.section-main .content .status_bar {
-	display: flex !important;
+	display: flex;
 	justify-content: space-between;
+	/*background-image:
+		url('../../assets/svg/line3.svg'),
+		url('../../assets/svg/line3.svg'),
+		url('../../assets/svg/line3.svg');
+	background-position: left 60px center, center center, right 60px center;
+	background-repeat: no-repeat,no-repeat,no-repeat;*/
 }
-/*section.section-main .content .status_bar img {display: inline-block !important;}*/
-section.section-main .content .status_bar img:nth-child(even) {top: 0;}
 section.section-main .content .status_bar img.mobilePlatformVisibleOff {display:none;}
-section.section-main .content .status_bar img.mobilePlatformVisibleOn {display:inline-block; width:82px; height:82px;}
+section.section-main .content .status_bar img.mobilePlatformVisibleOn {display:block; width:82px; height:82px;}
+/*section.section-main .content .status_bar img {display: block;}*/
 section.section-main .content .quest {margin:40px 0 20px 0;}
 section.section-main .content .quest font:nth-child(1) {font-size:37px; font-weight:bold;}  
 section.section-main .content .quest font:nth-child(2) {font-size:15px; float:right; color:#fff;}

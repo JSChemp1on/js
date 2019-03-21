@@ -11,13 +11,13 @@ class App extends Component {
       {/* STEP2 */}
       <div className="content" style={{display:'block'}}>
         <div className="status_bar" style={{display:'block'}}>
-        <img style={{position: 'relative',left: '4px'}} width="49" height="49" src="/assets/svg/step0_disabled.svg" />
-        <img style={{position: 'relative',left: '3px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-        <img style={{position: 'relative',left: '2px'}} width="49" height="49" src="/assets/svg/step1_disabled.svg" />
-        <img style={{position: 'relative',left: '1px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-        <img style={{position: 'relative',right: '2px'}} width="49" height="49" src="/assets/svg/step2_disabled.svg" />
-        <img style={{position: 'relative',right: '2px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-        <img style={{position: 'relative',right: '4px'}} width="49" height="49" src="/assets/svg/step3_disabled.svg" />
+        <img style={{position: 'relative',left: '4px'}} alt="" width="49" height="49" src="assets/svg/step0_disabled.svg" />
+        <img style={{position: 'relative',left: '3px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+        <img style={{position: 'relative',left: '2px'}} alt="" width="49" height="49" src="assets/svg/step1_disabled.svg" />
+        <img style={{position: 'relative',left: '1px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+        <img style={{position: 'relative',right: '2px'}} alt="" width="49" height="49" src="assets/svg/step2_disabled.svg" />
+        <img style={{position: 'relative',right: '2px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+        <img style={{position: 'relative',right: '4px'}} alt="" width="49" height="49" src="assets/svg/step3_disabled.svg" />
         </div>
         <div className="quest">
           <font>Enter the code</font>
@@ -29,20 +29,19 @@ class App extends Component {
           <font id="errorSMSCode" style={{color: 'red'}}></font>
         </div>
         <div className="links">
-          <a href="#" id="WrongPhoneNumber" style={{float:'left'}}>Wrong phone number?</a>
-          <a href="#" id="resendCallConfirmation" style={{float:'right'}}>Havent received a call?</a>
+
         </div>
       </div>
       {/* STEP2 Phone */}
       <div className="content" style={{display:'none'}}>
         <div className="status_bar">
-          <img style={{position: 'relative',left: '4px'}} width="49" height="49" src="/assets/svg/step0_disabled.svg" />
-          <img style={{position: 'relative',left: '3px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-          <img style={{position: 'relative',left: '2px'}} width="49" height="49" src="/assets/svg/step1_disabled.svg" />
-          <img style={{position: 'relative',left: '1px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-          <img style={{position: 'relative',right: '2px'}} width="49" height="49" src="/assets/svg/step2_disabled.svg" />
-          <img style={{position: 'relative',right: '2px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-          <img style={{position: 'relative',right: '4px'}} width="49" height="49" src="/assets/svg/step3_disabled.svg" />
+          <img style={{position: 'relative',left: '4px'}} alt="" width="49" height="49" src="assets/svg/step0_disabled.svg" />
+          <img style={{position: 'relative',left: '3px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+          <img style={{position: 'relative',left: '2px'}} alt="" width="49" height="49" src="assets/svg/step1_disabled.svg" />
+          <img style={{position: 'relative',left: '1px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+          <img style={{position: 'relative',right: '2px'}} alt="" width="49" height="49" src="assets/svg/step2_disabled.svg" />
+          <img style={{position: 'relative',right: '2px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+          <img style={{position: 'relative',right: '4px'}} alt="" width="49" height="49" src="assets/svg/step3_disabled.svg" />
         </div>
         <div className="quest">
           <font>Change number</font>
@@ -56,13 +55,13 @@ class App extends Component {
       {/* STEP3 / STEP4 */}
       <div className="content" style={{display:'none'}}>
         <div className="status_bar">
-        <img style={{position: 'relative',left: '4px'}} width="49" height="49" src="/assets/svg/step0_disabled.svg" />
-        <img style={{position: 'relative',left: '3px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-        <img style={{position: 'relative',left: '2px'}} width="49" height="49" src="/assets/svg/step1_disabled.svg" />
-        <img style={{position: 'relative',left: '1px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-        <img style={{position: 'relative',right: '2px'}} width="49" height="49" src="/assets/svg/step2_disabled.svg" />
-        <img style={{position: 'relative',right: '2px'}} width="34" height="4" src="/assets/svg/line3.svg" />
-        <img style={{position: 'relative',right: '4px'}} width="49" height="49" src="/assets/svg/step3_disabled.svg" />
+        <img style={{position: 'relative',left: '4px'}} alt="" width="49" height="49" src="assets/svg/step0_disabled.svg" />
+        <img style={{position: 'relative',left: '3px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+        <img style={{position: 'relative',left: '2px'}} alt="" width="49" height="49" src="assets/svg/step1_disabled.svg" />
+        <img style={{position: 'relative',left: '1px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+        <img style={{position: 'relative',right: '2px'}} alt="" width="49" height="49" src="assets/svg/step2_disabled.svg" />
+        <img style={{position: 'relative',right: '2px'}} alt="" width="34" height="4" src="assets/svg/line3.svg" />
+        <img style={{position: 'relative',right: '4px'}} alt="" width="49" height="49" src="assets/svg/step3_disabled.svg" />
         </div>
         <div className="quest">
           <font>Transaction status</font>

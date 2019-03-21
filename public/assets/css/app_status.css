@@ -2,7 +2,7 @@
 html, body {height: 100%; margin: 0;}
 body {	
 	background-image:
-		url("/assets/images/Backgr20.png"),
+		url("../../assets/images/Backgr20.png"),
 		radial-gradient(542.82px at 36.7% 44%, #0B1621 0%, #042648 100%);
 	background-position: center center, left top;
 	background-repeat: no-repeat,no-repeat;

@@ -131,7 +131,7 @@ window.addEventListener('load',function() {
 				window.location.href = result.partner_url + (result.partner_url.includes('?') ? "&transaction_id=" + result.ex_transaction_id : "?transaction_id=" + result.ex_transaction_id);
 			else 
 				setTimeout(function() {
-					countdown(time--);
+					countdown(time -1);
 				}, 1000);
 		}
 	

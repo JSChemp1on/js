@@ -127,11 +127,12 @@ window.addEventListener('load',function() {
 		},
 		countdown = function(time,result) {
 			d.querySelector('#countdown').innerText = time;
+			time--;
 			if(time == 0)
 				window.location.href = result.partner_url + (result.partner_url.includes('?') ? "&transaction_id=" + result.ex_transaction_id : "?transaction_id=" + result.ex_transaction_id);
 			else 
 				setTimeout(function() {
-					countdown(time -1);
+					countdown(time);
 				}, 1000);
 		}
 	

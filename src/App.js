@@ -4,10 +4,11 @@ import React, { Component } from 'react';
 //import './css/app_status.css';
 //import './js/all_status.js';
 
-class Status extends Component {
+class App extends Component {
   render() {
     return (
       <center>
+      {/* STEP2 */}
       <div className="content" style={{display:'block'}}>
         <div className="status_bar" style={{display:'block'}}>
         <img style={{position: 'relative',left: '4px'}} width="49" height="49" src="assets/svg/step0_disabled.svg" />
@@ -32,6 +33,7 @@ class Status extends Component {
           <a href="#" id="resendCallConfirmation" style={{float:'right'}}>Havent received a call?</a>
         </div>
       </div>
+      {/* STEP2 Phone */}
       <div className="content" style={{display:'none'}}>
         <div className="status_bar">
           <img style={{position: 'relative',left: '4px'}} width="49" height="49" src="assets/svg/step0_disabled.svg" />
@@ -51,6 +53,7 @@ class Status extends Component {
           <input type="text" placeholder="You phone" /><button id="inputNewPhone">Change</button>
         </div>
       </div>
+      {/* STEP3 / STEP4 */}
       <div className="content" style={{display:'none'}}>
         <div className="status_bar">
         <img style={{position: 'relative',left: '4px'}} width="49" height="49" src="assets/svg/step0_disabled.svg" />
@@ -110,4 +113,4 @@ class Status extends Component {
   }
 }
 
-export default Status;
+export default App;

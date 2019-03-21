@@ -98,30 +98,30 @@ window.addEventListener('load',function() {
 			step2:function() {
 				// Страница Change number
 				this.visiblePage(1);
-				statusBar.imgActive(2);
+				/*statusBar.imgActive(2);*/
 			},
 			step3:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				statusBar.imgActive(4);
+				/*statusBar.imgActive(4);*/
 				this.setStat(obj);
 			},
 			step4:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				statusBar.imgActive(4);
+				/*statusBar.imgActive(4);*/
 				this.setStat(obj);
 			},
 			step5:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				statusBar.imgActive(6);
+				/*statusBar.imgActive(6);*/
 				this.setStat(obj);
 			},
 			step6:function(obj) {
 				this.visiblePage(2);
 				/*statusBar.imgActive(6);*/
-				statusBar.imgSetname(6,'step3_error.svg');
+				/*statusBar.imgSetname(6,'step3_error.svg');*/
 				this.setStat(obj);
 			}
 		},

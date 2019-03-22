@@ -131,13 +131,13 @@ window.addEventListener('load',function() {
 			time--;
 			if(time == 0)
 				window.location.href = result.partner_url + (
-					result.partner_url.includes('?') == true ? 
-					("&transaction_id=" + result.ex_transaction_id) : 
-					("?transaction_id=" + result.ex_transaction_id)
+					result.partner_url.includes('?') ? 
+					"&transaction_id=" + result.ex_transaction_id : 
+					"?transaction_id=" + result.ex_transaction_id
 				);
 			else 
 				setTimeout(function() {
-					countdown(time);
+					countdown(time,result);
 				}, 1000);
 		}
 	

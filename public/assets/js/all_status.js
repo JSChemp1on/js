@@ -126,10 +126,13 @@ window.addEventListener('load',function() {
 			}
 		},
 		countdown = function(time,result) {
+			console.log('--',result.partner_url,'--');
 			d.querySelector('#countdown').innerText = time;
 			time--;
 			if(time == 0)
-				window.location.href = result.partner_url + (result.partner_url.includes('?') ? "&transaction_id=" + result.ex_transaction_id : "?transaction_id=" + result.ex_transaction_id);
+				window.location.href = result.partner_url + (result.partner_url.includes('?') ? 
+				"&transaction_id=" + result.ex_transaction_id : 
+				"?transaction_id=" + result.ex_transaction_id);
 			else 
 				setTimeout(function() {
 					countdown(time);
@@ -192,7 +195,7 @@ window.addEventListener('load',function() {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
 
-		if(result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")
+		if((result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend") && result.partner_url.length > 0)
 			countdown(15,result);
 		// LOGO
 		$.ajax({

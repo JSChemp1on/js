@@ -291,7 +291,8 @@ window.addEventListener('load',function() {
 			method: "POST",
 			contentType: "application/json; charset=utf-8",
 			data: "{'new_phone':'" +
-			$('#inputNewPhone').intlTelInput("getNumber").replace(/[+()-]/g, "").trim() +
+			/* $('#inputNewPhone').intlTelInput("getNumber").replace(/[+()-]/g, "").trim() + */
+			d.querySelector('#inputNewPhone').replace(/[+()-]/g, "").trim() +
 			"','confirmation_hash':'" +
 			method.get().confirm_code +
 			"','request_id':'" +

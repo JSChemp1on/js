@@ -126,7 +126,7 @@ window.addEventListener('load',function() {
 			}
 		},
 		countdown = function(time,result) {
-			console.log('--',result.partner_url,'--');
+			console.log('--',result.partner_url,result.ex_transaction_id,'--');
 			d.querySelector('#countdown').innerText = time;
 			time--;
 			if(time == 0)
@@ -209,7 +209,6 @@ window.addEventListener('load',function() {
 			  partner: result.partner
 			}),
 			success: (data) => {
-				console.log('logo',data,'logo')
 			  const { error_url, logo_url } = data.d
 		
 			  $(".proccesing-form__text_cancel-payment").attr("href", error_url)

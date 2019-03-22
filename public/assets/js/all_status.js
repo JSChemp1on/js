@@ -109,7 +109,7 @@ window.addEventListener('load',function() {
 			step4:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
-				statusBar.imgActive(4);
+				statusBar.imgActive(2);
 				this.setStat(obj);
 			},
 			step5:function(obj) {
@@ -157,48 +157,44 @@ window.addEventListener('load',function() {
 		d.querySelector('#checkSMSCode').addEventListener('click',function() {
 			checkSMSCode();
 		});
-		d.querySelector('#inputNewPhone').addEventListener('click',function() {
-			inputNewPhone(result);
+		d.querySelector('#setNewPhone').addEventListener('click',function() {
+			setNewPhone(result);
 		});
 		
 		console.log( result,'\n\n\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);
 		// Проверка личности
-		if(method.get().test || true) {
-			console.log(result);
-			if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
-				console.log('// Когда отказ');
-				page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
-			} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
-				console.log('// Когда отказ по причине отсутствия надобности в воде SMS подтверждения');
-				page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
-			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
-				console.log('// Verifying и phoneStatusAuthCode пусто');
-				page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
-			} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
-				console.log('// Идет проверка && номер подтвержден');
-				page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
-			} else if(result.s == 'Declined') {
-				console.log('// Когда статус проверки неизвестен');
-				page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
-			
-			} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
-				console.log('// Когда все успешно завершено');
-				
-				page.step5({status:(
-					result.s == 'MoneySend' ? 'Funds have been sent' : result.s
-				),date:result.d,cash:result.iA+' '+result.iC});
-			} else console.log('Ни одного из условий не выполнено');
 
-		} else {
-			window.location.href = 'http:ya.ru'+location.search;
-		}
+		console.log(result);
+		if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
+			console.log('// Когда отказ');
+			page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
+		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
+			console.log('// Когда отказ по причине отсутствия надобности в воде SMS подтверждения');
+			page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
+		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
+			console.log('// Verifying и phoneStatusAuthCode пусто');
+			page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
+		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
+			console.log('// Идет проверка && номер подтвержден');
+			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
+		} else if(result.s == 'Declined') {
+			console.log('// Когда статус проверки неизвестен');
+			page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
+		} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
+			console.log('// Когда все успешно завершено');
+			page.step5({status:(
+				result.s == 'MoneySend' ? 'Funds have been sent' : result.s
+			),date:result.d,cash:result.iA+' '+result.iC});
+		} else console.log('Ни одного из условий не выполнено');
 
+		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
 			countdown(15,result);
 		else
 			d.querySelector('footer.footer center').innerText = '';
+
 		// LOGO
 		$.ajax({
 			url: "/gw/payment_form.aspx/getUrlInfos",
@@ -287,7 +283,7 @@ window.addEventListener('load',function() {
 		});
 	}
 	// Новый номер телефона
-	function inputNewPhone() {
+	function setNewPhone() {
 		let host = 'https://indacoin.com';
 		$.ajax({
 			url: host + "/notify/ChangePhoneNumberForRequest",
@@ -295,11 +291,11 @@ window.addEventListener('load',function() {
 			method: "POST",
 			contentType: "application/json; charset=utf-8",
 			data: "{'new_phone':'" +
-			$('#new_phone').intlTelInput("getNumber").replace(/[+()-]/g, "").trim() +
+			$('#inputNewPhone').intlTelInput("getNumber").replace(/[+()-]/g, "").trim() +
 			"','confirmation_hash':'" +
-			getParameterByName('confirm_code') +
+			method.get().confirm_code +
 			"','request_id':'" +
-			getParameterByName('request_id') +
+			method.get().request_id +
 			"'}",
 			success: function(data) {
 				console.log(data,789);

@@ -190,7 +190,7 @@ window.addEventListener('load',function() {
 		} else console.log('Ни одного из условий не выполнено');
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
-		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
+		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
 			countdown(15,result);
 		else
 			d.querySelector('footer.footer center').innerText = '';

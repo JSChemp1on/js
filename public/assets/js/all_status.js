@@ -195,8 +195,10 @@ window.addEventListener('load',function() {
 			window.location.href = 'http:ya.ru'+location.search;
 		}
 
-		if((result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend") && result.partner_url.length > 0)
+		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
 			countdown(15,result);
+		else
+			d.querySelector('footer.footer center').innerText = '';
 		// LOGO
 		$.ajax({
 			url: "/gw/payment_form.aspx/getUrlInfos",

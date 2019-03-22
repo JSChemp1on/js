@@ -190,6 +190,7 @@ window.addEventListener('load',function() {
 		} else console.log('Ни одного из условий не выполнено');
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
+		console.log(123,result.partner_url,result.partner_url.length != '');
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
 			countdown(15,result);
 		else

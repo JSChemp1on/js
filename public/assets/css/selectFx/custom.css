@@ -19,18 +19,15 @@ div.cs-skin-elastic {
 
 .cs-skin-elastic .cs-options > ul::before {background-color: #042648;border-radius: 5px;}
 
-.cs-skin-elastic .cs-options li.flag-Arabic span {background-image: url('../../../assets/images/flags24/Arabic.svg')}
-.cs-skin-elastic .cs-options li.flag-brazil span {background-image: url('../../../assets/images/flags24/brazil.svg')}
-.cs-skin-elastic .cs-options li.flag-argentina span {background-image: url('../../../assets/images/flags24/argentina.svg')}
-.cs-skin-elastic .cs-options li.flag-safrica span {background-image: url('../../../assets/images/flags24/south-africa.svg')}
-.cs-skin-elastic .cs-options li.flag-france span {background-image: url('../../../assets/images/flags24/france.svg')}
-.cs-skin-elastic .cs-options li.flag-brazil span {background-image: url('../../../assets/images/flags24/brazil.svg')}
-.cs-skin-elastic .cs-options li.flag-argentina span {background-image: url('../../../assets/images/flags24/argentina.svg')}
-.cs-skin-elastic .cs-options li.flag-safrica span {background-image: url('../../../assets/images/flags24/south-africa.svg')}
-.cs-skin-elastic .cs-options li.flag-safrica span {background-image: url('../../../assets/images/flags24/south-africa.svg')}
-
-
-
+.cs-skin-elastic .cs-options li.flag-Arabic span {background-image: url('../../../assets/images/flags24/Arabic.png')}
+.cs-skin-elastic .cs-options li.flag-German span {background-image: url('../../../assets/images/flags24/German.png')}
+.cs-skin-elastic .cs-options li.flag-English span {background-image: url('../../../assets/images/flags24/English.png')}
+.cs-skin-elastic .cs-options li.flag-Spanish span {background-image: url('../../../assets/images/flags24/Spanish.png')}
+.cs-skin-elastic .cs-options li.flag-French span {background-image: url('../../../assets/images/flags24/French.png')}
+.cs-skin-elastic .cs-options li.flag-Italian span {background-image: url('../../../assets/images/flags24/Italian.png')}
+.cs-skin-elastic .cs-options li.flag-Portuguese span {background-image: url('../../../assets/images/flags24/Portuguese.png')}
+.cs-skin-elastic .cs-options li.flag-Russian span {background-image: url('../../../assets/images/flags24/Russian.png')}
+.cs-skin-elastic .cs-options li.flag-Turkish span {background-image: url('../../../assets/images/flags24/Turkish.png')}
 
 
 

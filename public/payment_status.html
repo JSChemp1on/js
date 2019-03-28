@@ -7,7 +7,12 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Indacoin</title>
 	<link rel="stylesheet" href="assets/css/app.css">
-	<link rel="stylesheet" href="assets/css/app_status.css?a=126">
+  <link rel="stylesheet" href="assets/css/app_status.css?a=126">
+  <!-- select menu lang //-->
+  <link rel="stylesheet" type="text/css" href="assets/css/selectFx/cs-select.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/selectFx/cs-skin-elastic.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/selectFx/custom.css" />
+  <!-- END select menu lang //-->
 </head>
 
 <body>
@@ -29,7 +34,23 @@
           <ul class="header__nav">
             <li class="header__nav-item"><a href="https://indacoin.com/xx_xx/affiliate" class="header__nav-link">partnership</a></li>
             <li class="header__nav-item"><a href="mailto:support@indacoin.com" class="header__nav-link">support</a></li>
-            <li class="header__nav-item"><a href="#" class="header__nav-link header__nav-link_lang">English</a></li>
+            <li class="header__nav-item">
+              <!--
+              <section>
+                <select class="cs-select cs-skin-elastic">
+                  <option value="Arabic" data-class="flag-Arabic">Arabic</option>
+                  <option value="German" data-class="flag-German">German</option>
+                  <option value="English" data-class="flag-English" selected>English</option>
+                  <option value="Spanish" data-class="flag-Spanish">Spanish</option>
+                  <option value="French" data-class="flag-French">French</option>
+                  <option value="Italian" data-class="flag-Italian">Italian</option>
+                  <option value="Portuguese" data-class="flag-Portuguese">Portuguese</option>
+                  <option value="Russian" data-class="flag-Russian">Russian</option>
+                  <option value="Turkish" data-class="flag-Turkish">Turkish</option>
+                </select>
+              </section>
+              //--><!--disabled//-->
+            </li>
           </ul>
         </div>
       </div>
@@ -39,7 +60,7 @@
   <section class="section-main">
     <center>
       <!--{/* STEP2 */}//-->
-      <div class="content" style="display: block">
+      <div class="content" style="display: none">
         <div class="status_bar" style="display: block">
         <img style="position: relative; left: 4px" alt="" width="49" height="49" src="assets/svg/step0_disabled.svg" />
         <img style="position: relative; left: 3px" alt="" width="34" height="4" src="assets/svg/line3.svg" />
@@ -64,7 +85,7 @@
         </div>
       </div>
       <!--{/* STEP2 Phone */}//-->
-      <div class="content" style="display: block">
+      <div class="content" style="display: none">
         <div class="status_bar">
           <img style="position: relative; left: 4px" alt="" width="49" height="49" src="assets/svg/step0_disabled.svg" />
           <img style="position: relative; left: 3px" alt="" width="34" height="4" src="assets/svg/line3.svg" />
@@ -128,7 +149,19 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
   <!--<script src="assets/js/all.js"></script>//-->
-	<script src="assets/js/all_status.js?a=137"></script>
+  <!--<script src="assets/js/all_status.js?a=137"></script>//-->
+  
+  <!-- select menu lang //-->
+  <script src="assets/js/selectFx/classie.js"></script>
+  <script src="assets/js/selectFx/selectFx.js"></script>
+  <script>
+    (function() {
+      [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+        new SelectFx(el);
+      } );
+    })();
+  </script>
+  <!-- END select menu lang //-->
 </body>
 
 </html>

@@ -14,7 +14,7 @@ var langJson = {
             "phoneCode":"We will call you now on ",
             "insertCode":" Please listen for the 4-digit code",
             "date":"Date and time:",
-            "amount":"Amount paid:",
+            "amount":"Amount paid:"
         },
         "link":{
             "Phone0":"Wrong phone number?",
@@ -26,6 +26,12 @@ var langJson = {
         },
         "footer":{
             "footerText":"You will be redirected to the partner page for entering<br />the map and verification in the next step of the status page"
+        },
+        "form":{
+            "code":"Enter code",
+            "phone":"You phone",
+            "butCode":"Change",
+            "butPhone":"Next"
         }
     },
     "RUSSIAN":{
@@ -43,7 +49,7 @@ var langJson = {
             "phoneCode":"Мы сейчас свяжемся с Вами ",
             "insertCode":" Пожалуйста, введите 4-х значный код",
             "date":"Дата и время:",
-            "amount":"Выплачено:",
+            "amount":"Выплачено:"
         },
         "link":{
             "Phone0":"Ошиблись номером телефона?",
@@ -55,6 +61,12 @@ var langJson = {
         },
         "footer":{
             "footerText":"Вы будете перенаправлены на страницу партнера для ввода карты <br />и проверки на следующем шаге страницы состояния"
+        },
+        "form":{
+            "code":"Введите код",
+            "phone":"Ваш номер",
+            "butCode":"Проверить",
+            "butPhone":"Далее"
         }
     }
 };

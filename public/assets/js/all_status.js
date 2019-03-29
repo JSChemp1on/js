@@ -259,8 +259,11 @@ window.addEventListener('load',function() {
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');
 				//console.log( dataset[i].innerHTML,langJson[set][ds[0]][ds[1]] );
-				dataset[i].innerHTML = langJson[set][ds[0]][ds[1]];
-				
+				if(dataset[i].tagName == 'INPUT') {
+					dataset[i].placeholder = langJson[set][ds[0]][ds[1]];
+				} else {
+					dataset[i].innerHTML = langJson[set][ds[0]][ds[1]];
+				}
 			}
 		}
 		insertTranslate();

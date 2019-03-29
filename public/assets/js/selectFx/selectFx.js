@@ -241,7 +241,6 @@
 	 */
 	SelectFx.prototype._toggleSelect = function() {
 		// remove focus class if any..
-		console.log( ':::', this._isOpen() );
 		if( this._isOpen() ) {
 			if( this.current !== -1 ) {
 				// update placeholder text

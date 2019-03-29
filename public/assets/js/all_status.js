@@ -83,7 +83,10 @@ window.addEventListener('load',function() {
 				});
 			},
 			transactionStatus:function() {
-				this.selector[visibleBlock()].querySelector('#requestId').innerText = 'Request ID '+method.get().request_id;
+				this.selector[visibleBlock()].querySelector('#requestId').innerText = replaceSharp(
+					this.selector[visibleBlock()].querySelector('#requestId').innerText,
+					method.get().request_id
+				);
 			},
 			step1:function(obj) {
 				// Страница Enter the code
@@ -139,7 +142,8 @@ window.addEventListener('load',function() {
 				setTimeout(function() {
 					countdown(time,result);
 				}, 1000);
-		}
+		},
+		replaceSharp = function(str,inner) {return str.replace('###',inner)}
 	
 	/* 
 	console.log( method.get() );
@@ -187,12 +191,11 @@ window.addEventListener('load',function() {
 		} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
 			console.log('// Когда все успешно завершено');
 			page.step5({status:(
-				result.s == 'MoneySend' ? 'Funds have been sent' : result.s
+				result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 			),date:result.d,cash:result.iA+' '+result.iC});
 		} else console.log('Ни одного из условий не выполнено');
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
-		console.log(123,result.partner_url,result.partner_url.length != '');
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
 			countdown(15,result);
 		else
@@ -239,6 +242,39 @@ window.addEventListener('load',function() {
 			});
 		})(result);
 	});
+
+	// Установка языка
+	function langSet(id,customLang = null) {
+		if(customLang !== null) {
+			d.querySelector('#'+id).dataset.translationPath = 'custom.'+customLang;
+			return langJson[localStorage.getItem('lang')].custom[customLang];
+		}
+		let 
+			select = d.querySelector('.cs-select.cs-skin-elastic'),
+			selectLang = select.querySelector('.cs-placeholder').innerText,
+			langTag = d.querySelectorAll('.lang');
+		let dataset = d.querySelectorAll('[data-translation-path]');
+		console.log( langJson[localStorage.getItem('lang')] );
+		function insertTranslate(set = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : selectLang) {
+			for(let i = 0; i < dataset.length; i++) {
+				let ds = dataset[i].dataset.translationPath.split('.');
+				//console.log( dataset[i].innerHTML,langJson[set][ds[0]][ds[1]] );
+				dataset[i].innerHTML = langJson[set][ds[0]][ds[1]];
+				
+			}
+		}
+		insertTranslate();
+
+		d.querySelectorAll('.cs-options ul li').forEach(function(item,i,arr) {
+			item.addEventListener('click',function() {
+				insertTranslate( this.querySelector('span').innerText );
+				// Задерживает выбор языка в localStorage на случай перезагрузки страницы
+				localStorage.setItem('lang', this.querySelector('span').innerText );
+			});
+		});
+
+	}
+	langSet();
 
 	// Проверить СМС код
 	function checkSMSCode() {

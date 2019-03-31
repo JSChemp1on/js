@@ -1,0 +1,76 @@
+.height {height: 20px}
+
+li.menuLangParent {
+	width: auto;
+	height: 52px;
+	overflow: hidden;
+	padding-top: 15px;
+	font-size: inherit;
+	text-transform: uppercase;
+	color: #fff;
+}
+li.menuLangParent:hover{
+	border: 0px dashed red;
+	position: relative;
+	top: 21px;
+}
+li.menuLangParent div {padding-top: 0;}
+
+li.menuLangParent:hover {height:auto;}
+li.menuLangParent ul.menuLang li {
+  opacity: 0;
+  transform-origin: top center;
+}
+li.menuLangParent ul.menuLang li.flag {
+	background-repeat: no-repeat;
+	background-position: center left 3px;
+	height: 30px;
+	padding: 5px 5px 0 40px;
+	cursor: pointer;
+}
+li.menuLangParent ul.menuLang li.flag:hover {
+	background-color: SteelBlue;
+}
+li.menuLangParent ul.menuLang li.flag.Arabic {background-image: url('../../assets/images/flags32/Palestine.png')}
+li.menuLangParent ul.menuLang li.flag.German {background-image: url('../../assets/images/flags32/Germany.png')}
+li.menuLangParent ul.menuLang li.flag.English {background-image: url('../../assets/images/flags32/United-Kingdom.png')}
+li.menuLangParent ul.menuLang li.flag.Spanish {background-image: url('../../assets/images/flags32/Spain.png')}
+li.menuLangParent ul.menuLang li.flag.French {background-image: url('../../assets/images/flags32/France.png')}
+li.menuLangParent ul.menuLang li.flag.Italian {background-image: url('../../assets/images/flags32/Italy.png')}
+li.menuLangParent ul.menuLang li.flag.Portuguese {background-image: url('../../assets/images/flags32/Portugal.png')}
+li.menuLangParent ul.menuLang li.flag.Russian {background-image: url('../../assets/images/flags32/Russia.png')}
+li.menuLangParent ul.menuLang li.flag.Turkish {background-image: url('../../assets/images/flags32/Turkey.png')}
+
+/*------------- menuLang animation -------------------*/
+li.menuLangParent:hover ul.menuLang li:first-of-type {
+  animation: menuLang .1s ease-in-out forwards;
+  animation-delay: .1s;
+}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(2) {
+  animation: menuLang .2s ease-in-out forwards;
+  animation-delay: .1s;
+}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(3) {
+  animation: menuLang .3s ease-in-out forwards;
+  animation-delay: .1s;
+}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(4) {
+  animation: menuLang .4s ease-in-out forwards;
+  animation-delay: .1s;
+}
+li.menuLangParent:hover ul.menuLang li:last-of-type {
+  animation: menuLang .5s ease-in-out forwards;
+  animation-delay: .1s;
+}
+@keyframes menuLang {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyfr
+

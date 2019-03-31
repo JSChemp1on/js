@@ -9,9 +9,7 @@
 	<link rel="stylesheet" href="assets/css/app.css">
   <link rel="stylesheet" href="assets/css/app_status.css?a=128">
   <!-- select menu lang //-->
-  <link rel="stylesheet" type="text/css" href="assets/css/selectFx/cs-select.css" />
-  <link rel="stylesheet" type="text/css" href="assets/css/selectFx/cs-skin-elastic.css" />
-  <link rel="stylesheet" type="text/css" href="assets/css/selectFx/custom.css?a=1" />
+  <link rel="stylesheet" type="text/css" href="assets/css/menuLangCustom.css" />
   <!-- END select menu lang //-->
 </head>
 
@@ -31,24 +29,21 @@
               </span>
             </div>
           </div>
-          <ul class="header__nav">
+          <ul class="header__nav height">
             <li class="header__nav-item"><a href="https://indacoin.com/xx_xx/affiliate" class="header__nav-link" data-translation-path="menuTop.linkTop0">partnership</a></li>
             <li class="header__nav-item"><a href="mailto:support@indacoin.com" class="header__nav-link" data-translation-path="menuTop.linkTop1">support</a></li>
-            <li class="header__nav-item">
-              <section>
-                <!--disabled//-->
-                <select class="cs-select cs-skin-elastic" required><!-- peremestit(this.value) //-->
-                  <!--<option value="Arabic" data-class="flag-Arabic">Arabic</option>//-->
-                  <!--<option value="German" data-class="flag-German">German</option>//-->
-                  <option value="English" data-class="flag-English" selected>English</option>
-                  <!--<option value="Spanish" data-class="flag-Spanish">Spanish</option>//-->
-                  <!--<option value="French" data-class="flag-French">French</option>//-->
-                  <!--<option value="Italian" data-class="flag-Italian">Italian</option>//-->
-                  <!--<option value="Portuguese" data-class="flag-Portuguese">Portuguese</option>//-->
-                  <option value="Russian" data-class="flag-Russian">Russian</option>
-                  <!--<option value="Turkish" data-class="flag-Turkish">Turkish</option>//-->
-                </select>
-              </section>
+            <li class="header__nav-item menuLangParent"><div>English</div>
+                <ul class="menuLang">
+                  <!--<li value="Arabic" class="flag Arabic">Arabic</li>//-->
+                  <!--<li value="German" class="flag German">German</li>//-->
+                  <li value="English" class="flag English">English</li>
+                  <!--<li value="Spanish" class="flag Spanish">Spanish</li>//-->
+                  <!--<li value="French" class="flag French">French</li>//-->
+                  <!--<li value="Italian" class="flag Italian">Italian</li>//-->
+                  <!--<li value="Portuguese" class="flag Portuguese">Portuguese</li>//-->
+                  <li value="Russian" class="flag Russian">Russian</li>
+                  <!--<li value="Turkish" class="flag Turkish">Turkish</li>//-->
+                </ul>
             </li>
           </ul>
         </div>
@@ -147,27 +142,6 @@
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.60/inputmask/jquery.inputmask.js"></script>
-  <!-- select menu lang //-->
-  <script src="assets/js/selectFx/classie.js"></script>
-  <script src="assets/js/selectFx/selectFx.js?abc=1"></script>
-  <script>
-
-      (function() {
-        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
-          /*SelectFx.prototype.options={
-            // if true all the links will open in a new tab.
-            // if we want to be redirected when we click an option, we need to define a data-link attr on the option of the native select element
-            newTab : true,
-            // when opening the select element, the default placeholder (if any) is shown
-            stickyPlaceholder : true,
-            // callback when changing the value
-            onChange : function( val ) { console.log('choosed');return false; }
-          }*/
-          new SelectFx(el);
-        } );
-      })();
-  </script>
-  <!-- END select menu lang //-->
   <!--<script src="assets/js/all.js"></script>//-->
   <script src="lang.js?a=1"></script>
   <script src="assets/js/all_status.js?a=139"></script>

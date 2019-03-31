@@ -250,12 +250,13 @@ window.addEventListener('load',function() {
 			return langJson[localStorage.getItem('lang')].custom[customLang];
 		}
 		let 
-			select = d.querySelector('.cs-select.cs-skin-elastic'),
-			selectLang = select.querySelector('.cs-placeholder').innerText,
+			select = d.querySelector('.header__nav-item.menuLangParent'),
+			selectLang = select.querySelector('div').innerText,
 			langTag = d.querySelectorAll('.lang');
 		let dataset = d.querySelectorAll('[data-translation-path]');
-		console.log( langJson[localStorage.getItem('lang')] );
+		console.log(selectLang);
 		function insertTranslate(set = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : selectLang) {
+			select.querySelector('div').innerText = set;
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');
 				//console.log( dataset[i].innerHTML,langJson[set][ds[0]][ds[1]] );
@@ -267,12 +268,12 @@ window.addEventListener('load',function() {
 			}
 		}
 		insertTranslate();
-
-		d.querySelectorAll('.cs-options ul li').forEach(function(item,i,arr) {
+		
+		select.querySelectorAll('li').forEach(function(item,i,arr) {
 			item.addEventListener('click',function() {
-				insertTranslate( this.querySelector('span').innerText );
+				insertTranslate( this.innerText );
 				// Задерживает выбор языка в localStorage на случай перезагрузки страницы
-				localStorage.setItem('lang', this.querySelector('span').innerText );
+				localStorage.setItem('lang', this.innerText );
 			});
 		});
 

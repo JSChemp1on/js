@@ -254,16 +254,15 @@ window.addEventListener('load',function() {
 			selectLang = select.querySelector('div').innerText,
 			langTag = d.querySelectorAll('.lang');
 		let dataset = d.querySelectorAll('[data-translation-path]');
-		console.log(selectLang);
+		//console.log(selectLang);
 		function insertTranslate(set = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : selectLang) {
 			select.querySelector('div').innerText = set;
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');
-				//console.log( dataset[i].innerHTML,langJson[set][ds[0]][ds[1]] );
 				if(dataset[i].tagName == 'INPUT') {
-					dataset[i].placeholder = langJson[set][ds[0]][ds[1]];
+					dataset[i].placeholder = langJson[set.toUpperCase()][ds[0]][ds[1]];
 				} else {
-					dataset[i].innerHTML = langJson[set][ds[0]][ds[1]];
+					dataset[i].innerHTML = langJson[set.toUpperCase()][ds[0]][ds[1]];
 				}
 			}
 		}

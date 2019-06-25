@@ -1,37 +1,4 @@
-/*
-li.menuLangParent {
-	width: auto;
-	height: 0;
-	overflow: hidden;
-	padding-top: 15px;
-	font-size: inherit;
-	text-transform: uppercase;
-	color: #fff;
-}
-li.menuLangParent:hover{
-	border: 1px dashed red;
-	position: relative;
-	top: 21px;
-}
-li.menuLangParent:hover {height:auto;}
-li.menuLangParent div.menuLangBox {
-  position: relative; top: 0; left: 0;
-  border: 1px dashed blueviolet;
-}
-li.menuLangParent div.menuLangBox ul.menuLang {
-  position: absolute; top: 0; left: 0;
-  border:1px dashed green;
-  display: none;
-}
-li.menuLangParent div.menuLangBox ul.menuLang:hover {height: 550px;}
-li.menuLangParent ul.menuLang li {
-  opacity: 0;
-  transform-origin: top center;
-}
-*/
-
-
-li.menuLangParent div.menuLangBox {position: relative; width: 100px; z-index: 1;}
+li.menuLangParent div.menuLangBox {position: relative; width: 100px; z-index: 2;}
 li.menuLangParent div.menuLangBox ul {position: absolute;}
 li.menuLangParent div.menuLangBox ul {border-radius: 5px;}
 li.menuLangParent div.menuLangBox ul {height: 0; overflow: hidden;}
@@ -56,41 +23,16 @@ li.menuLangParent ul.menuLang li.flag.Russian {background-image: url('../../asse
 li.menuLangParent ul.menuLang li.flag.Turkish {background-image: url('../../assets/images/flags32/Turkey.png')}
 
 /*------------- menuLang animation -------------------*/
-li.menuLangParent:hover ul.menuLang li:first-of-type {
-  animation: menuLang .1s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(2) {
-  animation: menuLang .2s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(3) {
-  animation: menuLang .3s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(4) {
-  animation: menuLang .4s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(5) {
-  animation: menuLang .5s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(6) {
-  animation: menuLang .6s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(7) {
-  animation: menuLang .7s ease-in-out forwards;
-}
-li.menuLangParent:hover ul.menuLang li:nth-of-type(8) {
-  animation: menuLang .8s ease-in-out forwards;
-}
-
-li.menuLangParent:hover ul.menuLang li:last-of-type {
-  animation: menuLang .9s ease-in-out forwards;
-}
+li.menuLangParent:hover ul.menuLang li:first-of-type {animation: menuLang .1s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(2) {animation: menuLang .2s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(3) {animation: menuLang .3s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(4) {animation: menuLang .4s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(5) {animation: menuLang .5s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(6) {animation: menuLang .6s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(7) {animation: menuLang .7s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:nth-of-type(8) {animation: menuLang .8s ease-in-out forwards;}
+li.menuLangParent:hover ul.menuLang li:last-of-type {animation: menuLang .9s ease-in-out forwards;}
 @keyframes menuLang {
-  0% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  0% {opacity: 0; transform: scale(1.1);}
+  100% {opacity: 1; transform: scale(1);}
 }

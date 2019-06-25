@@ -75,7 +75,7 @@ window.addEventListener('load',function() {
 						if(obj[key].bool) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
-							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "';");
+							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&user_id=" + encodeURIComponent(window.location.href) + "';");
 						}
 					}
 					else
@@ -247,16 +247,29 @@ window.addEventListener('load',function() {
 	function langSet(id,customLang = null) {
 		if(customLang !== null) {
 			d.querySelector('#'+id).dataset.translationPath = 'custom.'+customLang;
-			return langJson[localStorage.getItem('lang')].custom[customLang];
+			return langJson[localStorage.getItem('language')].custom[customLang];
 		}
 		let 
 			select = d.querySelector('.header__nav-item.menuLangParent'),
 			selectLang = select.querySelector('div').innerText,
 			langTag = d.querySelectorAll('.lang');
 		let dataset = d.querySelectorAll('[data-translation-path]');
-		//console.log(selectLang);
-		function insertTranslate(set = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : selectLang) {
-			select.querySelector('div').innerText = set;
+		function associations(key) {
+			let associations = {
+				"ar":"Arabic",
+				"ge":"German",
+				"en":"English",
+				"es":"Spanish",
+				"fr":"French",
+				"it":"Italian",
+				"pt":"Portuguese",
+				"ru":"Russian",
+				"tr":"Turkish",
+			};
+			return associations[key];
+		}
+		function insertTranslate(set = localStorage.getItem('language') !== null ? localStorage.getItem('language') : selectLang) {
+			select.querySelector('div').innerText = associations(set);
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');
 				if(dataset[i].tagName == 'INPUT') {
@@ -270,9 +283,9 @@ window.addEventListener('load',function() {
 		
 		select.querySelectorAll('li').forEach(function(item,i,arr) {
 			item.addEventListener('click',function() {
-				insertTranslate( this.innerText );
+				insertTranslate( this.dataset.langSelect );
 				// Задерживает выбор языка в localStorage на случай перезагрузки страницы
-				localStorage.setItem('lang', this.innerText );
+				localStorage.setItem('language', this.dataset.langSelect  );
 			});
 		});
 

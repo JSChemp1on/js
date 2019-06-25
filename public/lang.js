@@ -1,5 +1,5 @@
 var langJson = {
-    "ENGLISH":{
+    "EN":{
         "custom":{
             "MoneySend":"Funds have been sent"
         },
@@ -51,7 +51,7 @@ var langJson = {
             "mLimit":"Monthly limit"
         }
     },
-    "RUSSIAN":{
+    "RU":{
         "custom":{
             "MoneySend":"Отправлено"
         },
@@ -103,7 +103,7 @@ var langJson = {
             "mLimit":"Месячный лимит"
         }
     },
-    "ARABIC":{
+    "AR":{
         "custom":{
             "MoneySend":"تم الإرسال"
         },
@@ -155,7 +155,7 @@ var langJson = {
             "mLimit":"الحد الشهري"
         }
     },
-    "GERMAN":{
+    "DE":{
         "custom":{
             "MoneySend":"Gesendet"
         },
@@ -207,7 +207,7 @@ var langJson = {
             "mLimit":"Monatliches Limit"
         }
     },
-    "SPANISH":{
+    "ES":{
         "custom":{
             "MoneySend":"Enviado"
         },
@@ -259,7 +259,7 @@ var langJson = {
             "mLimit":"Límite mensual"
         }
     },
-    "FRENCH":{
+    "FR":{
         "custom":{
             "MoneySend":"Envoyé"
         },
@@ -311,7 +311,7 @@ var langJson = {
             "mLimit":"Limite mensuelle"
         }
     },
-    "ITALIAN":{
+    "IT":{
         "custom":{
             "MoneySend":"Inviato"
         },
@@ -363,7 +363,7 @@ var langJson = {
             "mLimit":"Limite mensile"
         }
     },
-    "PORTUGUESE":{
+    "PT":{
         "custom":{
             "MoneySend":"Enviado"
         },
@@ -415,7 +415,7 @@ var langJson = {
             "mLimit":"Limite mensal"
         }
     },
-    "TURKISH":{
+    "TR":{
         "custom":{
             "MoneySend":"Gönderilen"
         },

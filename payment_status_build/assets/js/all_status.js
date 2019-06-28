@@ -75,7 +75,7 @@ window.addEventListener('load',function() {
 						if(obj[key].bool) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
-							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&user_id=" + encodeURIComponent(window.location.href) + "';");
+							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + encodeURIComponent(window.location.href) + "';");
 						}
 					}
 					else
@@ -181,7 +181,7 @@ window.addEventListener('load',function() {
 			page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 			console.log('// Verifying и phoneStatusAuthCode пусто');
-			page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Completed',date:result.d,cash:result.iA+' '+result.iC});
+			page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Verifying',date:result.d,cash:result.iA+' '+result.iC});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
 			console.log('// Идет проверка && номер подтвержден');
 			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
@@ -247,17 +247,17 @@ window.addEventListener('load',function() {
 	function langSet(id,customLang = null) {
 		if(customLang !== null) {
 			d.querySelector('#'+id).dataset.translationPath = 'custom.'+customLang;
+			console.log( localStorage.getItem('language') )
 			return langJson[localStorage.getItem('language')].custom[customLang];
 		}
 		let 
 			select = d.querySelector('.header__nav-item.menuLangParent'),
-			selectLang = select.querySelector('div').innerText,
 			langTag = d.querySelectorAll('.lang');
 		let dataset = d.querySelectorAll('[data-translation-path]');
 		function associations(key) {
 			let associations = {
 				"ar":"Arabic",
-				"ge":"German",
+				"de":"German",
 				"en":"English",
 				"es":"Spanish",
 				"fr":"French",
@@ -266,9 +266,9 @@ window.addEventListener('load',function() {
 				"ru":"Russian",
 				"tr":"Turkish",
 			};
-			return associations[key];
+			return associations[key.toLowerCase()];
 		}
-		function insertTranslate(set = localStorage.getItem('language') !== null ? localStorage.getItem('language') : selectLang) {
+		function insertTranslate(set = localStorage.getItem('language') !== null ? localStorage.getItem('language') : 'en') {
 			select.querySelector('div').innerText = associations(set);
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');

@@ -145,28 +145,20 @@ window.addEventListener('load',function() {
 		},
 		replaceSharp = function(str,inner) {return str.replace('###',inner)}
 	
-	/* 
-	console.log( method.get() );
-	console.log( statusBar.imgGetname(0) );
-	console.log( statusBar.imgRename( 'step1.svg' ) );
-	console.log( statusBar.imgSetname(0,'step1.svg') );
-	console.log( statusBar.imgGetsize(0) );
-	*/
-	
-	ajaxData(function(result) {
-		d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
-			page.step2();
-		});
-		d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
-			resendCallConfirmation();
-		});
-		d.querySelector('#checkSMSCode').addEventListener('click',function() {
-			checkSMSCode();
-		});
-		d.querySelector('#setNewPhone').addEventListener('click',function() {
-			setNewPhone(result);
-		});
-		
+
+	d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
+		page.step2();
+	});
+	d.querySelector('#resendCallConfirmation').addEventListener('click',function() {
+		resendCallConfirmation();
+	});
+	d.querySelector('#checkSMSCode').addEventListener('click',function() {
+		checkSMSCode();
+	});
+	d.querySelector('#setNewPhone').addEventListener('click',function() {
+		setNewPhone();
+	});
+	ajaxData(function(result) {		
 		console.log( result,'\n\n\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);

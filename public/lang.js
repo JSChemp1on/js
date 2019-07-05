@@ -49,6 +49,9 @@ var langJson = {
             "firstTran":"First transaction",
             "dLimit":"Daily limit",
             "mLimit":"Monthly limit"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "RU":{
@@ -101,6 +104,9 @@ var langJson = {
             "firstTran":"Первая транзакция",
             "dLimit":"Дневной лимит",
             "mLimit":"Месячный лимит"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "AR":{
@@ -153,6 +159,9 @@ var langJson = {
             "firstTran":"المعاملة المالية الأولى",
             "dLimit":"الحد اليومي",
             "mLimit":"الحد الشهري"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "DE":{
@@ -205,6 +214,9 @@ var langJson = {
             "firstTran":"Erste Transaktion",
             "dLimit":"Tägliches Limit",
             "mLimit":"Monatliches Limit"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "ES":{
@@ -257,6 +269,9 @@ var langJson = {
             "firstTran":"Primera transacción",
             "dLimit":"Límite diario",
             "mLimit":"Límite mensual"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "FR":{
@@ -309,6 +324,9 @@ var langJson = {
             "firstTran":"Première transaction",
             "dLimit":"Limite quotidienne",
             "mLimit":"Limite mensuelle"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "IT":{
@@ -361,6 +379,9 @@ var langJson = {
             "firstTran":"Prima transazione",
             "dLimit":"Limite giornaliero",
             "mLimit":"Limite mensile"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "PT":{
@@ -413,6 +434,9 @@ var langJson = {
             "firstTran":"Primeira transação",
             "dLimit":"Limite diário",
             "mLimit":"Limite mensal"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     },
     "TR":{
@@ -465,6 +489,9 @@ var langJson = {
             "firstTran":"İlk işlem",
             "dLimit":"Günlük limit",
             "mLimit":"Aylık limit"
+        },
+        "record":{
+            "video_uploaded":"Resources: Resource, video_uploaded"
         }
     }
 

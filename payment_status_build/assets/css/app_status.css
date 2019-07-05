@@ -9,6 +9,7 @@ body {
 	background-size: 100%;
 	
 }
+li {list-style-type: none;}
 body {
 	display: flex;
 	flex-direction: column; /* row */

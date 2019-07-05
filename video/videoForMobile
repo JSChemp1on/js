@@ -1,0 +1,274 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="payment_status.aspx.cs" Inherits="Exchanger.gw.payment_status" %>
+<%@ Import Namespace="SampleTradeLib.Verification" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Yandex.Metrika informer -->
+    <a href="https://metrika.yandex.com/stat/?id=23951482&amp;from=informer" style=" display: none;"
+       target="_blank" rel="nofollow">
+        <img src="https://informer.yandex.ru/informer/23951482/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+             style="width:88px; height:31px; border:0; display: none;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="23951482" data-lang="ru" />
+    </a>
+    <!-- /Yandex.Metrika informer -->
+    <script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+                m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(23951482, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/23951482" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <title></title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="subresource" href="/ex/js/scripts/jquery-2.1.0.min.js">
+    <link rel="subresource" href="/ex/js/checkDeviceSupport.js">
+    <link rel="subresource" href="/ex/js/oauth.js">
+    <link rel="subresource" href="/ex/js/RecordRTC.js">
+    <link rel="subresource" href="/ex/js/gumadapter.js">
+    <link rel="subresource" href='<%: System.Web.Optimization.Scripts.Url("~/ex/bundles/exgw_scripts")%>'>
+    <script type="text/javascript">
+        !function (e, t, r) { function n() { for (; d[0] && "loaded" == d[0][f];) c = d.shift(), c[o] = !i.parentNode.insertBefore(c, i) } for (var s, a, c, d = [], i = e.scripts[0], o = "onreadystatechange", f = "readyState"; s = r.shift() ;) a = e.createElement(t), "async" in i ? (a.async = !1, e.head.appendChild(a)) : i[f] ? (d.push(a), a[o] = n) : e.write("<" + t + ' src="' + s + '" defer></' + t + ">"), a.src = s }(document, "script", [
+            "/ex/js/scripts/jquery-2.1.0.min.js",
+            '<%: System.Web.Optimization.Scripts.Url("~/ex/bundles/exgw_scripts")%>',
+            "/ex/js/checkDeviceSupport.js",
+            "/ex/js/oauth.js",
+            "/ex/js/RecordRTC.js",
+            "/ex/js/gumadapter.js"
+        ])
+    </script>
+    <%: System.Web.Optimization.Styles.Render("~/ex/bundles/exgw_styles")%>
+</head>
+<body>
+<section id="notifyPage" style="margin-top: -20px" class="content exchange clearfix">
+   <div id = "smsVerify" style="display: none">
+       <div class="page">
+          <div class="wrapper">
+            <div class="indacoin-wizard">
+              <div class="wizard-header">
+                <div class="icon-space">
+                  <span class="icon-phone-call"></span>
+                </div>
+              </div>
+              <div class="wizard-body">
+                <p style="font-weight: bold;" >Request id</p>
+                <p style="font-weight: bold;" class="requestNumber">#</p>
+                <p>
+                  We will call you now on <b class="userPhoneNo"></b>. <br/>
+                  Please listen for the 4-digit code and<br/>
+                  enter it here:
+                </p>
+                <form onsubmit="return checkSMSCode()">
+                  <div class="form-el">
+                    <input type="tel" placeholder="* * * *" id="authSMSCode" autofocus pattern="[0-9]*" inputmode="numeric" maxlength="<%: Phone.CodeLength%>">
+                    <div class="tip" style="display: none"></div>
+                      <div id="phone_id" style="display: none"></div>
+                  </div>
+                </form>
+                <form id="changePhoneNumberDiv" onsubmit="return changePhoneNumberForRequest();" style="display: none">
+                    <p class="changePhoneNumberForm" style="display: none">
+                        If your phone number <b class="userPhoneNo"></b> is wrong. <br/>
+                        Please enter correct number here:
+                    </p>
+                      <div class="form-el phone changePhoneNumberForm" style="display: none">
+                          <input type="tel" id="new_phone" placeholder="Your phone number" autofocus/>
+                          <label for="new_phone" style="color: red; font-size: 20px;display:none;">Please add proper your country prefix</label>
+                      </div>
+                    <button class="btn btn-indacoin"  id="changePhoneNumberButton" style="font-size: 10px;" onclick='changePhoneNumberForRequest()' disabled="disabled">Wrong phone number?</button>
+                </form>
+                
+                <div id="resendCallDiv" style="display: none">
+                    <button class="btn btn-indacoin"  id="resendCallDivLink" style="font-size: 10px;" onclick='ResendCallConfirmation()' disabled="disabled">Haven't received a call?</button>
+                </div>
+                <button class="btn btn-indacoin" style="font-size: 20px;" onclick='checkSMSCode()'>next step</button>
+                <div class="current-step">
+                  <p>Verification (Step 1/2)</p>
+                </div>
+              </div>
+              <div class="wizard-footer">
+                <p class="provided-by">Service is provided by <span class="indacoin-logo"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  <div id="cardVerify"  style="display: none">
+      <div class="page">
+  <div class="wrapper">
+    <div class="indacoin-wizard">
+      <div class="wizard-header">
+        <div class="icon-space">
+          <span class="icon-3-digit-code"></span>
+        </div>
+      </div>
+      <div class="wizard-body">
+        <p style="font-weight: bold;">Request id</p>
+        <p style="font-weight: bold;" class="requestNumber">#</p>
+        <p>
+          Enter 3-digit code from your online card
+          statement:
+        </p>
+        <form onsubmit="return checkCode();">
+          <div class="form-el">
+            <input type="tel" placeholder="* * *" id="authCode" class="digit-code" autofocus  pattern="[0-9]*" inputmode="numeric" 
+                maxlength="<%: Card.CodeLength%>">Z
+            <div class="tip" style="display: none"></div>
+              <div id="card_id" style="display: none"></div>
+          </div>
+        </form>
+        <button class="btn btn-indacoin" onclick='checkCode()'>confirm</button>
+        <div class="current-step">
+          <p>Verification (Step 2/2)</p>
+        </div>
+      </div>
+      <div class="wizard-footer">
+        <div class="disclaimer">
+          <b class="warning">How to find the code:</b>
+          <ol>
+            <li>Open your online card statement.</li>
+            <li>
+              Find 3 digits next to Indacoin payment in the recent transaction (see the example below).
+              <p class="example">
+                Pre-Auth Transaction-POS Signature Purchase<br/>
+                INDACOIN_CODE:<b class="warning">465</b>Z London GBR<br/>
+                Amount to charge: в‚¬35.00
+              </p>
+            </li>
+          </ol>
+          <p>Contact your bank if you don't have access to your online banking.</p>
+        </div>
+        <p class="provided-by" id ="cardProvidedBy">Service is provided by <span class="indacoin-logo"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      
+
+    </div>
+    <div id="requestInfo" class="page"  style="display: none">
+    
+        
+    <div class="page">
+    <div class="wrapper">
+        <div class="indacoin-wizard">
+            <div class="transaction_status">
+                <div class="block">
+                    <div class="header">Transaction status:</div>
+                    <div class="content">Exchange order #<div id="OrderId"></div></div>
+                </div>
+
+                <div class="block">
+                    <div class="subheader">Date and time</div>
+                    <div class="content"><div class="notify-time" id="PayDate"></div></div>
+                </div>
+
+                <div class="block">
+                    <div class="subheader">Status</div>
+                    <div class="content"> <div id="Status"></div></div>
+                </div>
+
+                <div class="block">
+                    <div class="subheader">Pay amount</div>
+                    <div class="content"><span id="PayInAmount"></span><span id="PayInCurrency"></span>(<span id="PayInSystem"></span>)</div>
+                </div>
+                
+                <div href="https://blockexplorer.com/tx/" class="check_link" id="divCashoutExternalTransactionId" style="display: none">
+                        <div id="cashoutExternalTransactionId"></div>
+                </div>
+                <div id="partnerBackLink" style="display: none">
+                    <div class="subheader">
+                         <a><asp:localize id="Localize2" runat="server" text="<%$ Resources:Resource, Notify_PartnerBackLink %>" /> </a>
+                    </div>
+                   
+                   
+                </div>
+            </div>
+            
+            
+            <div id="card-code-video">
+              <div id="videoRecord">
+                <div>
+                  <div class="wizard-footer">
+                    <div class="disclaimer">
+                        <button class="btn btn-indacoin flash flash-slow hide" style="display: none" id="checkUVideoTry"><asp:Localize Text="<%$ Resources: Resource, card_video_checku %>" runat="server"></asp:Localize></button>
+                      <%--<b class="warning cardCodeVerification"><asp:Localize Text="<%$ Resources: Resource, still_cant_find_the_code %>" runat="server"></asp:Localize></b>--%>
+                      <b class="warning upgradeVerificationSpeed" style="display: none"><asp:Localize Text="<%$ Resources: Resource, want_to_improve_verification %>" runat="server"></asp:Localize></b>
+                       <ol id ="videoRecordInner">
+                       <%-- <li class="cardCodeVerification"><asp:Localize Text="<%$ Resources: Resource, card_video_help %>" runat="server"></asp:Localize></li>--%>
+                        <li class="upgradeVerificationSpeed"><asp:Localize Text="<%$ Resources: Resource, upgrading_verification_speed %>" runat="server"></asp:Localize></li>
+                        <li ><asp:Localize Text="<%$ Resources: Resource, video_record_help %>" runat="server"></asp:Localize>
+
+                            <div id="videoForDesktop">
+                               <p></p>
+                                <div class="uploadVideo">
+                                    <video id="video" style="width: 480px;display: none;"></video>
+                                    <p class="videoUploadedCongrats" style="display: none;"><asp:Localize Text="<%$ Resources: Resource, video_uploaded %>" runat="server"></asp:Localize></p>
+                                    <button class="btn btn-indacoin flash flash-slow" id="start-recording">Record</button>
+                                    <button class="btn btn-indacoin disabled" id="stop-recording" disabled="">Stop</button>
+                                    <button class="btn btn-indacoin disabled" id="send-recording" disabled="">Send</button>
+                                    <br>
+                                </div>
+                            </div>
+                           <div id="videoForMobile">
+                               <p></p>
+                                <div>
+                                    <label class="uploadbutton">
+                                        <div class="" >Record</div>
+                                        <div class='input'>Not recorded</div>
+                                        <input type="file" id="verification_video_upload" name="video" accept="video/*" capture onchange="this.previousSibling.previousSibling.innerHTML = this.value"/>
+                                    </label>
+                                </div>
+                                <div>
+                                    <p  class="videoUploadedCongrats" style="display: none;"><asp:Localize Text="<%$ Resources: Resource, video_uploaded %>" runat="server"></asp:Localize></p>
+                                    <input type="submit" value="Upload" id ="uploadVideoButton">
+                                </div>
+                            </div>
+
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="wizard-footer">
+                <p class="provided-by">Service and support is provider by <span class="indacoin-logo"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+ 
+
+</section>
+</body>
+    <script>
+        function startNotify(waitTime) {
+            //console.log('notify try with ' + waitTime);
+           // if (window.NotifyPageInit)
+           //     window.NotifyPageInit();
+           // else
+           //     setTimeout(function () { startNotify(waitTime * 2); }, waitTime * 2);
+        }
+        window.addEventListener('load', function () {
+            document.querySelectorAll('.indacoin-wizard .wizard-footer').forEach(function (item) { item.innerHTML = '<center><a href="https://indacoin.com/gw/new/payment_status.html' + location.search + '">Try new status page!</a></center><br /><br />' + item.innerHTML });
+        });
+        startNotify(500);
+    </script>
+</html> 
+
+

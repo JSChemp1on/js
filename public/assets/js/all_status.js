@@ -188,9 +188,10 @@ window.addEventListener('load',function() {
 		} else console.log('Ни одного из условий не выполнено');
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
-		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend"))
+		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
 			countdown(15,result);
-		else
+			$("#videoRecord").hide();
+		} else
 			d.querySelector('footer.footer center').innerText = '';
 
 		// LOGO
@@ -382,7 +383,11 @@ window.addEventListener('load',function() {
 								receiveData();
 						}, ((NotifyData.s == "Verifying" && NotifyData.verify_seconds_count < 20)?10000:30000));
 						
-	
+					if(NotifyData.id_add_status && NotifyData.id_add_status > 0) {
+						$("#videoRecord").show();
+					} else {
+						$("#videoRecord").hide();
+					}
 					/* if (NotifyData.partnerName == "skycoin") {
 						var cssId = 'myPartnerCss';  // you could encode the css path itself to generate id..
 						if (!document.getElementById(cssId)) {

@@ -15,6 +15,7 @@
   <!-- RecordRTC //-->
   <link rel="stylesheet" type="text/css" href="lib/RecordRTC/videoRecord.css" />
   <!-- /RecordRTC //-->
+  <style>ul,li {list-style-type: none;}</style>
 </head>
 
 <body>
@@ -181,17 +182,17 @@
             <div class="disclaimer">
               <ol id="videoRecordInner">
                 <li class="upgradeVerificationSpeed">
-                  <asp:Localize Text="<%$ Resources: Resource, upgrading_verification_speed %>" runat="server">
-                  </asp:Localize>
+                  <!-- <asp:Localize Text="<%$ Resources: Resource, upgrading_verification_speed %>" runat="server">
+                  </asp:Localize> -->
                 </li>
                 <li>
-                  <asp:Localize Text="<%$ Resources: Resource, video_record_help %>" runat="server"></asp:Localize>
+                  <!-- <asp:Localize Text="<%$ Resources: Resource, video_record_help %>" runat="server"></asp:Localize> -->
                   <div id="videoForDesktop">
                     <p></p>
                     <div class="uploadVideo">
                       <video id="video" style="width: 480px;display: none;"></video>
                       <p class="videoUploadedCongrats" style="display: none;">
-                        <p id="setNewPhone" data-translation-path="record.video_uploaded">Resources: Resource, video_uploaded</p>
+                        <span data-translation-path="record.video_uploaded">This video is uploaded</span>
                       </p>
                       <button class="btn btn-indacoin flash flash-slow" id="start-recording">Record</button>
                       <button class="btn btn-indacoin disabled" id="stop-recording" disabled="">Stop</button>
@@ -210,9 +211,9 @@
                       </label>
                     </div>
                     <div>
-                      <p class="videoUploadedCongrats" style="display: none;">
+                      <!-- <p class="videoUploadedCongrats" style="display: none;">
                         <asp:Localize Text="<%$ Resources: Resource, video_uploaded %>" runat="server"></asp:Localize>
-                      </p>
+                      </p> -->
                       <input type="submit" value="Upload" id="uploadVideoButton">
                     </div>
                   </div>

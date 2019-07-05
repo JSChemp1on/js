@@ -51,7 +51,7 @@ var langJson = {
             "mLimit":"Monthly limit"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "RU":{
@@ -106,7 +106,7 @@ var langJson = {
             "mLimit":"Месячный лимит"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "AR":{
@@ -161,7 +161,7 @@ var langJson = {
             "mLimit":"الحد الشهري"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "DE":{
@@ -216,7 +216,7 @@ var langJson = {
             "mLimit":"Monatliches Limit"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "ES":{
@@ -271,7 +271,7 @@ var langJson = {
             "mLimit":"Límite mensual"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "FR":{
@@ -326,7 +326,7 @@ var langJson = {
             "mLimit":"Limite mensuelle"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "IT":{
@@ -381,7 +381,7 @@ var langJson = {
             "mLimit":"Limite mensile"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "PT":{
@@ -436,7 +436,7 @@ var langJson = {
             "mLimit":"Limite mensal"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     },
     "TR":{
@@ -491,7 +491,7 @@ var langJson = {
             "mLimit":"Aylık limit"
         },
         "record":{
-            "video_uploaded":"Resources: Resource, video_uploaded"
+            "video_uploaded":"This video is uploaded"
         }
     }
 

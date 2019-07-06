@@ -347,7 +347,6 @@ window.addEventListener('load',function() {
 			method.get().request_id +
 			"'}",
 			success: function(data) {
-				console.log(data,789);
 				if (data.d > 0) {
 					/*
 					$('#changePhoneNumberButton').val(window.t.weWillCall).attr('disabled', 'disabled');
@@ -384,7 +383,9 @@ window.addEventListener('load',function() {
 						}, ((NotifyData.s == "Verifying" && NotifyData.verify_seconds_count < 20)?10000:30000));
 						
 					if(NotifyData.id_add_status && NotifyData.id_add_status > 0) {
-						$("#videoRecord").show();
+						setTimeout(function(){
+							$("#videoRecord").show();
+						},2000);
 					} else {
 						$("#videoRecord").hide();
 					}

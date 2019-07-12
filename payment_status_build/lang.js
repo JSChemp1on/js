@@ -18,7 +18,7 @@ var langJson = {
         },
         "link":{
             "Phone0":"Wrong phone number?",
-            "Phone1":"Havent received a call?"
+            "Phone1":"Haven't received a call?"
         },
         "menuTop":{
             "linkTop0":"partnership",

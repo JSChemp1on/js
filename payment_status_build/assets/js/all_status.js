@@ -69,13 +69,13 @@ window.addEventListener('load',function() {
 				//for(let i = 0; i < statusBar.selector.length; i++) if(i % 2 == 0) statusBar.imgSetsize(i,{width:49,height:49});
 				this.transactionStatus();
 			},
-			setStat:function(obj,value, selector = this.selector) {
+			setStat:function(obj,value, selector = this.selector) {console.log('setStat: ',obj)
 				Object.keys(obj).forEach(function(key) {
 					if(key == 'link') {
 						if(obj[key].bool) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
-							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + encodeURIComponent(window.location.href) + "';");
+							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + decodeURIComponent(window.location.href) + "';");
 						}
 					}
 					else
@@ -159,12 +159,10 @@ window.addEventListener('load',function() {
 		setNewPhone();
 	});
 	ajaxData(function(result) {		
-		console.log( result,'\n\n\n' );
+		console.log( 'getData: ',result,'\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);
 		// Проверка личности
-
-		console.log(result);
 		if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			console.log('// Когда отказ');
 			page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
@@ -173,7 +171,7 @@ window.addEventListener('load',function() {
 			page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 			console.log('// Verifying и phoneStatusAuthCode пусто');
-			page.step3({link:{url:result.KYCUrl,bool:result.KYCNeeded},status:'Verifying',date:result.d,cash:result.iA+' '+result.iC});
+			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cash:result.iA+' '+result.iC});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
 			console.log('// Идет проверка && номер подтвержден');
 			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
@@ -318,7 +316,7 @@ window.addEventListener('load',function() {
 			method: "POST",
 			contentType: "application/json; charset=utf-8",
 			crossDomain: false,
-			data: "{'phoneId':'" + $("#phone_id").html().trim() + "','confirmation_hash':'" + getParameterByName('confirm_code') + "','request_id':'" + getParameterByName('request_id') + "'}",
+			data: "{'phoneId':'" + NotifyData.phoneId + "','confirmation_hash':'" + method.get().confirm_code + "','request_id':'" + method.get().request_id + "'}",
 			success: function (data) {
 				if (data.d > 0) {
 					$('#resendCallDivLink').val(window.t.weWillCall).attr('disabled', 'disabled');
@@ -376,16 +374,14 @@ window.addEventListener('load',function() {
 				success: function onSucess(result) {
 					resolve(JSON.parse(result.d));
 					var NotifyData = $.parseJSON(result.d);
-	
+					window.NotifyData = NotifyData;
 					if (NotifyData.s != "TimeOut" && NotifyData.s != "Declined" && NotifyData.s != "Completed" && NotifyData.s != "MoneySend")
 						setTimeout(function () {
 								receiveData();
 						}, ((NotifyData.s == "Verifying" && NotifyData.verify_seconds_count < 20)?10000:30000));
 						
 					if(NotifyData.id_add_status && NotifyData.id_add_status > 0) {
-						setTimeout(function(){
-							$("#videoRecord").show();
-						},2000);
+						$("#videoRecord").show();
 					} else {
 						$("#videoRecord").hide();
 					}

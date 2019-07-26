@@ -75,7 +75,7 @@ window.addEventListener('load',function() {
 						if(obj[key].bool) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
-							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + decodeURIComponent(window.location.href) + "';");
+							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + encodeURIComponent(window.location.href) + "';");
 						}
 					}
 					else
@@ -130,7 +130,9 @@ window.addEventListener('load',function() {
 		},
 		countdown = function(time,result) {
 			console.log('--',result.partner_url,result.ex_transaction_id,'--');
-			d.querySelector('#countdown').innerText = time;
+			let countd = d.querySelector('#countdown');
+			countd.innerText = countd.innerText.replace( new RegExp(countd.dataset.count,'g') ,time);
+			countd.dataset.count = time;
 			time--;
 			if(time == 0)
 				window.location.href = result.partner_url + (
@@ -163,7 +165,38 @@ window.addEventListener('load',function() {
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);
 		// Проверка личности
-		if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
+		function mobgetcurrenciesinfo(params) {
+			// result.amount_alt_to_send+' '+result.oC 
+			return new Promise(function(resolve) {
+				if( params.alt_currency_id > 0 ) {
+					if(sessionStorage.getItem('cur_id_'+params.alt_currency_id) === null) {
+						$.get('https://indacoin.com/api/mobgetcurrenciesinfo/1', function(data) {
+							for(let key in data) if(data[key].cur_id == params.alt_currency_id) {
+								sessionStorage.setItem('cur_id_'+params.alt_currency_id,JSON.stringify(data[key]));
+								resolve(params.amount_alt_to_send + ' ' + data[key].short_name);
+							}
+						});
+					} else {
+						resolve(params.amount_alt_to_send + ' ' + JSON.parse(sessionStorage.getItem('cur_id_'+params.alt_currency_id)).short_name);
+					}
+				} else {
+					resolve(params.oA + ' ' + params.oC);
+				}
+			});
+		}
+		if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
+			console.log('// Когда все успешно завершено');
+
+			mobgetcurrenciesinfo(result).then(function(data) {
+				page.step5({status:(
+					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
+				),date:result.d,cash:data});
+			});
+
+
+
+
+		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			console.log('// Когда отказ');
 			page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
@@ -178,16 +211,11 @@ window.addEventListener('load',function() {
 		} else if(result.s == 'Declined') {
 			console.log('// Когда статус проверки неизвестен');
 			page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
-		} else if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
-			console.log('// Когда все успешно завершено');
-			page.step5({status:(
-				result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
-			),date:result.d,cash:result.iA+' '+result.iC});
 		} else console.log('Ни одного из условий не выполнено');
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(15,result);
+			countdown(1500,result);
 			$("#videoRecord").hide();
 		} else
 			d.querySelector('footer.footer center').innerText = '';
@@ -235,11 +263,11 @@ window.addEventListener('load',function() {
 	});
 
 	// Установка языка
+	
 	function langSet(id,customLang = null) {
 		if(customLang !== null) {
 			d.querySelector('#'+id).dataset.translationPath = 'custom.'+customLang;
-			console.log( localStorage.getItem('language') )
-			return langJson[localStorage.getItem('language')].custom[customLang];
+			return langJson[localStorage.getItem('language').toLocaleUpperCase()].custom[customLang];
 		}
 		let 
 			select = d.querySelector('.header__nav-item.menuLangParent'),

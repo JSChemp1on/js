@@ -25,12 +25,12 @@ var langJson = {
             "linkTop1":"support"
         },
         "footer":{
-            "footerText":"You will be redirected to the partner page for entering<br />the map and verification in the next step of the status page"
+            "footerText":"You will be automatically redirected back to the site in 15 seconds" //
         },
         "form":{
             "code":"Enter code",
             "phone":"You phone",
-            "butCode":"Change",
+            "butCode":"Confirm",
             "butPhone":"Next"
         },
         "index":{
@@ -80,7 +80,7 @@ var langJson = {
             "linkTop1":"Поддержка"
         },
         "footer":{
-            "footerText":"Вы будете перенаправлены на страницу партнера для ввода карты <br />и проверки на следующем шаге страницы состояния"
+            "footerText":"Вы будете автоматически перенесены обратно на сайт через 15 секунд."
         },
         "form":{
             "code":"Введите код",
@@ -135,7 +135,7 @@ var langJson = {
             "linkTop1":"الدعم الفني"
         },
         "footer":{
-            "footerText":"سيتم إعادة توجيهك إلى صفحة الشريك لإدخال البطاقة <br /> والتحقق من الخطوة التالية في صفحة الحالة"
+            "footerText":"سيتم تحويلك تلقائيًا إلى الموقع خلال 15 ثانية."
         },
         "form":{
             "code":"أدخل الرمز",
@@ -190,7 +190,7 @@ var langJson = {
             "linkTop1":"Support"
         },
         "footer":{
-            "footerText":"Sie werden zur Partnerseite weitergeleitet.<br />Auf der Partnerseite geben Sie Ihre Karte ein. Im nächsten Schritt können Sie auf der Seite den Status überprüfen."
+            "footerText":"Sie werden in 15 Sekunden automatisch zur Website zurückgeleitet"
         },
         "form":{
             "code":"Geben Sie den Code ein",
@@ -245,7 +245,7 @@ var langJson = {
             "linkTop1":"Apoyo"
         },
         "footer":{
-            "footerText":"Se le redirigirá a la página del socio para que ingrese su tarjeta<br />y verifique su estado en el siguiente paso de la página"
+            "footerText":"Se redirigirá automáticamente al sitio en 15 segundos" //
         },
         "form":{
             "code":"Ingrese el código",
@@ -300,7 +300,7 @@ var langJson = {
             "linkTop1":"Soutien"
         },
         "footer":{
-            "footerText":"Vous serez redirigé vers la page du partenaire pour entrer la carte <br /> et vérifier à l'étape suivante la page d'état"
+            "footerText":"Vous serez automatiquement redirigé vers le site dans 15 secondes"
         },
         "form":{
             "code":"Entrez le code",
@@ -355,7 +355,7 @@ var langJson = {
             "linkTop1":"Supporto"
         },
         "footer":{
-            "footerText":"Verrai reindirizzato alla pagina del partner per l'inserimento della carta <br />e la verifica dello status nel passaggio successivo della stessa pagina"
+            "footerText":"Automatiamente verrai trasferito nella pagina precedente  in 15 secondi" //
         },
         "form":{
             "code":"Inserisci il codice",
@@ -410,7 +410,7 @@ var langJson = {
             "linkTop1":"Suporte"
         },
         "footer":{
-            "footerText":"Você será redirecionado para a página de nosso parceiro para inserir o cartão <br /> e verificar a próxima etapa na página de status"
+            "footerText":"Você será automaticamente redirecionado de volta para o site em 15 segundos" //
         },
         "form":{
             "code":"Digite o código",
@@ -465,7 +465,7 @@ var langJson = {
             "linkTop1":"Destek"
         },
         "footer":{
-            "footerText":"Kartı girmek için ortak sayfasına yönlendirileceksiniz <br /> ve durum sayfasındaki bir sonraki adımı kontrol edin"
+            "footerText":"### saniye içinde otomatik olarak siteye geri yönlendirileceksiniz"
         },
         "form":{
             "code":"Kodu girin",

@@ -215,7 +215,7 @@ window.addEventListener('load',function() {
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(1500,result);
+			countdown(15,result);
 			$("#videoRecord").hide();
 		} else
 			d.querySelector('footer.footer center').innerText = '';
@@ -270,7 +270,7 @@ window.addEventListener('load',function() {
 			return langJson[localStorage.getItem('language').toLocaleUpperCase()].custom[customLang];
 		}
 		let 
-			select = d.querySelector('.header__nav-item.menuLangParent'),
+			select = d.querySelector('li.menuLang'),
 			langTag = d.querySelectorAll('.lang');
 		let dataset = d.querySelectorAll('[data-translation-path]');
 		function associations(key) {
@@ -288,7 +288,7 @@ window.addEventListener('load',function() {
 			return associations[key.toLowerCase()];
 		}
 		function insertTranslate(set = localStorage.getItem('language') !== null ? localStorage.getItem('language') : 'en') {
-			select.querySelector('div').innerText = associations(set);
+			//select.querySelector('font.menuLang').innerText = associations(set);
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');
 				if(dataset[i].tagName == 'INPUT') {
@@ -304,7 +304,7 @@ window.addEventListener('load',function() {
 			item.addEventListener('click',function() {
 				insertTranslate( this.dataset.langSelect );
 				// Задерживает выбор языка в localStorage на случай перезагрузки страницы
-				localStorage.setItem('language', this.dataset.langSelect  );
+				localStorage.setItem('language', this.dataset.langSelect || this.dataset.langnameShort.toLowerCase()  );
 			});
 		});
 

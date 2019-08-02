@@ -72,7 +72,13 @@ window.addEventListener('load',function() {
 			setStat:function(obj,value, selector = this.selector) {console.log('setStat: ',obj)
 				Object.keys(obj).forEach(function(key) {
 					if(key == 'link') {
-						if(obj[key].bool) {
+						function isUrlValid(userInput) {
+							userInput = typeof userInput === 'string' ? userInput : '';
+							var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+							return res == null ? false : true;
+						}
+						console.log('isUrlValid(obj[key].url): ',isUrlValid(obj[key].url));
+						if(obj[key].bool && isUrlValid(obj[key].url)) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
 							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + encodeURIComponent(window.location.href) + "';");
@@ -171,9 +177,19 @@ window.addEventListener('load',function() {
 				if( params.alt_currency_id > 0 ) {
 					if(sessionStorage.getItem('cur_id_'+params.alt_currency_id) === null) {
 						$.get('https://indacoin.com/api/mobgetcurrenciesinfo/1', function(data) {
-							for(let key in data) if(data[key].cur_id == params.alt_currency_id) {
-								sessionStorage.setItem('cur_id_'+params.alt_currency_id,JSON.stringify(data[key]));
-								resolve(params.amount_alt_to_send + ' ' + data[key].short_name);
+							let arr = [];
+							for(let key in data) arr.push(data[key]);
+							if(!arr.some(function(params) {
+								return params.cur_id === params.alt_currency_id;
+							})) {
+								resolve(params.amount_alt_to_send + ' ' + params.iC);
+							} else {
+								for(let key in data) {
+									if(data[key].cur_id == params.alt_currency_id) {
+										sessionStorage.setItem('cur_id_'+params.alt_currency_id,JSON.stringify(data[key]));
+										resolve(params.amount_alt_to_send + ' ' + data[key].short_name);
+									}
+								}
 							}
 						});
 					} else {
@@ -192,16 +208,13 @@ window.addEventListener('load',function() {
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 				),date:result.d,cash:data});
 			});
-
-
-
-
+			
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			console.log('// Когда отказ');
 			page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
-			console.log('// Когда отказ по причине отсутствия надобности в воде SMS подтверждения');
-			page.step6({status:'Declined Error',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
+			console.log('// Когда отказ по причине отсутствия надобности в вводе SMS подтверждения');
+			page.step6({status:'Denied by bank',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 			console.log('// Verifying и phoneStatusAuthCode пусто');
 			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cash:result.iA+' '+result.iC});
@@ -215,14 +228,14 @@ window.addEventListener('load',function() {
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(1500,result);
+			countdown(15,result);
 			$("#videoRecord").hide();
 		} else
 			d.querySelector('footer.footer center').innerText = '';
 
 		// LOGO
 		$.ajax({
-			url: "/gw/payment_form.aspx/getUrlInfos",
+			url: "https://indacoin.com/gw/payment_form.aspx/getUrlInfos",
 			type: "post",
 			async: true,
 			contentType: "application/json; charset=utf-8",
@@ -270,7 +283,7 @@ window.addEventListener('load',function() {
 			return langJson[localStorage.getItem('language').toLocaleUpperCase()].custom[customLang];
 		}
 		let 
-			select = d.querySelector('.header__nav-item.menuLangParent'),
+			select = d.querySelector('li.menuLang'),
 			langTag = d.querySelectorAll('.lang');
 		let dataset = d.querySelectorAll('[data-translation-path]');
 		function associations(key) {
@@ -288,7 +301,7 @@ window.addEventListener('load',function() {
 			return associations[key.toLowerCase()];
 		}
 		function insertTranslate(set = localStorage.getItem('language') !== null ? localStorage.getItem('language') : 'en') {
-			select.querySelector('div').innerText = associations(set);
+			//select.querySelector('font.menuLang').innerText = associations(set);
 			for(let i = 0; i < dataset.length; i++) {
 				let ds = dataset[i].dataset.translationPath.split('.');
 				if(dataset[i].tagName == 'INPUT') {
@@ -304,7 +317,7 @@ window.addEventListener('load',function() {
 			item.addEventListener('click',function() {
 				insertTranslate( this.dataset.langSelect );
 				// Задерживает выбор языка в localStorage на случай перезагрузки страницы
-				localStorage.setItem('language', this.dataset.langSelect  );
+				localStorage.setItem('language', this.dataset.langSelect || this.dataset.langnameShort.toLowerCase()  );
 			});
 		});
 

@@ -1,8 +1,8 @@
-li.menuLangParent div.menuLangBox {position: relative; width: 100px; z-index: 2;}
+/*li.menuLangParent div.menuLangBox {position: relative; width: 100px; z-index: 2;}
 li.menuLangParent div.menuLangBox ul {position: absolute;}
 li.menuLangParent div.menuLangBox ul {border-radius: 5px;}
 li.menuLangParent div.menuLangBox ul {height: 0; overflow: hidden;}
-li.menuLangParent:hover div.menuLangBox ul {height: auto;}
+li.menuLangParent:hover div.menuLangBox ul {height: auto;}*/
 li.menuLangParent ul.menuLang li.flag {
   background-color: #062341;
 	background-repeat: no-repeat;
@@ -23,7 +23,7 @@ li.menuLangParent ul.menuLang li.flag.Russian {background-image: url('../../asse
 li.menuLangParent ul.menuLang li.flag.Turkish {background-image: url('../../assets/images/flags32/Turkey.png')}
 
 /*------------- menuLang animation -------------------*/
-li.menuLangParent:hover ul.menuLang li:first-of-type {animation: menuLang .1s ease-in-out forwards;}
+/*li.menuLangParent:hover ul.menuLang li:first-of-type {animation: menuLang .1s ease-in-out forwards;}
 li.menuLangParent:hover ul.menuLang li:nth-of-type(2) {animation: menuLang .2s ease-in-out forwards;}
 li.menuLangParent:hover ul.menuLang li:nth-of-type(3) {animation: menuLang .3s ease-in-out forwards;}
 li.menuLangParent:hover ul.menuLang li:nth-of-type(4) {animation: menuLang .4s ease-in-out forwards;}
@@ -35,4 +35,4 @@ li.menuLangParent:hover ul.menuLang li:last-of-type {animation: menuLang .9s eas
 @keyframes menuLang {
   0% {opacity: 0; transform: scale(1.1);}
   100% {opacity: 1; transform: scale(1);}
-}
+}*/

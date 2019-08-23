@@ -69,7 +69,15 @@ window.addEventListener('load',function() {
 				//for(let i = 0; i < statusBar.selector.length; i++) if(i % 2 == 0) statusBar.imgSetsize(i,{width:49,height:49});
 				this.transactionStatus();
 			},
-			setStat:function(obj,value, selector = this.selector) {console.log('setStat: ',obj)
+			display:function(){
+				let ul = d.querySelectorAll('div.stat ul');
+				for(let item of arguments) {
+					ul[0].querySelectorAll('li')[item].style.display = 'block';
+					ul[1].querySelectorAll('li')[item].style.display = 'block';
+				}
+			},
+			setStat:function(obj,value, selector = this.selector) {
+				console.log('setStat: ',obj)
 				Object.keys(obj).forEach(function(key) {
 					if(key == 'link') {
 						function isUrlValid(userInput) {
@@ -108,30 +116,42 @@ window.addEventListener('load',function() {
 				// Страница Change number
 				this.visiblePage(1);
 				statusBar.imgActive(2);
+				this.display(0,1,2);
 			},
 			step3:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(4);
 				this.setStat(obj);
+				this.display(0,1,2);
 			},
 			step4:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(2);
 				this.setStat(obj);
+				this.display(0,1,2);
 			},
 			step5:function(obj) {
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(6);
 				this.setStat(obj);
+				this.display(0,1,2,3);
+			},
+			step5_2:function(obj) {
+				// Страница Transaction status
+				this.visiblePage(2);
+				statusBar.imgActive(6);
+				this.setStat(obj);
+				this.display(0,1,2);
 			},
 			step6:function(obj) {
 				this.visiblePage(2);
 				/*statusBar.imgActive(6);*/
 				statusBar.imgSetname(6,'step3_error.svg');
 				this.setStat(obj);
+				this.display(0,1,2);
 			}
 		},
 		countdown = function(time,result) {
@@ -179,51 +199,60 @@ window.addEventListener('load',function() {
 						$.get('https://indacoin.com/api/mobgetcurrenciesinfo/1', function(data) {
 							let arr = [];
 							for(let key in data) arr.push(data[key]);
-							if(!arr.some(function(params) {
-								return params.cur_id === params.alt_currency_id;
+							if(!arr.some(function(item) {
+								return item.cur_id === params.alt_currency_id;
 							})) {
-								resolve(params.amount_alt_to_send + ' ' + params.iC);
+								console.log('if 2 ');
+								resolve({summ:params.amount_alt_to_send,fee:params.iC});
+								
 							} else {
+								console.log('if 3');
 								for(let key in data) {
 									if(data[key].cur_id == params.alt_currency_id) {
 										sessionStorage.setItem('cur_id_'+params.alt_currency_id,JSON.stringify(data[key]));
-										resolve(params.amount_alt_to_send + ' ' + data[key].short_name);
+										resolve({summ:params.amount_alt_to_send,fee:data[key].short_name});
 									}
 								}
 							}
 						});
 					} else {
-						resolve(params.amount_alt_to_send + ' ' + JSON.parse(sessionStorage.getItem('cur_id_'+params.alt_currency_id)).short_name);
+						resolve({summ:params.amount_alt_to_send,fee:JSON.parse(sessionStorage.getItem('cur_id_'+params.alt_currency_id)).short_name});
 					}
 				} else {
-					resolve(params.oA + ' ' + params.oC);
+					resolve({summ:params.oA,fee:params.oC});
 				}
 			});
 		}
 		if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
 			console.log('// Когда все успешно завершено');
-
 			mobgetcurrenciesinfo(result).then(function(data) {
-				page.step5({status:(
+				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
-				),date:result.d,cash:data});
+				)};
+				console.log(result.iC , data.fee)
+				if(result.iC === data.fee) {
+					var send = {date:result.d,cashIn:result.iA+' '+result.iC};
+					page.step5_2(Object.assign(status,send));
+				} else {
+					var send = {date:result.d,cashIn:result.iA+' '+result.iC,cashOut:data.summ + ' ' + data.fee};
+					page.step5(Object.assign(status,send));
+				}
 			});
-			
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			console.log('// Когда отказ');
-			page.step6({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
+			page.step6({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
 			console.log('// Когда отказ по причине отсутствия надобности в вводе SMS подтверждения');
-			page.step6({status:'Denied by bank',date:result.d,cash:result.iA+' '+result.iC,details:'     '});
+			page.step6({status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC,details:'     '});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 			console.log('// Verifying и phoneStatusAuthCode пусто');
-			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cash:result.iA+' '+result.iC});
+			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
 			console.log('// Идет проверка && номер подтвержден');
 			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
 		} else if(result.s == 'Declined') {
 			console.log('// Когда статус проверки неизвестен');
-			page.step4({status:'Declined',date:result.d,cash:result.iA+' '+result.iC});
+			page.step4({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else console.log('Ни одного из условий не выполнено');
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет

@@ -14,7 +14,8 @@ var langJson = {
             "phoneCode":"We will call you now on ",
             "insertCode":" Please listen for the 4-digit code",
             "date":"Date and time:",
-            "amount":"Amount paid:"
+            "amountIn":"Amount:",
+            "amountOut":"Amount received:"
         },
         "link":{
             "Phone0":"Wrong phone number?",
@@ -69,7 +70,8 @@ var langJson = {
             "phoneCode":"Мы сейчас свяжемся с Вами ",
             "insertCode":" Пожалуйста, введите 4-х значный код",
             "date":"Дата и время:",
-            "amount":"Выплачено:"
+            "amountIn":"Сумма:",
+            "amountOut":"Выплачено:"
         },
         "link":{
             "Phone0":"Ошиблись номером телефона?",
@@ -124,7 +126,8 @@ var langJson = {
             "phoneCode":"سوف نتصل بك الآن",
             "insertCode":" يرجى إدخال رمز مكون من 4 أرقام",
             "date":"التاريخ والوقت:",
-            "amount":"تم دفع:"
+            "amountIn":"المبلغ:",
+            "amountOut":"المبلغ المستلم:"
         },
         "link":{
             "Phone0":"أخطأت بكتابة رقم الهاتف؟",
@@ -179,7 +182,8 @@ var langJson = {
             "phoneCode":"Wir melden uns in Kürze bei Ihnen ",
             "insertCode":" Bitte geben Sie den 4-stelligen Code ein",
             "date":"Datum und Uhrzeit:",
-            "amount":"Bezahlt:"
+            "amountIn":"Menge:",
+            "amountOut":"Betrag erhalten:"
         },
         "link":{
             "Phone0":"Falsche Telefonnummer gewählt?",
@@ -234,7 +238,8 @@ var langJson = {
             "phoneCode":"En breve nos pondremos en contacto con usted ",
             "insertCode":" Por favor, ingrese el código de 4 dígitos",
             "date":"Fecha y hora:",
-            "amount":"Ha pagado:"
+            "amountIn":"Cantidad:",
+            "amountOut":"Importe recibido:"
         },
         "link":{
             "Phone0":"¿Es un número de teléfono equivocado?",
@@ -289,7 +294,8 @@ var langJson = {
             "phoneCode":"Nous communiquerons avec vous sous peu ",
             "insertCode":" Prière d'entrer le code à 4 caractères",
             "date":"Date et heure :",
-            "amount":"Payé :"
+            "amountIn":"Montant:",
+            "amountOut":"Montant reçu:"
         },
         "link":{
             "Phone0":"Vous êtes-vous trompé de numéro de téléphone ?",
@@ -344,7 +350,8 @@ var langJson = {
             "phoneCode":"Ci metteremo in contatto con te ",
             "insertCode":" Ti preghiamo di inserire il codice a 4 cifre",
             "date":"Data e ora:",
-            "amount":"Pagato:"
+            "amountIn":"Quantità:",
+            "amountOut":"Importo ricevuto:"
         },
         "link":{
             "Phone0":"Hai inserito un numero di telefono non corretto?",
@@ -378,7 +385,6 @@ var langJson = {
             "foto":"Se è il primo pagamento che completi su Indacoin, dovrai caricare una fotografia del tuo documento di identità e un foglio con il seguente testo: \"Confermo la criptovaluta su indacoin.com, la data corrente e l'importo della transazione\"",
             "firstTran":"Prima transazione",
             "dLimit":"Limite giornaliero",
-            "mLimit":"Limite mensile"
         },
         "record":{
             "video_uploaded":"This video is uploaded"
@@ -399,7 +405,8 @@ var langJson = {
             "phoneCode":"Nós entraremos em contato com você agora. ",
             "insertCode":" Por favor, insira o código de 4 dígitos",
             "date":"Data e hora:",
-            "amount":"Pago:"
+            "amountIn":"Quantidade:",
+            "amountOut":"Montante recebido:"
         },
         "link":{
             "Phone0":"Número de telefone errado?",
@@ -454,7 +461,8 @@ var langJson = {
             "phoneCode":"Şimdi sizinle irtibata geçeceğiz ",
             "insertCode":" Lütfen 4 haneli kodu girin",
             "date":"Tarih ve saat:",
-            "amount":"Ödenen:"
+            "amountIn":"Miktar:",
+            "amountOut":"Alınan tutar"
         },
         "link":{
             "Phone0":"Yanlış telefon numarası?",

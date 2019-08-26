@@ -186,7 +186,15 @@ window.addEventListener('load',function() {
 	d.querySelector('#setNewPhone').addEventListener('click',function() {
 		setNewPhone();
 	});
-	ajaxData(function(result) {		
+	ajaxData(function(result) {
+		// Для партнера "quube"
+		(function() {
+			if(result.partnerName === 'quube') {
+				let menu = d.querySelectorAll('.mobileMenu li');
+				menu[2].style.display = 'none';
+			}
+		})();
+
 		console.log( 'getData: ',result,'\n' );
 		// Страница, когда методом get никаких переменных не отправлено
 		//page.visiblePage(0);

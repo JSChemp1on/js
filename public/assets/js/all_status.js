@@ -267,8 +267,10 @@ window.addEventListener('load',function() {
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
 			countdown(15,result);
 			$("#videoRecord").hide();
-		} else
+		} else {
+			console.log('hello world')
 			d.querySelector('footer.footer center').innerText = '';
+		}
 
 		// LOGO
 		$.ajax({
@@ -463,19 +465,6 @@ window.addEventListener('load',function() {
 					} else {
 						$("#videoRecord").hide();
 					}
-					/* if (NotifyData.partnerName == "skycoin") {
-						var cssId = 'myPartnerCss';  // you could encode the css path itself to generate id..
-						if (!document.getElementById(cssId)) {
-							var head = document.getElementsByTagName('head')[0];
-							var link = document.createElement('link');
-							link.id = cssId;
-							link.rel = 'stylesheet';
-							link.type = 'text/css';
-							link.href = '/ex/css/ex_gw/partners/skycoin.css?ver=1.1';
-							link.media = 'all';
-							head.appendChild(link);
-						}
-					} */
 				}
 			});
 		})();

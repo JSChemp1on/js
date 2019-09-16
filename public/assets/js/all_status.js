@@ -152,7 +152,14 @@ window.addEventListener('load',function() {
 				statusBar.imgSetname(6,'step3_error.svg');
 				this.setStat(obj);
 				this.display(0,1,2);
-			}
+			},
+			step7:function(obj) {
+				// Страница Transaction status
+				this.visiblePage(2);
+				statusBar.imgActive(1);
+				this.setStat(obj);
+				this.display(0,1,2);
+			},
 		},
 		countdown = function(time,result) {
 			console.log('--',result.partner_url,result.ex_transaction_id,'--');
@@ -261,7 +268,10 @@ window.addEventListener('load',function() {
 		} else if(result.s == 'Declined') {
 			console.log('// Когда статус проверки неизвестен');
 			page.step4({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
-		} else console.log('Ни одного из условий не выполнено');
+		} else {
+			console.log('Ни одного из условий не выполнено');
+			page.step7({status:'Waiting',date:result.d,cashIn:result.iA+' '+result.iC});
+		}
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {

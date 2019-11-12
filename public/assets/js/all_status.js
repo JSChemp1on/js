@@ -349,9 +349,7 @@ window.addEventListener('load',function() {
 
 
 		(() => {
-			let copyURL = document.querySelector('.copyURL');
-			copyURL.innerText = window.location.href;
-			copyURL.onclick = function() {
+			function copy() {
 				let
 					range = document.createRange(),
 					selection = window.getSelection(),
@@ -361,21 +359,27 @@ window.addEventListener('load',function() {
 				selection.addRange(range);
 				document.execCommand('copy');
 				window.getSelection().removeAllRanges();
-				this.innerHTML = '<font style="color: #2cdcfe;">' + greenText + '</font>';
+				this.innerHTML = `<font style="color: #2cdcfe;">${greenText}</font>`;
 				setTimeout(() => {
 					copyURL.innerText = window.location.href;
+					copyURL.onclick = copy;
 				}, 2500);
+				copyURL.onclick = null;
 			};
+			let copyURL = document.querySelector('.copyURL');
+			copyURL.innerText = window.location.href;
+			copyURL.onclick = copy;
 		})();
 
 		(() => {
 			let input = document.querySelector('.input');
+			console.log(result.partner_url == true, result.partnerName);
 			if(result.partner_url) {
 				input.style.display = 'block';
 				let button = document.querySelector('.input .GoToBack');
 				let span = document.querySelector('.input .GoToBack .partnerName');
-				let partnerName = new URL(window.location.href).searchParams.get('partner');
-				span.innerText = partnerName;
+				span.innerText = result.partnerName;
+				
 				button.onclick = () => document.location.href = result.partner_url;
 			} else {
 				input.style.display = 'none';

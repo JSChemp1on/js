@@ -15,7 +15,8 @@ var langJson = {
             "insertCode":" Please listen for the 4-digit code",
             "date":"Date and time:",
             "amountIn":"Amount:",
-            "amountOut":"Amount received:"
+            "amountOut":"Amount received:",
+            "details":"Usually takes no more than 10-15 minutes. Copy url to check transaction status if you leave this page:"
         },
         "link":{
             "Phone0":"Wrong phone number?",
@@ -71,7 +72,8 @@ var langJson = {
             "insertCode":" Пожалуйста, введите 4-х значный код",
             "date":"Дата и время:",
             "amountIn":"Сумма:",
-            "amountOut":"Выплачено:"
+            "amountOut":"Выплачено:",
+            "details":"Обычно занимает не более 10-15 минут. Скопируйте URL, чтобы проверить статус транзакции, если вы покинете эту страницу:"
         },
         "link":{
             "Phone0":"Ошиблись номером телефона?",
@@ -127,7 +129,8 @@ var langJson = {
             "insertCode":" يرجى إدخال رمز مكون من 4 أرقام",
             "date":"التاريخ والوقت:",
             "amountIn":"المبلغ:",
-            "amountOut":"المبلغ المستلم:"
+            "amountOut":"المبلغ المستلم:",
+            "details":"عادة لا يستغرق أكثر من 10-15 دقيقة. انسخ عنوان url للتحقق من حالة المعاملة إذا تركت هذه الصفحة:"
         },
         "link":{
             "Phone0":"أخطأت بكتابة رقم الهاتف؟",
@@ -183,7 +186,8 @@ var langJson = {
             "insertCode":" Bitte geben Sie den 4-stelligen Code ein",
             "date":"Datum und Uhrzeit:",
             "amountIn":"Menge:",
-            "amountOut":"Betrag erhalten:"
+            "amountOut":"Betrag erhalten:",
+            "details":"Normalerweise dauert es nicht länger als 10-15 Minuten. Kopieren Sie die URL, um den Transaktionsstatus zu überprüfen, wenn Sie diese Seite verlassen:"
         },
         "link":{
             "Phone0":"Falsche Telefonnummer gewählt?",
@@ -239,7 +243,8 @@ var langJson = {
             "insertCode":" Por favor, ingrese el código de 4 dígitos",
             "date":"Fecha y hora:",
             "amountIn":"Cantidad:",
-            "amountOut":"Importe recibido:"
+            "amountOut":"Importe recibido:",
+            "details":"Por lo general, no toma más de 10-15 minutos. Copie la URL para verificar el estado de la transacción si sale de esta página:"
         },
         "link":{
             "Phone0":"¿Es un número de teléfono equivocado?",
@@ -295,7 +300,8 @@ var langJson = {
             "insertCode":" Prière d'entrer le code à 4 caractères",
             "date":"Date et heure :",
             "amountIn":"Montant:",
-            "amountOut":"Montant reçu:"
+            "amountOut":"Montant reçu:",
+            "details":"Cela ne prend généralement pas plus de 10-15 minutes. Copiez l'URL pour vérifier l'état de la transaction si vous quittez cette page:"
         },
         "link":{
             "Phone0":"Vous êtes-vous trompé de numéro de téléphone ?",
@@ -351,7 +357,8 @@ var langJson = {
             "insertCode":" Ti preghiamo di inserire il codice a 4 cifre",
             "date":"Data e ora:",
             "amountIn":"Quantità:",
-            "amountOut":"Importo ricevuto:"
+            "amountOut":"Importo ricevuto:",
+            "details":"Di solito non richiede più di 10-15 minuti. Copia l'URL per verificare lo stato della transazione se lasci questa pagina:"
         },
         "link":{
             "Phone0":"Hai inserito un numero di telefono non corretto?",
@@ -406,7 +413,8 @@ var langJson = {
             "insertCode":" Por favor, insira o código de 4 dígitos",
             "date":"Data e hora:",
             "amountIn":"Quantidade:",
-            "amountOut":"Montante recebido:"
+            "amountOut":"Montante recebido:",
+            "details":"Geralmente não leva mais que 10 a 15 minutos. Copie o URL para verificar o status da transação se você sair desta página:"
         },
         "link":{
             "Phone0":"Número de telefone errado?",
@@ -462,7 +470,8 @@ var langJson = {
             "insertCode":" Lütfen 4 haneli kodu girin",
             "date":"Tarih ve saat:",
             "amountIn":"Miktar:",
-            "amountOut":"Alınan tutar"
+            "amountOut":"Alınan tutar",
+            "details":"Genellikle 10-15 dakikadan fazla sürmez. Bu sayfadan ayrılırsanız işlem durumunu kontrol etmek için URL'yi kopyalayın:Doğrulama süresi genellikle en fazla 10-15 dakika sürer."
         },
         "link":{
             "Phone0":"Yanlış telefon numarası?",

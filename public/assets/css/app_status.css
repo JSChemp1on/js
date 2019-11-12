@@ -1,11 +1,14 @@
 
 html, body {height: 100%; margin: 0;}
 body {	
+	/*background-image:
+		url("../../assets/images/Backgr20.png"),
+		radial-gradient(542.82px at 36.7% 44%, #0B1621 0%, #042648 100%);*/
 	background-image:
 		url("../../assets/images/Backgr20.png"),
-		radial-gradient(542.82px at 36.7% 44%, #0B1621 0%, #042648 100%);
+		radial-gradient(circle, rgba(11,22,33,.97) 26%, rgba(4,38,72,1) 100%);
 	background-position: center center, left top;
-	background-repeat: no-repeat,no-repeat;
+	background-repeat: no-repeat,repeat;
 	background-size: 100%;
 	
 }
@@ -65,6 +68,7 @@ section.section-main .content .stat ul:nth-child(1) {width:49%; float:left;}
 section.section-main .content .stat ul:nth-child(2) {width:51%; float:right;}
 section.section-main .content .stat ul:nth-child(1) li {text-align: left;}
 section.section-main .content .stat ul:nth-child(2) li {text-align: right; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
+section.section-main .content .stat p#details {display: block; padding-top: 135px;}
 section.section-main .content .input {margin: 40px 0 20px 0;}
 section.section-main .content .input input {
 	width: 227px;
@@ -77,7 +81,7 @@ section.section-main .content .input input {
 	text-indent: 20px;
 	
 }
-section.section-main .content .input button {
+section.section-main .content button {
 	width: 107px;
 	height: 45px;
 	background: linear-gradient(180deg, #2CDCFE 0%, #3A9AF3 100%);
@@ -85,12 +89,36 @@ section.section-main .content .input button {
 	color: #fff;
 }
 section.section-main .content .input input,
-section.section-main .content .input button {font-size: 19px; border: 0;}
+section.section-main .content button {font-size: 19px; border: 0;}
 section.section-main .content .input button.step3 {
 	width: 182px;
 	height: 45px;
 	border-radius: 5px;
 }
+
+section.section-main .content .copyURL {
+	display: block;
+	width: 100%;
+	
+	background: transparent;
+	color: #1c99f8;
+
+	white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+section.section-main .content .copyURL:hover {text-decoration: underline; cursor: pointer;}
+section.section-main .content button.GoToBack {
+	width: 100%;
+	height: 45px;
+	padding: 0 10px;
+	border-radius: 6px;
+	cursor: pointer;
+    font-size: 15px !important;
+}
+section.section-main .content button.GoToBack {background: #2cdcfe;}
+section.section-main .content button.GoToBack:hover {background: #3A9AF3;}
+
 section.section-main .content div.links a {
 	font-style: normal;
 	font-weight: 500;
@@ -100,3 +128,10 @@ section.section-main .content div.links a {
 }
 section.section-main .content div.links a:hover {text-decoration: underline;}
 footer.footer {background:transparent;}
+
+/* Priority */
+@media (min-width: 768px) {
+    header .mobileMenu > ul {
+        justify-content: space-around !important;
+	}
+}

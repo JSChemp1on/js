@@ -1,3 +1,15 @@
+// custom style
+(() => {
+	let stylesheet = new URL(document.location.href).searchParams.get('stylesheet');
+	if(stylesheet) {
+		let ref = document.createElement("link");
+		ref.setAttribute("rel", "stylesheet");
+		ref.setAttribute("type", "text/css");
+		ref.setAttribute("href", decodeURIComponent(stylesheet));
+		document.head.append(ref);
+	}
+})();
+
 window.addEventListener('load',function() {
 	let
 		d = document,
@@ -103,6 +115,7 @@ window.addEventListener('load',function() {
 				);
 			},
 			step1:function(obj) {
+				console.log( 123,this.selector[2] )
 				// Страница Enter the code
 				this.visiblePage(0);
 				statusBar.imgActive(2);
@@ -119,11 +132,14 @@ window.addEventListener('load',function() {
 				this.display(0,1,2);
 			},
 			step3:function(obj) {
+				console.log( 456,this.selector[2] )
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(4);
 				this.setStat(obj);
 				this.display(0,1,2);
+				
+				//this.selector[2].querySelector('.details p').innerText = obj.details
 			},
 			step4:function(obj) {
 				// Страница Transaction status
@@ -147,6 +163,7 @@ window.addEventListener('load',function() {
 				this.display(0,1,2);
 			},
 			step6:function(obj) {
+				console.log( 789,this.selector[2] )
 				this.visiblePage(2);
 				/*statusBar.imgActive(6);*/
 				statusBar.imgSetname(6,'step3_error.svg');
@@ -154,6 +171,7 @@ window.addEventListener('load',function() {
 				this.display(0,1,2);
 			},
 			step7:function(obj) {
+				console.log( 147,this.selector[2] )
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(1);
@@ -179,7 +197,11 @@ window.addEventListener('load',function() {
 				}, 1000);
 		},
 		replaceSharp = function(str,inner) {return str.replace('###',inner)}
-	
+
+	window.pageHTML = id => {
+		page.visiblePage(id);
+		return page.selector[id];
+	}
 
 	d.querySelector('#WrongPhoneNumber').addEventListener('click',function() {
 		page.step2();
@@ -254,31 +276,33 @@ window.addEventListener('load',function() {
 				}
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
-			console.log('// Когда отказ');
+			
+			console.log('// When failure');
 			page.step6({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
-			console.log('// Когда отказ по причине отсутствия надобности в вводе SMS подтверждения');
-			page.step6({status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC,details:'     '});
+			console.log('// When refusal due to lack of need to enter SMS confirmation');
+			page.step6({status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
-			console.log('// Verifying и phoneStatusAuthCode пусто');
+			
+			console.log('// Verifying and phoneStatusAuthCode is empty');
 			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
-			console.log('// Идет проверка && номер подтвержден');
+			console.log('// Checking && number confirmed');
 			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
 		} else if(result.s == 'Declined') {
-			console.log('// Когда статус проверки неизвестен');
+			console.log('// When the verification status is unknown');
 			page.step4({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else {
-			console.log('Ни одного из условий не выполнено');
+			
+			console.log('None of the conditions are met');
 			page.step7({status:'Waiting',date:result.d,cashIn:result.iA+' '+result.iC});
 		}
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
-		if(result.partner_url.length != '' && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
+		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
 			countdown(15,result);
 			$("#videoRecord").hide();
 		} else {
-			console.log('hello world')
 			d.querySelector('footer.footer center').innerText = '';
 		}
 
@@ -322,6 +346,42 @@ window.addEventListener('load',function() {
 				});
 			});
 		})(result);
+
+
+		(() => {
+			let copyURL = document.querySelector('.copyURL');
+			copyURL.innerText = window.location.href;
+			copyURL.onclick = function() {
+				let
+					range = document.createRange(),
+					selection = window.getSelection(),
+					greenText = "Address copied...";
+				range.selectNodeContents(this);
+				selection.removeAllRanges();
+				selection.addRange(range);
+				document.execCommand('copy');
+				window.getSelection().removeAllRanges();
+				this.innerHTML = '<font style="color: #2cdcfe;">' + greenText + '</font>';
+				setTimeout(() => {
+					copyURL.innerText = window.location.href;
+				}, 2500);
+			};
+		})();
+
+		(() => {
+			let input = document.querySelector('.input');
+			if(result.partner_url) {
+				input.style.display = 'block';
+				let button = document.querySelector('.input .GoToBack');
+				let span = document.querySelector('.input .GoToBack .partnerName');
+				let partnerName = new URL(window.location.href).searchParams.get('partner');
+				span.innerText = partnerName;
+				button.onclick = () => document.location.href = result.partner_url;
+			} else {
+				input.style.display = 'none';
+			}
+		})();
+
 	});
 
 	// Установка языка
@@ -448,6 +508,9 @@ window.addEventListener('load',function() {
 	}
 	// Общий ajax
 	function ajaxData(resolve) {
+		/*let data = {"d":"{\"id\":7475235,\"d\":\"12.11.2019 12:21:34\",\"s\":\"Verifying\",\"p\":0.0,\"iT\":60,\"iC\":\"USD\",\"iA\":50.00000000,\"iAd\":\"2853509\",\"oT\":44,\"oC\":\"USD\",\"oA\":42.50000000,\"oAd\":\"\",\"cnf\":-1,\"eP\":\"38d8ffb1-b104-408e-91e8-96db8a6411f3\",\"pF\":1.17650000,\"direction\":-1.0,\"verifyPI\":2853509,\"verifyStatus\":1,\"cardId\":178135,\"cardStatus\":\"Verifying\",\"cardAuthCodeStatus\":\"Verifying\",\"cardAuthCode\":\"\",\"card3DS\":\"1\",\"phoneId\":179692,\"phoneGatewayList\":16,\"phoneNumber\":\"972526952**\",\"smsCode\":\"****\",\"phoneStatusAuthCode\":\"\",\"cashoutExternalTransactionId\":\"\",\"verifyStatusAddInfo\":null,\"partner\":null,\"couponId\":0,\"user_id\":697768,\"partner_id\":1009,\"partner_url\":\"\",\"FBreward\":0.00000000,\"TWTreward\":0.00000000,\"gatewayUserId\":\"user_1383394\",\"partnerName\":\"waves\",\"ex_transaction_id\":\"932260\",\"video_verification_id\":-1,\"id_add_status\":0,\"alt_currency_id\":2,\"amount_alt_to_send\":50.00000000,\"phone_count\":4,\"verify_seconds_count\":865,\"vp_status_outer\":1,\"kyc_required\":0,\"indacoin_score\":\"\\\\\\\\0.132\\\\\\\\0.136\",\"card_score\":\"{\\\"ip_address\\\":{\\\"risk\\\":0.01,\\\"country\\\":{\\\"is_high_risk\\\":false,\\\"confidence\\\":99,\\\"iso_code\\\":\\\"IL\\\",\\\"geoname_id\\\":294640,\\\"names\\\":{\\\"ja\\\":\\\"イスラエル国\\\",\\\"pt-BR\\\":\\\"Israel\\\",\\\"ru\\\":\\\"Израиль\\\",\\\"zh-CN\\\":\\\"以色列\\\",\\\"de\\\":\\\"Israel\\\",\\\"en\\\":\\\"Israel\\\",\\\"es\\\":\\\"Israel\\\",\\\"fr\\\":\\\"Israël\\\"}},\\\"location\\\":{\\\"local_time\\\":\\\"2019-11-12T14:22:00+02:00\\\",\\\"accuracy_radius\\\":50,\\\"latitude\\\":32.0678,\\\"longitude\\\":34.7647,\\\"time_zone\\\":\\\"Asia/Jerusalem\\\"},\\\"city\\\":{\\\"confidence\\\":10,\\\"geoname_id\\\":293397,\\\"names\\\":{\\\"ru\\\":\\\"Тель-Авив\\\",\\\"zh-CN\\\":\\\"特拉维夫\\\",\\\"de\\\":\\\"Tel Aviv\\\",\\\"en\\\":\\\"Tel Aviv\\\",\\\"es\\\":\\\"Tel Aviv\\\",\\\"fr\\\":\\\"Tel-Aviv\\\",\\\"ja\\\":\\\"テルアビブ\\\",\\\"pt-BR\\\":\\\"Tel Aviv\\\"}},\\\"continent\\\":{\\\"code\\\":\\\"AS\\\",\\\"geoname_id\\\":6255147,\\\"names\\\":{\\\"zh-CN\\\":\\\"亚洲\\\",\\\"de\\\":\\\"Asien\\\",\\\"en\\\":\\\"Asia\\\",\\\"es\\\":\\\"Asia\\\",\\\"fr\\\":\\\"Asie\\\",\\\"ja\\\":\\\"アジア\\\",\\\"pt-BR\\\":\\\"Ásia\\\",\\\"ru\\\":\\\"Азия\\\"}},\\\"registered_country\\\":{\\\"iso_code\\\":\\\"IL\\\",\\\"geoname_id\\\":294640,\\\"names\\\":{\\\"fr\\\":\\\"Israël\\\",\\\"ja\\\":\\\"イスラエル国\\\",\\\"pt-BR\\\":\\\"Israel\\\",\\\"ru\\\":\\\"Израиль\\\",\\\"zh-CN\\\":\\\"以色列\\\",\\\"de\\\":\\\"Israel\\\",\\\"en\\\":\\\"Israel\\\",\\\"es\\\":\\\"Israel\\\"}},\\\"subdivisions\\\":[{\\\"confidence\\\":20,\\\"iso_code\\\":\\\"TA\\\",\\\"geoname_id\\\":293396,\\\"names\\\":{\\\"en\\\":\\\"Tel Aviv\\\",\\\"fr\\\":\\\"Tel-Aviv\\\"}}],\\\"traits\\\":{\\\"static_ip_score\\\":0.6,\\\"user_count\\\":1,\\\"user_type\\\":\\\"cellular\\\",\\\"autonomous_system_number\\\":1680,\\\"autonomous_system_organization\\\":\\\"Cellcom Fixed Line Communication L.P.\\\",\\\"isp\\\":\\\"013 Netvision\\\",\\\"organization\\\":\\\"013 Netvision\\\",\\\"ip_address\\\":\\\"109.253.166.65\\\",\\\"network\\\":\\\"109.253.166.64/31\\\"}},\\\"credit_card\\\":{\\\"issuer\\\":{\\\"name\\\":\\\"EUROPAY (EUROCARD) ISRAEL LTD.\\\",\\\"matches_provided_name\\\":true,\\\"phone_number\\\":\\\"972 3 636 46 36\\\"},\\\"brand\\\":\\\"Mastercard\\\",\\\"country\\\":\\\"IL\\\",\\\"is_issued_in_billing_address_country\\\":true,\\\"is_prepaid\\\":false,\\\"is_virtual\\\":false,\\\"type\\\":\\\"credit\\\"},\\\"shipping_address\\\":{\\\"latitude\\\":31.5,\\\"longitude\\\":34.75,\\\"distance_to_ip_location\\\":63,\\\"distance_to_billing_address\\\":0,\\\"is_in_ip_country\\\":true},\\\"billing_address\\\":{\\\"latitude\\\":31.5,\\\"longitude\\\":34.75,\\\"distance_to_ip_location\\\":63,\\\"is_in_ip_country\\\":true},\\\"id\\\":\\\"4cf7d25c-6ae2-442d-ba40-3d72407a75d1\\\",\\\"risk_score\\\":1.12,\\\"funds_remaining\\\":9.22,\\\"queries_remaining\\\":614}\",\"emailage_score\":\"\",\"requests_count\":0,\"kycTemp\":697768,\"KYCUrl\":\"\",\"KYCNeeded\":true}"}
+		resolve( JSON.parse(data.d) );*/
+		
 		let host = 'https://indacoin.com';
 		(function receiveData() {
 			$.ajax({
@@ -478,6 +541,7 @@ window.addEventListener('load',function() {
 				}
 			});
 		})();
+		
 	}
 
 });

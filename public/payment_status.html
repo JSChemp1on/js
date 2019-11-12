@@ -27,7 +27,23 @@
   </script>
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
   <style>ul,li {list-style-type: none;}</style>
-  
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function (m, e, t, r, i, k, a) {
+    m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+    })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(23951482, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true
+    });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/23951482" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
@@ -49,11 +65,10 @@
               <!--<li><font><a href="https://indacoin.com/en_GB/help">FAQ</a></font></li>-->
               
               <li><font><a href="https://indacoin.com/xx_XX/news">Support</a></font></li>
-              <li><font><a href="https://indacoin.com/indatoken" style="color:#00b2ff;font-weight:600">INDA Token</a></font></li>
+              <!--<li><font><a href="https://indacoin.com/indatoken" style="color:#00b2ff;font-weight:600">INDA Token</a></font></li>-->
               <li class="menuLang menuLangParent "><font class="menuLang">Languages</font>
                 <div class="menuLang">
                   <ul class="menuLang">
-                    
                     <li data-langname-short="AR" class="flag Arabic">Arabic</li>
                     <li data-langname-short="DE" class="flag German">German</li>
                     <li data-langname-short="EN" class="flag English">English</li>
@@ -219,10 +234,12 @@
           <p id="details">&nbsp;</p>
         </div>
         <div class="details">
-          <p></p>
+          <p><mark style="background: transparent; color: inherit" data-translation-path="text.details">Usually takes no more than 10-15 minutes. Copy url to check transaction status if you leave this page:</mark>&nbsp;<mark class="copyURL"></mark></p>
         </div>
+        
         <div class="input">
-          <button id="link" class="step3" style="display: none">Start verification</button>
+          <div><button id="link" class="GoToBack">Go back to <span class="partnerName"></span></button></div>
+          <br /><button id="link" class="step3" style="display: none">Start verification</button>
         </div>
       </div>
     </center>

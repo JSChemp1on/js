@@ -365,16 +365,14 @@ window.addEventListener('load',function() {
 		})();
 
 		(() => {
-			let input = document.querySelector('.input fix');
+			let button = document.querySelector('.input .GoToBack');
 			if(result.partner_url) {
-				if(input) input.style.display = 'block';
-				let button = document.querySelector('.input .GoToBack');
+				button.style.display = 'block';
 				let span = document.querySelector('.input .GoToBack .partnerName');
 				span.innerText = result.partnerName;
-				
 				button.onclick = () => document.location.href = result.partner_url;
 			} else {
-				if(input) input.style.display = 'none';
+				button.style.display = 'none';
 			}
 		})();
 

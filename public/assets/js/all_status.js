@@ -97,7 +97,7 @@ window.addEventListener('load',function() {
 							var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 							return res == null ? false : true;
 						}
-						console.log('isUrlValid(obj[key].url): ',isUrlValid(obj[key].url));
+						
 						if(obj[key].bool && isUrlValid(obj[key].url)) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
@@ -130,7 +130,6 @@ window.addEventListener('load',function() {
 				this.display(0,1,2);
 			},
 			step3:function(obj) {
-				console.log( 456,this.selector[2] )
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(4);
@@ -161,7 +160,6 @@ window.addEventListener('load',function() {
 				this.display(0,1,2);
 			},
 			step6:function(obj) {
-				console.log( 789,this.selector[2] )
 				this.visiblePage(2);
 				/*statusBar.imgActive(6);*/
 				statusBar.imgSetname(6,'step3_error.svg');
@@ -169,7 +167,6 @@ window.addEventListener('load',function() {
 				this.display(0,1,2);
 			},
 			step7:function(obj) {
-				console.log( 147,this.selector[2] )
 				// Страница Transaction status
 				this.visiblePage(2);
 				statusBar.imgActive(1);
@@ -237,11 +234,9 @@ window.addEventListener('load',function() {
 							if(!arr.some(function(item) {
 								return item.cur_id === params.alt_currency_id;
 							})) {
-								console.log('if 2 ');
 								resolve({summ:params.amount_alt_to_send,fee:params.iC});
 								
 							} else {
-								console.log('if 3');
 								for(let key in data) {
 									if(data[key].cur_id == params.alt_currency_id) {
 										sessionStorage.setItem('cur_id_'+params.alt_currency_id,JSON.stringify(data[key]));
@@ -259,12 +254,12 @@ window.addEventListener('load',function() {
 			});
 		}
 		if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
-			console.log('// Когда все успешно завершено');
+			console.log('// When everything is completed successfully');
 			mobgetcurrenciesinfo(result).then(function(data) {
 				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 				)};
-				console.log(result.iC , data.fee)
+				
 				if(result.iC === data.fee) {
 					var send = {date:result.d,cashIn:result.iA+' '+result.iC};
 					page.step5_2(Object.assign(status,send));
@@ -301,7 +296,7 @@ window.addEventListener('load',function() {
 			countdown(15,result);
 			$("#videoRecord").hide();
 		} else {
-			d.querySelector('footer.footer center').innerText = '';
+			d.querySelector('footer.footer center').style.visibility = 'hidden';
 		}
 
 		// LOGO
@@ -372,14 +367,14 @@ window.addEventListener('load',function() {
 		(() => {
 			let input = document.querySelector('.input fix');
 			if(result.partner_url) {
-				input.style.display = 'block';
+				if(input) input.style.display = 'block';
 				let button = document.querySelector('.input .GoToBack');
 				let span = document.querySelector('.input .GoToBack .partnerName');
 				span.innerText = result.partnerName;
 				
 				button.onclick = () => document.location.href = result.partner_url;
 			} else {
-				input.style.display = 'none';
+				if(input) input.style.display = 'none';
 			}
 		})();
 

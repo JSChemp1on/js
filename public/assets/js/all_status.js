@@ -115,7 +115,6 @@ window.addEventListener('load',function() {
 				);
 			},
 			step1:function(obj) {
-				console.log( 123,this.selector[2] )
 				// Страница Enter the code
 				this.visiblePage(0);
 				statusBar.imgActive(2);
@@ -373,7 +372,6 @@ window.addEventListener('load',function() {
 
 		(() => {
 			let input = document.querySelector('.input');
-			console.log(result.partner_url == true, result.partnerName);
 			if(result.partner_url) {
 				input.style.display = 'block';
 				let button = document.querySelector('.input .GoToBack');
@@ -382,7 +380,7 @@ window.addEventListener('load',function() {
 				
 				button.onclick = () => document.location.href = result.partner_url;
 			} else {
-				input.style.display = 'none';
+				//input.style.display = 'none';
 			}
 		})();
 
@@ -512,9 +510,9 @@ window.addEventListener('load',function() {
 	}
 	// Общий ajax
 	function ajaxData(resolve) {
-		/*let data = {"d":"{\"id\":7475235,\"d\":\"12.11.2019 12:21:34\",\"s\":\"Verifying\",\"p\":0.0,\"iT\":60,\"iC\":\"USD\",\"iA\":50.00000000,\"iAd\":\"2853509\",\"oT\":44,\"oC\":\"USD\",\"oA\":42.50000000,\"oAd\":\"\",\"cnf\":-1,\"eP\":\"38d8ffb1-b104-408e-91e8-96db8a6411f3\",\"pF\":1.17650000,\"direction\":-1.0,\"verifyPI\":2853509,\"verifyStatus\":1,\"cardId\":178135,\"cardStatus\":\"Verifying\",\"cardAuthCodeStatus\":\"Verifying\",\"cardAuthCode\":\"\",\"card3DS\":\"1\",\"phoneId\":179692,\"phoneGatewayList\":16,\"phoneNumber\":\"972526952**\",\"smsCode\":\"****\",\"phoneStatusAuthCode\":\"\",\"cashoutExternalTransactionId\":\"\",\"verifyStatusAddInfo\":null,\"partner\":null,\"couponId\":0,\"user_id\":697768,\"partner_id\":1009,\"partner_url\":\"\",\"FBreward\":0.00000000,\"TWTreward\":0.00000000,\"gatewayUserId\":\"user_1383394\",\"partnerName\":\"waves\",\"ex_transaction_id\":\"932260\",\"video_verification_id\":-1,\"id_add_status\":0,\"alt_currency_id\":2,\"amount_alt_to_send\":50.00000000,\"phone_count\":4,\"verify_seconds_count\":865,\"vp_status_outer\":1,\"kyc_required\":0,\"indacoin_score\":\"\\\\\\\\0.132\\\\\\\\0.136\",\"card_score\":\"{\\\"ip_address\\\":{\\\"risk\\\":0.01,\\\"country\\\":{\\\"is_high_risk\\\":false,\\\"confidence\\\":99,\\\"iso_code\\\":\\\"IL\\\",\\\"geoname_id\\\":294640,\\\"names\\\":{\\\"ja\\\":\\\"イスラエル国\\\",\\\"pt-BR\\\":\\\"Israel\\\",\\\"ru\\\":\\\"Израиль\\\",\\\"zh-CN\\\":\\\"以色列\\\",\\\"de\\\":\\\"Israel\\\",\\\"en\\\":\\\"Israel\\\",\\\"es\\\":\\\"Israel\\\",\\\"fr\\\":\\\"Israël\\\"}},\\\"location\\\":{\\\"local_time\\\":\\\"2019-11-12T14:22:00+02:00\\\",\\\"accuracy_radius\\\":50,\\\"latitude\\\":32.0678,\\\"longitude\\\":34.7647,\\\"time_zone\\\":\\\"Asia/Jerusalem\\\"},\\\"city\\\":{\\\"confidence\\\":10,\\\"geoname_id\\\":293397,\\\"names\\\":{\\\"ru\\\":\\\"Тель-Авив\\\",\\\"zh-CN\\\":\\\"特拉维夫\\\",\\\"de\\\":\\\"Tel Aviv\\\",\\\"en\\\":\\\"Tel Aviv\\\",\\\"es\\\":\\\"Tel Aviv\\\",\\\"fr\\\":\\\"Tel-Aviv\\\",\\\"ja\\\":\\\"テルアビブ\\\",\\\"pt-BR\\\":\\\"Tel Aviv\\\"}},\\\"continent\\\":{\\\"code\\\":\\\"AS\\\",\\\"geoname_id\\\":6255147,\\\"names\\\":{\\\"zh-CN\\\":\\\"亚洲\\\",\\\"de\\\":\\\"Asien\\\",\\\"en\\\":\\\"Asia\\\",\\\"es\\\":\\\"Asia\\\",\\\"fr\\\":\\\"Asie\\\",\\\"ja\\\":\\\"アジア\\\",\\\"pt-BR\\\":\\\"Ásia\\\",\\\"ru\\\":\\\"Азия\\\"}},\\\"registered_country\\\":{\\\"iso_code\\\":\\\"IL\\\",\\\"geoname_id\\\":294640,\\\"names\\\":{\\\"fr\\\":\\\"Israël\\\",\\\"ja\\\":\\\"イスラエル国\\\",\\\"pt-BR\\\":\\\"Israel\\\",\\\"ru\\\":\\\"Израиль\\\",\\\"zh-CN\\\":\\\"以色列\\\",\\\"de\\\":\\\"Israel\\\",\\\"en\\\":\\\"Israel\\\",\\\"es\\\":\\\"Israel\\\"}},\\\"subdivisions\\\":[{\\\"confidence\\\":20,\\\"iso_code\\\":\\\"TA\\\",\\\"geoname_id\\\":293396,\\\"names\\\":{\\\"en\\\":\\\"Tel Aviv\\\",\\\"fr\\\":\\\"Tel-Aviv\\\"}}],\\\"traits\\\":{\\\"static_ip_score\\\":0.6,\\\"user_count\\\":1,\\\"user_type\\\":\\\"cellular\\\",\\\"autonomous_system_number\\\":1680,\\\"autonomous_system_organization\\\":\\\"Cellcom Fixed Line Communication L.P.\\\",\\\"isp\\\":\\\"013 Netvision\\\",\\\"organization\\\":\\\"013 Netvision\\\",\\\"ip_address\\\":\\\"109.253.166.65\\\",\\\"network\\\":\\\"109.253.166.64/31\\\"}},\\\"credit_card\\\":{\\\"issuer\\\":{\\\"name\\\":\\\"EUROPAY (EUROCARD) ISRAEL LTD.\\\",\\\"matches_provided_name\\\":true,\\\"phone_number\\\":\\\"972 3 636 46 36\\\"},\\\"brand\\\":\\\"Mastercard\\\",\\\"country\\\":\\\"IL\\\",\\\"is_issued_in_billing_address_country\\\":true,\\\"is_prepaid\\\":false,\\\"is_virtual\\\":false,\\\"type\\\":\\\"credit\\\"},\\\"shipping_address\\\":{\\\"latitude\\\":31.5,\\\"longitude\\\":34.75,\\\"distance_to_ip_location\\\":63,\\\"distance_to_billing_address\\\":0,\\\"is_in_ip_country\\\":true},\\\"billing_address\\\":{\\\"latitude\\\":31.5,\\\"longitude\\\":34.75,\\\"distance_to_ip_location\\\":63,\\\"is_in_ip_country\\\":true},\\\"id\\\":\\\"4cf7d25c-6ae2-442d-ba40-3d72407a75d1\\\",\\\"risk_score\\\":1.12,\\\"funds_remaining\\\":9.22,\\\"queries_remaining\\\":614}\",\"emailage_score\":\"\",\"requests_count\":0,\"kycTemp\":697768,\"KYCUrl\":\"\",\"KYCNeeded\":true}"}
-		resolve( JSON.parse(data.d) );*/
-		
+		let data = {"d":"{\"id\":7475482,\"d\":\"13.11.2019 00:52:04\",\"s\":\"Verifying\",\"p\":0.0,\"iT\":16,\"iC\":\"USD\",\"iA\":200.00000000,\"iAd\":\"2853870\",\"oT\":44,\"oC\":\"100\",\"oA\":0.02160401,\"oAd\":\"1FbVyPK2Pbm8m6CpodM5T2ePGwqKm6yAUQ\",\"cnf\":-1,\"eP\":\"163497354X\",\"pF\":9257.54060000,\"direction\":-1.0,\"verifyPI\":2853870,\"verifyStatus\":1,\"cardId\":178234,\"cardStatus\":\"Verifying\",\"cardAuthCodeStatus\":\"Verifying\",\"cardAuthCode\":\"***Z\",\"card3DS\":\"Secured3Ds\",\"phoneId\":179795,\"phoneGatewayList\":0,\"phoneNumber\":\"447506886**\",\"smsCode\":\"****\",\"phoneStatusAuthCode\":\"Verifying\",\"cashoutExternalTransactionId\":\"\",\"verifyStatusAddInfo\":null,\"partner\":null,\"couponId\":0,\"user_id\":697897,\"partner_id\":3222,\"partner_url\":\"\",\"FBreward\":0.00000000,\"TWTreward\":0.00000000,\"gatewayUserId\":\"2676\",\"partnerName\":\"xzen\",\"ex_transaction_id\":\"932523\",\"video_verification_id\":-1,\"id_add_status\":0,\"alt_currency_id\":100,\"amount_alt_to_send\":0.02160401,\"phone_count\":1,\"verify_seconds_count\":2048,\"vp_status_outer\":1,\"kyc_required\":0,\"indacoin_score\":\"\\\\\\\\0.230\",\"card_score\":\"{\\\"ip_address\\\":{\\\"risk\\\":0.01,\\\"country\\\":{\\\"is_high_risk\\\":false,\\\"confidence\\\":99,\\\"is_in_european_union\\\":true,\\\"iso_code\\\":\\\"GB\\\",\\\"geoname_id\\\":2635167,\\\"names\\\":{\\\"de\\\":\\\"Vereinigtes Königreich\\\",\\\"en\\\":\\\"United Kingdom\\\",\\\"es\\\":\\\"Reino Unido\\\",\\\"fr\\\":\\\"Royaume-Uni\\\",\\\"ja\\\":\\\"イギリス\\\",\\\"pt-BR\\\":\\\"Reino Unido\\\",\\\"ru\\\":\\\"Великобритания\\\",\\\"zh-CN\\\":\\\"英国\\\"}},\\\"location\\\":{\\\"local_time\\\":\\\"2019-11-13T12:52:25Z\\\",\\\"accuracy_radius\\\":200,\\\"latitude\\\":51.4964,\\\"longitude\\\":-0.1224,\\\"time_zone\\\":\\\"Europe/London\\\"},\\\"continent\\\":{\\\"code\\\":\\\"EU\\\",\\\"geoname_id\\\":6255148,\\\"names\\\":{\\\"es\\\":\\\"Europa\\\",\\\"fr\\\":\\\"Europe\\\",\\\"ja\\\":\\\"ヨーロッパ\\\",\\\"pt-BR\\\":\\\"Europa\\\",\\\"ru\\\":\\\"Европа\\\",\\\"zh-CN\\\":\\\"欧洲\\\",\\\"de\\\":\\\"Europa\\\",\\\"en\\\":\\\"Europe\\\"}},\\\"registered_country\\\":{\\\"is_in_european_union\\\":true,\\\"iso_code\\\":\\\"GB\\\",\\\"geoname_id\\\":2635167,\\\"names\\\":{\\\"ru\\\":\\\"Великобритания\\\",\\\"zh-CN\\\":\\\"英国\\\",\\\"de\\\":\\\"Vereinigtes Königreich\\\",\\\"en\\\":\\\"United Kingdom\\\",\\\"es\\\":\\\"Reino Unido\\\",\\\"fr\\\":\\\"Royaume-Uni\\\",\\\"ja\\\":\\\"イギリス\\\",\\\"pt-BR\\\":\\\"Reino Unido\\\"}},\\\"traits\\\":{\\\"static_ip_score\\\":1,\\\"user_count\\\":1,\\\"user_type\\\":\\\"cellular\\\",\\\"autonomous_system_number\\\":12576,\\\"autonomous_system_organization\\\":\\\"EE Limited\\\",\\\"isp\\\":\\\"EE Mobile\\\",\\\"organization\\\":\\\"EE Mobile\\\",\\\"ip_address\\\":\\\"46.68.8.121\\\",\\\"network\\\":\\\"46.68.8.121/32\\\"}},\\\"credit_card\\\":{\\\"issuer\\\":{\\\"name\\\":\\\"MARKS \\\\u0026 SPENCER FINANCIAL SERVICES LTD.\\\",\\\"matches_provided_name\\\":false,\\\"phone_number\\\":\\\"08459000900\\\"},\\\"brand\\\":\\\"Mastercard\\\",\\\"country\\\":\\\"GB\\\",\\\"is_issued_in_billing_address_country\\\":true,\\\"is_prepaid\\\":false,\\\"is_virtual\\\":false,\\\"type\\\":\\\"credit\\\"},\\\"shipping_address\\\":{\\\"latitude\\\":51.4964,\\\"longitude\\\":-0.1224,\\\"distance_to_ip_location\\\":0,\\\"distance_to_billing_address\\\":0,\\\"is_in_ip_country\\\":true},\\\"billing_address\\\":{\\\"latitude\\\":51.4964,\\\"longitude\\\":-0.1224,\\\"distance_to_ip_location\\\":0,\\\"is_in_ip_country\\\":true},\\\"id\\\":\\\"1eddf482-d6bc-4429-ba6f-213b4f971e5c\\\",\\\"risk_score\\\":0.14,\\\"funds_remaining\\\":7.328,\\\"queries_remaining\\\":488}\",\"emailage_score\":\"\",\"requests_count\":0,\"kycTemp\":697897,\"KYCUrl\":\"https://indacoin.com/iframe/kyc_frame_new.aspx?access_token={at}\u0026user_id=56242\u0026lang=en\",\"KYCNeeded\":true}"}
+		resolve( JSON.parse(data.d) );
+		/*
 		let host = 'https://indacoin.com';
 		(function receiveData() {
 			$.ajax({
@@ -545,7 +543,7 @@ window.addEventListener('load',function() {
 				}
 			});
 		})();
-		
+		*/
 	}
 
 });

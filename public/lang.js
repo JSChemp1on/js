@@ -16,6 +16,7 @@ var langJson = {
             "date":"Date and time:",
             "amountIn":"Amount:",
             "amountOut":"Amount received:",
+            "reason":"Reason:",
             "details":"Usually takes no more than 10-15 minutes. Copy url to check transaction status if you leave this page:"
         },
         "link":{
@@ -73,6 +74,7 @@ var langJson = {
             "date":"Дата и время:",
             "amountIn":"Сумма:",
             "amountOut":"Выплачено:",
+            "reason":"Причина:",
             "details":"Обычно занимает не более 10-15 минут. Скопируйте URL, чтобы проверить статус транзакции, если вы покинете эту страницу:"
         },
         "link":{
@@ -130,6 +132,7 @@ var langJson = {
             "date":"التاريخ والوقت:",
             "amountIn":"المبلغ:",
             "amountOut":"المبلغ المستلم:",
+            "reason":"السبب:",
             "details":"عادة لا يستغرق أكثر من 10-15 دقيقة. انسخ عنوان url للتحقق من حالة المعاملة إذا تركت هذه الصفحة:"
         },
         "link":{
@@ -187,6 +190,7 @@ var langJson = {
             "date":"Datum und Uhrzeit:",
             "amountIn":"Menge:",
             "amountOut":"Betrag erhalten:",
+            "reason":"Grund:",
             "details":"Normalerweise dauert es nicht länger als 10-15 Minuten. Kopieren Sie die URL, um den Transaktionsstatus zu überprüfen, wenn Sie diese Seite verlassen:"
         },
         "link":{
@@ -244,6 +248,7 @@ var langJson = {
             "date":"Fecha y hora:",
             "amountIn":"Cantidad:",
             "amountOut":"Importe recibido:",
+            "reason":"Razón:",
             "details":"Por lo general, no toma más de 10-15 minutos. Copie la URL para verificar el estado de la transacción si sale de esta página:"
         },
         "link":{
@@ -301,6 +306,7 @@ var langJson = {
             "date":"Date et heure :",
             "amountIn":"Montant:",
             "amountOut":"Montant reçu:",
+            "reason":"Raison:",
             "details":"Cela ne prend généralement pas plus de 10-15 minutes. Copiez l'URL pour vérifier l'état de la transaction si vous quittez cette page:"
         },
         "link":{
@@ -358,6 +364,7 @@ var langJson = {
             "date":"Data e ora:",
             "amountIn":"Quantità:",
             "amountOut":"Importo ricevuto:",
+            "reason":"Motivo:",
             "details":"Di solito non richiede più di 10-15 minuti. Copia l'URL per verificare lo stato della transazione se lasci questa pagina:"
         },
         "link":{
@@ -414,6 +421,7 @@ var langJson = {
             "date":"Data e hora:",
             "amountIn":"Quantidade:",
             "amountOut":"Montante recebido:",
+            "reason":"Motivo:",
             "details":"Geralmente não leva mais que 10 a 15 minutos. Copie o URL para verificar o status da transação se você sair desta página:"
         },
         "link":{
@@ -470,7 +478,8 @@ var langJson = {
             "insertCode":" Lütfen 4 haneli kodu girin",
             "date":"Tarih ve saat:",
             "amountIn":"Miktar:",
-            "amountOut":"Alınan tutar",
+            "amountOut":"Alınan tutar:",
+            "reason":"Neden:",
             "details":"Genellikle 10-15 dakikadan fazla sürmez. Bu sayfadan ayrılırsanız işlem durumunu kontrol etmek için URL'yi kopyalayın:Doğrulama süresi genellikle en fazla 10-15 dakika sürer."
         },
         "link":{

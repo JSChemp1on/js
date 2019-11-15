@@ -187,7 +187,7 @@ window.addEventListener('load',function() {
 			let countd = d.querySelector('#countdown');
 			countd.innerText = countd.innerText.replace( new RegExp(countd.dataset.count,'g') ,time);
 			countd.dataset.count = time;
-			//time--;
+			time--;
 			if(time == 0)
 				window.location.href = result.partner_url + (
 					result.partner_url.includes('?') ? 

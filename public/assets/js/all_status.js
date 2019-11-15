@@ -187,7 +187,7 @@ window.addEventListener('load',function() {
 			let countd = d.querySelector('#countdown');
 			countd.innerText = countd.innerText.replace( new RegExp(countd.dataset.count,'g') ,time);
 			countd.dataset.count = time;
-			time--;
+			//time--;
 			if(time == 0)
 				window.location.href = result.partner_url + (
 					result.partner_url.includes('?') ? 
@@ -278,10 +278,11 @@ window.addEventListener('load',function() {
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			console.log('// When failure');
+			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC}
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
 			}
-			page.step6({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
+			page.step6(obj);
 
 
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
@@ -305,10 +306,11 @@ window.addEventListener('load',function() {
 
 		} else if(result.s == 'Declined') {
 			console.log('// When the verification status is unknown');
+			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC};
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
 			}
-			page.step4({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
+			page.step4(obj);
 
 
 		} else {

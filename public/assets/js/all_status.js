@@ -143,7 +143,11 @@ window.addEventListener('load',function() {
 				this.visiblePage(2);
 				statusBar.imgActive(2);
 				this.setStat(obj);
-				this.display(0,1,2);
+				let arr = [0,1,2];
+				if(obj.reasonText) {
+					arr.push(4);
+				}
+				this.display(...arr);
 			},
 			step5:function(obj) {
 				// Страница Transaction status
@@ -273,9 +277,13 @@ window.addEventListener('load',function() {
 				}
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
-			
 			console.log('// When failure');
+			if(result.reason_text) {
+				obj.reasonText = result.reason_text;
+			}
 			page.step6({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
+
+
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
 			console.log('// When refusal due to lack of need to enter SMS confirmation');
 			let obj = {status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC};
@@ -283,18 +291,27 @@ window.addEventListener('load',function() {
 				obj.reasonText = result.reason_text;
 			}
 			page.step6(obj);
+
+
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
-			
 			console.log('// Verifying and phoneStatusAuthCode is empty');
 			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cashIn:result.iA+' '+result.iC});
+
+
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
 			console.log('// Checking && number confirmed');
 			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
+
+
 		} else if(result.s == 'Declined') {
 			console.log('// When the verification status is unknown');
+			if(result.reason_text) {
+				obj.reasonText = result.reason_text;
+			}
 			page.step4({status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC});
+
+
 		} else {
-			
 			console.log('None of the conditions are met');
 			page.step7({status:'Waiting',date:result.d,cashIn:result.iA+' '+result.iC});
 		}

@@ -320,7 +320,7 @@ window.addEventListener('load',function() {
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(1500,result);
+			countdown(15,result);
 			$("#videoRecord").hide();
 		} else {
 			d.querySelector('footer.footer center').style.visibility = 'hidden';

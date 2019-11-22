@@ -320,7 +320,7 @@ window.addEventListener('load',function() {
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(15,result);
+			countdown(1500,result);
 			$("#videoRecord").hide();
 		} else {
 			d.querySelector('footer.footer center').style.visibility = 'hidden';
@@ -397,7 +397,11 @@ window.addEventListener('load',function() {
 				button.style.display = 'block';
 				let span = document.querySelector('.input .GoToBack .partnerName');
 				span.innerText = result.partnerName;
-				button.onclick = () => document.location.href = result.partner_url;
+
+				button.onclick = () => document.location.href = result.partner_url.indexOf('transaction_id') > -1
+				? result.partner_url
+				: result.partner_url + `${result.ex_transaction_id && `?transaction_id=${result.ex_transaction_id}`}`;
+
 			} else {
 				button.style.display = 'none';
 			}

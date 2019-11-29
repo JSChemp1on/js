@@ -326,26 +326,6 @@ window.addEventListener('load',function() {
 			d.querySelector('footer.footer center').style.visibility = 'hidden';
 		}
 
-		// LOGO
-		$.ajax({
-			url: "https://indacoin.com/gw/payment_form.aspx/getUrlInfos",
-			type: "post",
-			async: true,
-			contentType: "application/json; charset=utf-8",
-			crossDomain: false,
-			dataType: "json",
-			data: JSON.stringify({
-			  partner: result.partnerName || result.partner
-			}),
-			success: (data) => {
-			  const { error_url, logo_url } = data.d
-		
-			  $(".proccesing-form__text_cancel-payment").attr("href", error_url)
-			  $(".header__logo-img").attr("alt", result.partner);
-			  $(".header__logo-img").attr("src",`${location.origin}/${logo_url}`);
-			} 
-		});
-
 		// help users
 		(function(result) {
 			$.ajax({
@@ -391,21 +371,46 @@ window.addEventListener('load',function() {
 			copyURL.onclick = copy;
 		})();
 		
-		(() => {
+		let getUrlInfos = new Promise(resolve => {
+			$.ajax({
+				url: "https://indacoin.com/gw/payment_form.aspx/getUrlInfos",
+				type: "post",
+				async: true,
+				contentType: "application/json; charset=utf-8",
+				crossDomain: false,
+				dataType: "json",
+				data: JSON.stringify({
+				partner: result.partnerName || result.partner
+				}),
+				success: (data) => {
+					resolve(data.d);
+				} 
+			});
+		});
+		
+		getUrlInfos.then(data => {
+			console.log(789,data)
 			let button = document.querySelector('.input .GoToBack');
 			if(result.partner_url) {
 				button.style.display = 'block';
 				let span = document.querySelector('.input .GoToBack .partnerName');
-				span.innerText = result.partnerName;
+				span.innerText = data.visible_name || result.partnerName || result.partner;
 
 				button.onclick = () => document.location.href = result.partner_url.indexOf('transaction_id') > -1
 				? result.partner_url
 				: result.partner_url + `${result.ex_transaction_id && `?transaction_id=${result.ex_transaction_id}`}`;
-
 			} else {
 				button.style.display = 'none';
 			}
-		})();
+		});
+
+		// LOGO
+		getUrlInfos.then(data => {
+			const { error_url, logo_url } = data;
+			$(".proccesing-form__text_cancel-payment").attr("href", error_url)
+			$(".header__logo-img").attr("alt", result.partner);
+			$(".header__logo-img").attr("src",`${location.origin}/${logo_url}`);
+		});
 		
 	});
 

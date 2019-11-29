@@ -335,7 +335,7 @@ window.addEventListener('load',function() {
 			crossDomain: false,
 			dataType: "json",
 			data: JSON.stringify({
-			  partner: result.partner
+			  partner: result.partnerName || result.partner
 			}),
 			success: (data) => {
 			  const { error_url, logo_url } = data.d

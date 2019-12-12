@@ -229,7 +229,7 @@ window.addEventListener('load',function() {
 
 		console.log( 'getData: ',result,'\n' );
 		// Страница, когда методом get никаких переменных не отправлено
-		//page.visiblePage(0);
+		// page.visiblePage(0);
 		// Проверка личности
 		function mobgetcurrenciesinfo(params) {
 			// result.amount_alt_to_send+' '+result.oC 
@@ -262,7 +262,8 @@ window.addEventListener('load',function() {
 			});
 		}
 		if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
-			console.log('// When everything is completed successfully');
+			//console.log('// When everything is completed successfully');
+			ym(56424850, 'reachGoal', 'successful_buying');
 			mobgetcurrenciesinfo(result).then(function(data) {
 				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
@@ -277,16 +278,18 @@ window.addEventListener('load',function() {
 				}
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
-			console.log('// When failure');
+			//console.log('// When failure');
+			ym(56424850, 'reachGoal', 'bank_rejected');
 			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC}
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
 			}
 			page.step6(obj);
+			
 
 
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
-			console.log('// When refusal due to lack of need to enter SMS confirmation');
+			//console.log('// When refusal due to lack of need to enter SMS confirmation');
 			let obj = {status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC};
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
@@ -295,17 +298,23 @@ window.addEventListener('load',function() {
 
 
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
-			console.log('// Verifying and phoneStatusAuthCode is empty');
+			//console.log('// Verifying and phoneStatusAuthCode is empty');
+			ym(56424850, 'reachGoal', 'bank_rejected');
+			if(!(result.KYCNeeded || result.kyc_required)) {
+				ym(56424850, 'reachGoal', 'kyc_failure');
+			}
+
 			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cashIn:result.iA+' '+result.iC});
 
 
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == 'Verifying') {
-			console.log('// Checking && number confirmed');
+			//console.log('// Checking && number confirmed');
 			page.step1({request_id:(result.request_id || result.id),phoneId:result.phoneId,phoneNumber:result.phoneNumber});
 
 
 		} else if(result.s == 'Declined') {
-			console.log('// When the verification status is unknown');
+			//console.log('// When the verification status is unknown');
+			ym(56424850, 'reachGoal', 'another_rejected');
 			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC};
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
@@ -314,7 +323,8 @@ window.addEventListener('load',function() {
 
 
 		} else {
-			console.log('None of the conditions are met');
+			//console.log('None of the conditions are met');
+			ym(56424850, 'reachGoal', 'another_rejected');
 			page.step7({status:'Waiting',date:result.d,cashIn:result.iA+' '+result.iC});
 		}
 

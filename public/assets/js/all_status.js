@@ -279,7 +279,9 @@ window.addEventListener('load',function() {
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			//console.log('// When failure');
-			ym(56424850, 'reachGoal', 'other_rejected');
+			if(esult.card3DS == 'Half3Ds') {
+				ym(56424850, 'reachGoal', 'other_rejected');
+			}
 			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC}
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;

@@ -263,11 +263,11 @@ window.addEventListener('load',function() {
 		}
 		if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
 			//console.log('// When everything is completed successfully');
-			ym(56424850, 'reachGoal', 'successful_buying');
 			mobgetcurrenciesinfo(result).then(function(data) {
 				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 				)};
+				ym(56424850, 'reachGoal', 'successful_buying');
 				
 				if(result.iC === data.fee) {
 					var send = {date:result.d,cashIn:result.iA+' '+result.iC};
@@ -279,7 +279,7 @@ window.addEventListener('load',function() {
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			//console.log('// When failure');
-			ym(56424850, 'reachGoal', 'bank_rejected');
+			ym(56424850, 'reachGoal', 'other_rejected');
 			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC}
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
@@ -290,6 +290,7 @@ window.addEventListener('load',function() {
 
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
 			//console.log('// When refusal due to lack of need to enter SMS confirmation');
+			ym(56424850, 'reachGoal', 'bank_rejected');
 			let obj = {status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC};
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;

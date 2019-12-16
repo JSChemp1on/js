@@ -218,6 +218,18 @@ window.addEventListener('load',function() {
 	d.querySelector('#setNewPhone').addEventListener('click',function() {
 		setNewPhone();
 	});
+	
+	function setCookie(key, value) {
+		document.cookie = `${key}=${value}; path=/; max-age=21600`;
+	}
+	function getCookie(key) {
+		let res = document.cookie.split(';').map(cookie => {
+			let s = cookie.split('=');
+			return {key:s[0], value:s[1]}
+		}).find(cookie => cookie.key.indexOf('user22') > -1 && cookie)
+		return res ? res.value : null;
+	}
+
 	ajaxData(function(result) {
 		// Для партнера "quube"
 		(function() {
@@ -267,7 +279,11 @@ window.addEventListener('load',function() {
 				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 				)};
-				ym(56424850, 'reachGoal', 'successful_buying');
+				if(getCookie(`ym_${result.id}`) !== 'successful_buying') {
+					setCookie(`ym_${result.id}`, 'successful_buying')
+					ym(56424850, 'reachGoal', 'successful_buying', {amount_alt_to_send: result.amount_alt_to_send, iC: result.iC});
+				}
+				
 				
 				if(result.iC === data.fee) {
 					var send = {date:result.d,cashIn:result.iA+' '+result.iC};
@@ -280,7 +296,10 @@ window.addEventListener('load',function() {
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			//console.log('// When failure');
 			if(esult.card3DS == 'Half3Ds') {
-				ym(56424850, 'reachGoal', 'other_rejected');
+				if(getCookie(`ym_${result.id}`) !== 'other_rejected') {
+					setCookie(`ym_${result.id}`, 'other_rejected')
+					ym(56424850, 'reachGoal', 'other_rejected');
+				}
 			}
 			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC}
 			if(result.reason_text) {
@@ -292,7 +311,10 @@ window.addEventListener('load',function() {
 
 		} else if(result.cardStatus == 'Declined' || result.vp_status_outer < 0) {
 			//console.log('// When refusal due to lack of need to enter SMS confirmation');
-			ym(56424850, 'reachGoal', 'bank_rejected');
+			if(getCookie(`ym_${result.id}`) !== 'bank_rejected') {
+				setCookie(`ym_${result.id}`, 'bank_rejected')
+				ym(56424850, 'reachGoal', 'bank_rejected', );
+			}
 			let obj = {status:'Denied by bank',date:result.d,cashIn:result.iA+' '+result.iC};
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
@@ -303,7 +325,10 @@ window.addEventListener('load',function() {
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 			//console.log('// Verifying and phoneStatusAuthCode is empty');
 			if(!(result.KYCNeeded || result.kyc_required)) {
-				ym(56424850, 'reachGoal', 'kyc_failure');
+				if(getCookie(`ym_${result.id}`) !== 'kyc_failure') {
+					setCookie(`ym_${result.id}`, 'kyc_failure')
+					ym(56424850, 'reachGoal', 'kyc_failure');
+				}
 			}
 
 			page.step3({link:{url:result.KYCUrl,bool:( result.KYCNeeded || result.kyc_required )},status:'Verifying',date:result.d,cashIn:result.iA+' '+result.iC});
@@ -316,7 +341,11 @@ window.addEventListener('load',function() {
 
 		} else if(result.s == 'Declined') {
 			//console.log('// When the verification status is unknown');
-			ym(56424850, 'reachGoal', 'another_rejected');
+			
+			if(getCookie(`ym_${result.id}`) !== 'another_rejected') {
+				setCookie(`ym_${result.id}`, 'another_rejected')
+				ym(56424850, 'reachGoal', 'another_rejected');
+			}
 			let obj = {status:'Declined',date:result.d,cashIn:result.iA+' '+result.iC};
 			if(result.reason_text) {
 				obj.reasonText = result.reason_text;
@@ -326,7 +355,10 @@ window.addEventListener('load',function() {
 
 		} else {
 			//console.log('None of the conditions are met');
-			ym(56424850, 'reachGoal', 'another_rejected');
+			if(getCookie(`ym_${result.id}`) !== 'another_rejected') {
+				setCookie(`ym_${result.id}`, 'another_rejected')
+				ym(56424850, 'reachGoal', 'another_rejected');
+			}
 			page.step7({status:'Waiting',date:result.d,cashIn:result.iA+' '+result.iC});
 		}
 

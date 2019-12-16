@@ -218,7 +218,7 @@ window.addEventListener('load',function() {
 	d.querySelector('#setNewPhone').addEventListener('click',function() {
 		setNewPhone();
 	});
-	
+
 	function setCookie(key, value) {
 		document.cookie = `${key}=${value}; path=/; max-age=21600`;
 	}
@@ -281,7 +281,7 @@ window.addEventListener('load',function() {
 				)};
 				if(getCookie(`ym_${result.id}`) !== 'successful_buying') {
 					setCookie(`ym_${result.id}`, 'successful_buying')
-					ym(56424850, 'reachGoal', 'successful_buying', {amount_alt_to_send: result.amount_alt_to_send, iC: result.iC});
+					ym(56424850, 'reachGoal', 'successful_buying', {amount_alt_to_send: result.amount_alt_to_send, iC: result.iC, partner: result.partner || result.partnerName});
 				}
 				
 				

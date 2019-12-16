@@ -302,7 +302,6 @@ window.addEventListener('load',function() {
 
 		} else if(result.s == 'Verifying' && result.phoneStatusAuthCode == '') {
 			//console.log('// Verifying and phoneStatusAuthCode is empty');
-			ym(56424850, 'reachGoal', 'bank_rejected');
 			if(!(result.KYCNeeded || result.kyc_required)) {
 				ym(56424850, 'reachGoal', 'kyc_failure');
 			}

@@ -295,7 +295,7 @@ window.addEventListener('load',function() {
 			});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			//console.log('// When failure');
-			if(esult.card3DS == 'Half3Ds') {
+			if(result.card3DS == 'Half3Ds') {
 				if(getCookie(`ym_${result.id}`) !== 'other_rejected') {
 					setCookie(`ym_${result.id}`, 'other_rejected')
 					ym(56424850, 'reachGoal', 'other_rejected');

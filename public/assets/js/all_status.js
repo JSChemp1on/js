@@ -89,7 +89,7 @@ window.addEventListener('load',function() {
 				}
 			},
 			setStat:function(obj,value, selector = this.selector) {
-				console.log('setStat: ',obj)
+				//console.log('setStat: ',obj)
 				Object.keys(obj).forEach(function(key) {
 					if(key == 'link') {
 						function isUrlValid(userInput) {
@@ -433,7 +433,6 @@ window.addEventListener('load',function() {
 		});
 		
 		getUrlInfos.then(data => {
-			console.log(789,data)
 			let button = document.querySelector('.input .GoToBack');
 			if(result.partner_url) {
 				button.style.display = 'block';

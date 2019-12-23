@@ -231,6 +231,14 @@ window.addEventListener('load',function() {
 	}
 
 	ajaxData(function(result) {
+		// for yandex metrika
+		(() => {
+			if(getCookie(`ym_setUserID_${result.id}`) !== `setUserID`) {
+				setCookie(`ym_setUserID_${result.id}`, `setUserID`);
+				ym(56424850, 'setUserID', `${result.partnerName || result.partner}_${result.gatewayUserId.indexOf('@') > -1 ? result.gatewayUserId : result.gatewayUserId + '@indacoin.com'}`);
+			}
+		})();
+
 		// Для партнера "quube"
 		(function() {
 			if(result.partnerName === 'quube') {
@@ -581,8 +589,7 @@ window.addEventListener('load',function() {
 	}
 	// Общий ajax
 	function ajaxData(resolve) {
-		/*let data = {"d":"{\"id\":7475235,\"d\":\"12.11.2019 12:21:34\",\"s\":\"Declined\",\"p\":0.0,\"iT\":60,\"iC\":\"USD\",\"iA\":50.00000000,\"iAd\":\"2853509\",\"oT\":44,\"oC\":\"USD\",\"oA\":42.50000000,\"oAd\":\"\",\"cnf\":-1,\"eP\":\"38d8ffb1-b104-408e-91e8-96db8a6411f3\",\"pF\":1.17650000,\"direction\":-1.0,\"verifyPI\":2853509,\"verifyStatus\":-1,\"cardId\":178135,\"cardStatus\":\"Declined\",\"cardAuthCodeStatus\":\"Verifying\",\"cardAuthCode\":\"\",\"card3DS\":\"Secured3Ds\",\"phoneId\":179692,\"phoneGatewayList\":16,\"phoneNumber\":\"972526952**\",\"smsCode\":\"****\",\"phoneStatusAuthCode\":\"Verifying\",\"cashoutExternalTransactionId\":\"\",\"verifyStatusAddInfo\":null,\"partner\":null,\"couponId\":0,\"user_id\":697768,\"partner_id\":1009,\"partner_url\":\"\",\"FBreward\":0.00000000,\"TWTreward\":0.00000000,\"gatewayUserId\":\"user_1383394\",\"partnerName\":\"waves\",\"ex_transaction_id\":\"932260\",\"video_verification_id\":-1,\"id_add_status\":0,\"alt_currency_id\":2,\"amount_alt_to_send\":50.00000000,\"phone_count\":4,\"verify_seconds_count\":173957,\"vp_status_outer\":-1,\"kyc_required\":0,\"indacoin_score\":\"\\\\\\\\0.132\\\\\\\\0.136\",\"card_score\":\"{\\\"ip_address\\\":{\\\"risk\\\":0.01,\\\"country\\\":{\\\"is_high_risk\\\":false,\\\"confidence\\\":99,\\\"iso_code\\\":\\\"IL\\\",\\\"geoname_id\\\":294640,\\\"names\\\":{\\\"ja\\\":\\\"イスラエル国\\\",\\\"pt-BR\\\":\\\"Israel\\\",\\\"ru\\\":\\\"Израиль\\\",\\\"zh-CN\\\":\\\"以色列\\\",\\\"de\\\":\\\"Israel\\\",\\\"en\\\":\\\"Israel\\\",\\\"es\\\":\\\"Israel\\\",\\\"fr\\\":\\\"Israël\\\"}},\\\"location\\\":{\\\"local_time\\\":\\\"2019-11-12T14:22:00+02:00\\\",\\\"accuracy_radius\\\":50,\\\"latitude\\\":32.0678,\\\"longitude\\\":34.7647,\\\"time_zone\\\":\\\"Asia/Jerusalem\\\"},\\\"city\\\":{\\\"confidence\\\":10,\\\"geoname_id\\\":293397,\\\"names\\\":{\\\"ru\\\":\\\"Тель-Авив\\\",\\\"zh-CN\\\":\\\"特拉维夫\\\",\\\"de\\\":\\\"Tel Aviv\\\",\\\"en\\\":\\\"Tel Aviv\\\",\\\"es\\\":\\\"Tel Aviv\\\",\\\"fr\\\":\\\"Tel-Aviv\\\",\\\"ja\\\":\\\"テルアビブ\\\",\\\"pt-BR\\\":\\\"Tel Aviv\\\"}},\\\"continent\\\":{\\\"code\\\":\\\"AS\\\",\\\"geoname_id\\\":6255147,\\\"names\\\":{\\\"zh-CN\\\":\\\"亚洲\\\",\\\"de\\\":\\\"Asien\\\",\\\"en\\\":\\\"Asia\\\",\\\"es\\\":\\\"Asia\\\",\\\"fr\\\":\\\"Asie\\\",\\\"ja\\\":\\\"アジア\\\",\\\"pt-BR\\\":\\\"Ásia\\\",\\\"ru\\\":\\\"Азия\\\"}},\\\"registered_country\\\":{\\\"iso_code\\\":\\\"IL\\\",\\\"geoname_id\\\":294640,\\\"names\\\":{\\\"fr\\\":\\\"Israël\\\",\\\"ja\\\":\\\"イスラエル国\\\",\\\"pt-BR\\\":\\\"Israel\\\",\\\"ru\\\":\\\"Израиль\\\",\\\"zh-CN\\\":\\\"以色列\\\",\\\"de\\\":\\\"Israel\\\",\\\"en\\\":\\\"Israel\\\",\\\"es\\\":\\\"Israel\\\"}},\\\"subdivisions\\\":[{\\\"confidence\\\":20,\\\"iso_code\\\":\\\"TA\\\",\\\"geoname_id\\\":293396,\\\"names\\\":{\\\"en\\\":\\\"Tel Aviv\\\",\\\"fr\\\":\\\"Tel-Aviv\\\"}}],\\\"traits\\\":{\\\"static_ip_score\\\":0.6,\\\"user_count\\\":1,\\\"user_type\\\":\\\"cellular\\\",\\\"autonomous_system_number\\\":1680,\\\"autonomous_system_organization\\\":\\\"Cellcom Fixed Line Communication L.P.\\\",\\\"isp\\\":\\\"013 Netvision\\\",\\\"organization\\\":\\\"013 Netvision\\\",\\\"ip_address\\\":\\\"109.253.166.65\\\",\\\"network\\\":\\\"109.253.166.64/31\\\"}},\\\"credit_card\\\":{\\\"issuer\\\":{\\\"name\\\":\\\"EUROPAY (EUROCARD) ISRAEL LTD.\\\",\\\"matches_provided_name\\\":true,\\\"phone_number\\\":\\\"972 3 636 46 36\\\"},\\\"brand\\\":\\\"Mastercard\\\",\\\"country\\\":\\\"IL\\\",\\\"is_issued_in_billing_address_country\\\":true,\\\"is_prepaid\\\":false,\\\"is_virtual\\\":false,\\\"type\\\":\\\"credit\\\"},\\\"shipping_address\\\":{\\\"latitude\\\":31.5,\\\"longitude\\\":34.75,\\\"distance_to_ip_location\\\":63,\\\"distance_to_billing_address\\\":0,\\\"is_in_ip_country\\\":true},\\\"billing_address\\\":{\\\"latitude\\\":31.5,\\\"longitude\\\":34.75,\\\"distance_to_ip_location\\\":63,\\\"is_in_ip_country\\\":true},\\\"id\\\":\\\"4cf7d25c-6ae2-442d-ba40-3d72407a75d1\\\",\\\"risk_score\\\":1.12,\\\"funds_remaining\\\":9.22,\\\"queries_remaining\\\":614}\",\"emailage_score\":\"\",\"requests_count\":0,\"reason_text\":\"\",\"KYCUrl\":\"\"}"}
-		resolve( JSON.parse(data.d) );*/
+		
 		
 		let host = 'https://indacoin.com';
 		(function receiveData() {

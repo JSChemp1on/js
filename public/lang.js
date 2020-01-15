@@ -17,7 +17,7 @@ var langJson = {
             "amountIn":"Amount:",
             "amountOut":"Amount received:",
             "reason":"Reason:",
-            "details":"Usually takes no more than 10-15 minutes. Copy url to check transaction status if you leave this page:"
+            "details":"Usually takes about from 15 to 60 minutes to process. Copy url to check transaction status if you leave this page:"
         },
         "link":{
             "Phone0":"Wrong phone number?",
@@ -75,7 +75,7 @@ var langJson = {
             "amountIn":"Сумма:",
             "amountOut":"Выплачено:",
             "reason":"Причина:",
-            "details":"Обычно занимает не более 10-15 минут. Скопируйте URL, чтобы проверить статус транзакции, если вы покинете эту страницу:"
+            "details":"Обычно обработка занимает от 15 до 60 минут. Скопируйте URL, чтобы проверить статус транзакции, если вы покинете эту страницу:"
         },
         "link":{
             "Phone0":"Ошиблись номером телефона?",
@@ -133,7 +133,7 @@ var langJson = {
             "amountIn":"المبلغ:",
             "amountOut":"المبلغ المستلم:",
             "reason":"السبب:",
-            "details":"عادة لا يستغرق أكثر من 10-15 دقيقة. انسخ عنوان url للتحقق من حالة المعاملة إذا تركت هذه الصفحة:"
+            "details":"عادة ما يستغرق حوالي 15 إلى 60 دقيقة للمعالجة. انسخ عنوان url للتحقق من حالة المعاملة إذا تركت هذه الصفحة:"
         },
         "link":{
             "Phone0":"أخطأت بكتابة رقم الهاتف؟",
@@ -191,7 +191,7 @@ var langJson = {
             "amountIn":"Menge:",
             "amountOut":"Betrag erhalten:",
             "reason":"Grund:",
-            "details":"Normalerweise dauert es nicht länger als 10-15 Minuten. Kopieren Sie die URL, um den Transaktionsstatus zu überprüfen, wenn Sie diese Seite verlassen:"
+            "details":"Normalerweise dauert die Verarbeitung zwischen 15 und 60 Minuten. Kopieren Sie die URL, um den Transaktionsstatus zu überprüfen, wenn Sie diese Seite verlassen:"
         },
         "link":{
             "Phone0":"Falsche Telefonnummer gewählt?",
@@ -249,7 +249,7 @@ var langJson = {
             "amountIn":"Cantidad:",
             "amountOut":"Importe recibido:",
             "reason":"Razón:",
-            "details":"Por lo general, no toma más de 10-15 minutos. Copie la URL para verificar el estado de la transacción si sale de esta página:"
+            "details":"Por lo general, el proceso demora entre 15 y 60 minutos. Copie la URL para verificar el estado de la transacción si sale de esta página:"
         },
         "link":{
             "Phone0":"¿Es un número de teléfono equivocado?",
@@ -307,7 +307,7 @@ var langJson = {
             "amountIn":"Montant:",
             "amountOut":"Montant reçu:",
             "reason":"Raison:",
-            "details":"Cela ne prend généralement pas plus de 10-15 minutes. Copiez l'URL pour vérifier l'état de la transaction si vous quittez cette page:"
+            "details":"Le traitement prend généralement de 15 à 60 minutes. Copiez l'URL pour vérifier l'état de la transaction si vous quittez cette page:"
         },
         "link":{
             "Phone0":"Vous êtes-vous trompé de numéro de téléphone ?",
@@ -365,7 +365,7 @@ var langJson = {
             "amountIn":"Quantità:",
             "amountOut":"Importo ricevuto:",
             "reason":"Motivo:",
-            "details":"Di solito non richiede più di 10-15 minuti. Copia l'URL per verificare lo stato della transazione se lasci questa pagina:"
+            "details":"Di solito sono necessari dai 15 ai 60 minuti per l'elaborazione. Copia l'URL per verificare lo stato della transazione se lasci questa pagina:"
         },
         "link":{
             "Phone0":"Hai inserito un numero di telefono non corretto?",
@@ -422,7 +422,7 @@ var langJson = {
             "amountIn":"Quantidade:",
             "amountOut":"Montante recebido:",
             "reason":"Motivo:",
-            "details":"Geralmente não leva mais que 10 a 15 minutos. Copie o URL para verificar o status da transação se você sair desta página:"
+            "details":"Geralmente leva de 15 a 60 minutos para processar. Copie o URL para verificar o status da transação se você sair desta página:"
         },
         "link":{
             "Phone0":"Número de telefone errado?",
@@ -480,7 +480,7 @@ var langJson = {
             "amountIn":"Miktar:",
             "amountOut":"Alınan tutar:",
             "reason":"Neden:",
-            "details":"Genellikle 10-15 dakikadan fazla sürmez. Bu sayfadan ayrılırsanız işlem durumunu kontrol etmek için URL'yi kopyalayın:Doğrulama süresi genellikle en fazla 10-15 dakika sürer."
+            "details":"Genellikle işlenmesi yaklaşık 15 ila 60 dakika sürer.. Bu sayfadan ayrılırsanız işlem durumunu kontrol etmek için URL'yi kopyalayın:Doğrulama süresi genellikle en fazla 10-15 dakika sürer."
         },
         "link":{
             "Phone0":"Yanlış telefon numarası?",

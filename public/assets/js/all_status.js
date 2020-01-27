@@ -287,11 +287,6 @@ window.addEventListener('load',function() {
 				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 				)};
-				if(getCookie(`ym_${result.id}`) !== 'successful_buying') {
-					setCookie(`ym_${result.id}`, 'successful_buying')
-					ym(56424850, 'reachGoal', 'successful_buying', {amount_alt_to_send: result.amount_alt_to_send, iC: result.iC, partner: result.partner || result.partnerName});
-				}
-				
 				
 				if(result.iC === data.fee) {
 					var send = {date:result.d,cashIn:result.iA+' '+result.iC};

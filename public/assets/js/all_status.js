@@ -374,7 +374,7 @@ window.addEventListener('load',function() {
 		}
 
 		// help users
-		(function(result) {
+		/*(function(result) {
 			$.ajax({
 				url: "https://wchat.freshchat.com/js/widget.js",
 				dataType: "script",
@@ -392,7 +392,7 @@ window.addEventListener('load',function() {
 					externalId: userTokenMD5,     // user’s id unique to your system
 				});
 			});
-		})(result);
+		})(result);*/
 
 
 		(() => {

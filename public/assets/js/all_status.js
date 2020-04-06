@@ -367,7 +367,7 @@ window.addEventListener('load',function() {
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(15,result);
+			countdown(15000000000000000000000000000,result);
 			$("#videoRecord").hide();
 		} else {
 			d.querySelector('footer.footer center').style.visibility = 'hidden';
@@ -427,7 +427,7 @@ window.addEventListener('load',function() {
 				crossDomain: false,
 				dataType: "json",
 				data: JSON.stringify({
-				partner: result.partnerName || result.partner
+					partner: result.partnerName || result.partner
 				}),
 				success: (data) => {
 					resolve(data.d);
@@ -453,9 +453,25 @@ window.addEventListener('load',function() {
 		// LOGO
 		getUrlInfos.then(data => {
 			const { error_url, logo_url } = data;
-			$(".proccesing-form__text_cancel-payment").attr("href", error_url)
-			$(".header__logo-img").attr("alt", result.partner);
-			$(".header__logo-img").attr("src",`${location.origin}/${logo_url}`);
+			const origin = document.location.origin;
+			const qS = document.querySelector('header .header__logo-img');
+			let img = new Image();
+			img.src = `${origin}/${logo_url}`;
+			img.onload = () => {
+				qS.style.cssText = `\
+					width: auto;\
+					height: 30px;\
+					margin-bottom: 5px;\
+					background-position: left top;\
+					background-size: contain;\
+					background-repeat: no-repeat;\
+					background-image: url(${origin}/${decodeURIComponent(logo_url)});\
+				`;
+			};
+			img.onerror = () => {
+				console.log(`Not found img :(\n   URL: ${img.src}`);
+				qS.classList.add('logo');
+			};
 		});
 		
 	});

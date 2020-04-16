@@ -187,7 +187,9 @@ window.addEventListener('load',function() {
 			let countd = d.querySelector('#countdown');
 			countd.innerText = countd.innerText.replace( new RegExp(countd.dataset.count,'g') ,time);
 			countd.dataset.count = time;
-			time--;
+			if(window.LC_API.chat_window_minimized()) {
+				time--;
+			}
 			if(time == 0)
 				window.location.href = result.partner_url + (
 					result.partner_url.includes('?') ? 

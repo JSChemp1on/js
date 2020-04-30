@@ -97,11 +97,15 @@ window.addEventListener('load',function() {
 							var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
 							return res == null ? false : true;
 						}
-						
+
 						if(obj[key].bool && isUrlValid(obj[key].url)) {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
 							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + encodeURIComponent(window.location.href) + "';");
+						} else {
+							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
+							link.style.display = 'none';
+							link.removeAttribute('onclick');
 						}
 					}
 					else
@@ -183,7 +187,6 @@ window.addEventListener('load',function() {
 			},
 		},
 		countdown = function(time,result) {
-			console.log('--',result.partner_url,result.ex_transaction_id,'--');
 			let countd = d.querySelector('#countdown');
 			countd.innerText = countd.innerText.replace( new RegExp(countd.dataset.count,'g') ,time);
 			countd.dataset.count = time;
@@ -249,7 +252,7 @@ window.addEventListener('load',function() {
 			}
 		})();
 
-		console.log( 'getData: ',result,'\n' );
+		window.req = {getData: result};
 		// Страница, когда методом get никаких переменных не отправлено
 		// page.visiblePage(0);
 		// Проверка личности
@@ -283,21 +286,23 @@ window.addEventListener('load',function() {
 				}
 			});
 		}
+
 		if(result.s == 'Completed' || result.s == 'MoneySend' || result.s == 'Processing') {
 			//console.log('// When everything is completed successfully');
 			mobgetcurrenciesinfo(result).then(function(data) {
 				let status = {status:(
 					result.s == 'MoneySend' ? langSet('status','MoneySend') : result.s
 				)};
-				
+				let hardCode = {link: {bool: false}};
 				if(result.iC === data.fee) {
-					var send = {date:result.d,cashIn:result.iA+' '+result.iC};
-					page.step5_2(Object.assign(status,send));
+					var send = {date: result.d, cashIn: result.iA+' '+result.iC};
+					page.step5_2(Object.assign(status,send,hardCode));
 				} else {
 					var send = {date:result.d,cashIn:result.iA+' '+result.iC,cashOut:data.summ + ' ' + data.fee};
-					page.step5(Object.assign(status,send));
+					page.step5(Object.assign(status,send,hardCode));
 				}
 			});
+			page.step3({status:'Verifying',date:result.d,cashIn:result.iA+' '+result.iC});
 		} else if(result.s == 'TimeOut' || result.card3DS == 'Half3Ds') {
 			//console.log('// When failure');
 			if(result.card3DS == 'Half3Ds') {

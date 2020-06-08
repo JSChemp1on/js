@@ -505,6 +505,7 @@ window.addEventListener('load',function() {
 				"pt":"Portuguese",
 				"ru":"Russian",
 				"tr":"Turkish",
+				"cs":"Czech-Republic",
 			};
 			return associations[key.toLowerCase()];
 		}

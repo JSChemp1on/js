@@ -519,6 +519,64 @@ var langJson = {
         "record":{
             "video_uploaded":"This video is uploaded"
         }
+    },
+    "CS":{
+        "custom":{
+            "MoneySend":"Prostředky byly odeslány"
+        },
+        "text":{
+            "enterTheCode":"Zadejte kód",
+            "changeNumber":"Změnit číslo",
+            "transaction":"Stav transakce",
+            "reqId":"ID požadavku",
+            "status":"Postavení:",
+            "phoneNumber":"Vaše telefonní číslo",
+            "insertNumber":"Do pole vložte nové číslo",
+            "phoneCode":"Zavoláme vám hned ",
+            "insertCode":" Poslouchejte prosím 4místný kód",
+            "date":"Datum a čas:",
+            "amountIn":"Množství:",
+            "amountOut":"Částka přijata:",
+            "reason":"Důvod:",
+            "details":"Zpracování obvykle trvá asi 15 až 60 minut. Pokud opustíte tuto stránku, zkopírujte adresu URL a zkontrolujte stav transakce:"
+        },
+        "link":{
+            "Phone0":"Špatné telefonní číslo?",
+            "Phone1":"Neobdrželi jste hovor?"
+        },
+        "menuTop":{
+            "linkTop0":"partnerství",
+            "linkTop1":"Podpěra, podpora"
+        },
+        "footer":{
+            "footerText":"Za 15 sekund budete automaticky přesměrováni zpět na web" //
+        },
+        "form":{
+            "code":"Zadejte kód",
+            "phone":"Telefonuješ",
+            "butCode":"Potvrdit",
+            "butPhone":"další"
+        },
+        "index":{
+            "buy":"KOUPIT CRYPTO",
+            "card":"kreditní nebo debetní kartou",
+            "money":"Částka k převodu",
+            "phoneNumber":"Telefonní číslo",
+            "fullName":"Celé jméno",
+            "enterFullName":"Zadejte celé jméno",
+            "date":"Datum narození",
+            "accept":"Souhlasím s <a href=\"https://indacoin.com/xx_xx/terms-of-use\" class=\"proccesing-form__text proccesing-form__text_link\">Podmínky použití</a> a <a href=\"https://indacoin.com/xx_xx/terms-of-use?anchor=privacypolicy\" class=\"proccesing-form__text proccesing-form__text_link\">Zásady ochrany osobních údajů</a>",
+            "next":"Pokračovat",
+            "cancel":"Zrušit platbu",
+            "s24":"Náš tým podpory vám prostřednictvím živého chatu zodpoví všechny vaše dotazy 24/7",
+            "foto":"Pokud je to poprvé, co provedete platbu na Indacoin, budete muset nahrát fotografii, ve které držíte své ID a kus papíru, s následujícím textem: «Potvrzuji nákup kryptografií na indacoin.com, aktuální datum a částku transakce»",
+            "firstTran":"První transakce",
+            "dLimit":"Denní limit",
+            "mLimit":"Měsíční limit"
+        },
+        "record":{
+            "video_uploaded":"Toto video je nahráno"
+        }
     }
 
 }

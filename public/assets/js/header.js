@@ -16,7 +16,7 @@ window.onload = function(){
         menuShow();
       else {
         if(!Number(mobileLangMenu.style.height.replace(/\D/g,'')))
-          mobileLangMenu.style.height = '270px';
+          mobileLangMenu.style.height = '300px';
         else
           mobileLangMenu.style.height = '0px';
       }

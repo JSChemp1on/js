@@ -520,7 +520,7 @@ var langJson = {
             "video_uploaded":"This video is uploaded"
         }
     },
-    "CS":{
+    "CZ":{
         "custom":{
             "MoneySend":"Prostředky byly odeslány"
         },

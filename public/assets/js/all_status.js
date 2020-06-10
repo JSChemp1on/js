@@ -444,7 +444,7 @@ window.addEventListener('load',function() {
 		
 		getUrlInfos.then(data => {
 			let button = document.querySelector('.input .GoToBack');
-			if(result.partner_url) {
+			if(result.partner_url && result.s !== 'Verifying') {
 				button.style.display = 'block';
 				let span = document.querySelector('.input .GoToBack .partnerName');
 				span.innerText = data.visible_name || result.partnerName || result.partner;

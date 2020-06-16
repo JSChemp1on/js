@@ -102,10 +102,16 @@ window.addEventListener('load',function() {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'block';
 							link.setAttribute('onclick',"javascript: location.href = '" + obj[key].url + "&back_url=" + encodeURIComponent(window.location.href) + "';");
+							let span2 = selector[visibleBlock()].querySelector('.input').querySelector('.GoToBackSpan');
+							span2.style.display = 'block';
+							console.log(link);
 						} else {
 							let link = selector[visibleBlock()].querySelector('.input').querySelector('#' + key);
 							link.style.display = 'none';
 							link.removeAttribute('onclick');
+							let span2 = selector[visibleBlock()].querySelector('.input').querySelector('.GoToBackSpan');
+							span2.style.display = 'none';
+							console.log(123,link);
 						}
 					}
 					else
@@ -377,7 +383,7 @@ window.addEventListener('load',function() {
 			countdown(15,result);
 			$("#videoRecord").hide();
 		} else {
-			d.querySelector('footer.footer center').style.visibility = 'hidden';
+			d.querySelector('#countdown').style.visibility = 'hidden';
 		}
 
 		// help users
@@ -444,10 +450,8 @@ window.addEventListener('load',function() {
 		
 		getUrlInfos.then(data => {
 			let button = document.querySelector('.input .GoToBack');
-			let span2 = document.querySelector('.input .GoToBackSpan');
 			if(result.partner_url) {
 				button.style.display = 'block';
-				span2.style.display = 'block';
 				let span = document.querySelector('.input .GoToBack .partnerName');
 				span.innerText = data.visible_name || result.partnerName || result.partner;
 
@@ -456,7 +460,6 @@ window.addEventListener('load',function() {
 				: result.partner_url + `${result.ex_transaction_id && `?transaction_id=${result.ex_transaction_id}`}`;
 			} else {
 				button.style.display = 'none';
-				span2.style.display = 'none';
 			}
 		});
 

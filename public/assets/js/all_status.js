@@ -374,7 +374,7 @@ window.addEventListener('load',function() {
 
 		// Обратный отсчет до редиректа partner_url, иначе текст в footer обнуляет
 		if(result.partner_url.length > 0 && (result.s == "TimeOut" || result.s == "Declined" || result.s == "Completed" || result.s == "MoneySend")) {
-			countdown(15000,result);
+			countdown(15,result);
 			$("#videoRecord").hide();
 		} else {
 			d.querySelector('footer.footer center').style.visibility = 'hidden';
@@ -444,8 +444,10 @@ window.addEventListener('load',function() {
 		
 		getUrlInfos.then(data => {
 			let button = document.querySelector('.input .GoToBack');
-			if(result.partner_url && result.s !== 'Verifying') {
+			let span2 = document.querySelector('.input .GoToBackSpan');
+			if(result.partner_url) {
 				button.style.display = 'block';
+				span2.style.display = 'block';
 				let span = document.querySelector('.input .GoToBack .partnerName');
 				span.innerText = data.visible_name || result.partnerName || result.partner;
 
@@ -454,6 +456,7 @@ window.addEventListener('load',function() {
 				: result.partner_url + `${result.ex_transaction_id && `?transaction_id=${result.ex_transaction_id}`}`;
 			} else {
 				button.style.display = 'none';
+				span2.style.display = 'none';
 			}
 		});
 
